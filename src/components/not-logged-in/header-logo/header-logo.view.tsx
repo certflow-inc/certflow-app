@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
-import logo from '../../../../public/images/logo_large.png';
+import logo from '../../../../public/images/logo_large.svg';
 import { HeaderLogoViewProps } from './header-logo.types';
 
 export function HeaderLogoView({ className, ...props }: HeaderLogoViewProps) {
