@@ -18,10 +18,23 @@ export function useSignupFormModel() {
     handleSubmit,
     setValue,
     resetField,
+    setFocus,
     formState: { errors }
   } = useForm<SignupFormData>({
     resolver: zodResolver(SIGNUP_FORM_SCHEMA)
   });
+
+  const registeredFields = {
+    type: register('type'),
+    companyTaxId: register('companyTaxId'),
+    companyName: register('companyName'),
+    name: register('name'),
+    taxId: register('taxId'),
+    email: register('email'),
+    mobilePhone: register('mobilePhone'),
+    password: register('password'),
+    confirmPassword: register('confirmPassword')
+  };
 
   const handleBackButtonClick = () => {
     router.push(PUBLIC_ROUTES.SIGNIN);
@@ -46,13 +59,17 @@ export function useSignupFormModel() {
     setValue('type', 'individual');
   }, [setValue]);
 
+  useEffect(() => {
+    setFocus('taxId');
+  }, [setFocus]);
+
   return {
-    register,
-    handleSignupSubmit,
     errors,
+    registeredFields,
+    showCorporationInformations,
+    handleSignupSubmit,
     handleBackButtonClick,
     handleTypePersonChange,
-    showCorporationInformations,
     PERSON_TYPES
   };
 }

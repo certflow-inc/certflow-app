@@ -1,6 +1,7 @@
 import { PRIVATE_ROUTES } from '@/routes';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { SIGNIN_FORM_SCHEMA } from './form.schema';
 import { SigninFormData } from './form.types';
@@ -11,10 +12,16 @@ export function useFormModel() {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    setFocus
   } = useForm<SigninFormData>({
     resolver: zodResolver(SIGNIN_FORM_SCHEMA)
   });
+
+  const registeredFields = {
+    email: register('email'),
+    password: register('password')
+  };
 
   const handleSigninSubmit = handleSubmit((data: SigninFormData) => {
     const { email, password } = data;
@@ -29,9 +36,13 @@ export function useFormModel() {
     alert('Usuário ou senha inválidos');
   });
 
+  useEffect(() => {
+    setFocus('email');
+  }, [setFocus]);
+
   return {
     rotuer,
-    register,
+    registeredFields,
     handleSigninSubmit,
     errors
   };

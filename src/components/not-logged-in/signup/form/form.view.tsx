@@ -19,7 +19,7 @@ export function SignupFormView({
 }: SignupFormViewProps) {
   const {
     handleSignupSubmit,
-    register,
+    registeredFields,
     errors,
     handleBackButtonClick,
     handleTypePersonChange,
@@ -38,7 +38,7 @@ export function SignupFormView({
       {...props}
     >
       <div className="flex flex-col gap-2">
-        <input type="hidden" {...register('type')} />
+        <input type="hidden" {...registeredFields.type} />
         <Select
           onValueChange={handleTypePersonChange}
           defaultValue={PERSON_TYPES[0].value}
@@ -64,13 +64,13 @@ export function SignupFormView({
           <InputMasked
             format="cnpj"
             placeholder="CNPJ"
-            {...register('companyTaxId')}
+            {...registeredFields.companyTaxId}
             error={errors.companyTaxId?.message}
           />
           <Input
             type="text"
             placeholder="Nome da empresa"
-            {...register('companyName')}
+            {...registeredFields.companyName}
             error={errors.companyName?.message}
           />
         </div>
@@ -78,37 +78,37 @@ export function SignupFormView({
         <InputMasked
           format="cpf"
           placeholder="CPF"
-          {...register('taxId')}
+          {...registeredFields.taxId}
           error={errors.taxId?.message}
         />
         <Input
           type="text"
           placeholder="Nome"
-          {...register('name')}
+          {...registeredFields.name}
           error={errors.name?.message}
         />
         <InputMasked
           format="phone"
           placeholder="Telefone"
-          {...register('mobilePhone')}
+          {...registeredFields.mobilePhone}
           error={errors.mobilePhone?.message}
         />
         <Input
           type="email"
           placeholder="Email"
-          {...register('email')}
+          {...registeredFields.email}
           error={errors.email?.message}
         />
         <Input
           type="password"
           placeholder="Senha"
-          {...register('password')}
+          {...registeredFields.password}
           error={errors.password?.message}
         />
         <Input
           type="password"
           placeholder="Confirmação da senha"
-          {...register('confirmPassword')}
+          {...registeredFields.confirmPassword}
           error={errors.confirmPassword?.message}
         />
       </div>

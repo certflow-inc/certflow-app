@@ -13,7 +13,7 @@ export function SigninFormView({
   className,
   ...props
 }: SigninFormViewProps) {
-  const { handleSigninSubmit, register, rotuer, errors } = model;
+  const { handleSigninSubmit, registeredFields, rotuer, errors } = model;
 
   return (
     <form
@@ -30,13 +30,13 @@ export function SigninFormView({
           type="email"
           placeholder="Email"
           error={errors.email?.message}
-          {...register('email')}
+          {...registeredFields.email}
         />
         <Input
           type="password"
           placeholder="Senha"
           error={errors.password?.message}
-          {...register('password')}
+          {...registeredFields.password}
         />
       </div>
 
