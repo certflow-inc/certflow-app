@@ -1,3 +1,5 @@
+import { NotLoggedIn } from '@/components';
+
 export default function SignupPage() {
-  return <div>CertFlow - Signup Page</div>;
+  return <NotLoggedIn.SignupForm className="flex-1" />;
 }

@@ -1,3 +1,5 @@
+'use client';
+
 import { InputMask, Replacement } from '@react-input/mask';
 import { Input, InputProps } from './input';
 
