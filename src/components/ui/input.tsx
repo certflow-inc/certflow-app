@@ -5,7 +5,7 @@ import { Eye, EyeClosed } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from './button';
 
-type InputProps = React.ComponentProps<'input'> & {
+export type InputProps = React.ComponentProps<'input'> & {
   error?: string;
   icon?: React.ReactNode;
 };
