@@ -51,7 +51,7 @@ export function SigninFormView({
           size="lg"
           onClick={() => rotuer.push(PUBLIC_ROUTES.SIGNUP)}
         >
-          Fazer cadastro
+          Cadastrar
         </Button>
 
         <Link
