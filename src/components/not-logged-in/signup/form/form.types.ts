@@ -1,13 +1,18 @@
 import { ComponentProps } from 'react';
+import { z } from 'zod';
 import { useSignupFormModel } from './form.model';
-// import { z } from 'zod';
-// import { useFormModel } from './form.model';
-// import { SIGNIN_FORM_SCHEMA } from './form.schema';
+import { SIGNUP_FORM_SCHEMA } from './form.schema';
 
-// export type SigninFormData = z.infer<typeof SIGNIN_FORM_SCHEMA>;
+export type SignupFormData = z.infer<typeof SIGNUP_FORM_SCHEMA>;
 
 export type SignupFormViewProps = ComponentProps<'form'> & {
   model: ReturnType<typeof useSignupFormModel>;
 };
 
 export type SignupFormViewModelProps = Omit<SignupFormViewProps, 'model'>;
+
+export type PersonType = 'individual' | 'corporation';
+export type PersonTypeObject = {
+  value: PersonType;
+  label: string;
+};

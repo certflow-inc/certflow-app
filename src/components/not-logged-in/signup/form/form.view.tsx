@@ -17,10 +17,20 @@ export function SignupFormView({
   className,
   ...props
 }: SignupFormViewProps) {
-  const { backToLoginPage } = model;
+  const {
+    handleSignupSubmit,
+    register,
+    errors,
+    handleBackButtonClick,
+    handleTypePersonChange,
+    showCorporationInformations,
+    PERSON_TYPES
+  } = model;
 
   return (
     <form
+      noValidate
+      onSubmit={handleSignupSubmit}
       className={cn(
         'flex w-full max-w-96 flex-col gap-6 px-4 md:px-0',
         className
@@ -28,27 +38,79 @@ export function SignupFormView({
       {...props}
     >
       <div className="flex flex-col gap-2">
-        <Select>
+        <input type="hidden" {...register('type')} />
+        <Select
+          onValueChange={handleTypePersonChange}
+          defaultValue={PERSON_TYPES[0].value}
+        >
           <SelectTrigger className="mb-5 w-full py-6">
             <SelectValue placeholder="Selecione um tipo de pessoa" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectItem value="individual">Pessoa Física</SelectItem>
-              <SelectItem value="corporation">Pessoa Jurídica</SelectItem>
+              {PERSON_TYPES.map((personType) => (
+                <SelectItem key={personType.value} value={personType.value}>
+                  {personType.label}
+                </SelectItem>
+              ))}
             </SelectGroup>
           </SelectContent>
         </Select>
 
-        <InputMasked format="cnpj" placeholder="CNPJ" />
-        <Input type="text" placeholder="Nome da empresa" />
+        <div
+          data-visible={showCorporationInformations}
+          className="data-[visible=false]:hidden"
+        >
+          <InputMasked
+            format="cnpj"
+            placeholder="CNPJ"
+            {...register('companyTaxId')}
+            error={errors.companyTaxId?.message}
+          />
+          <Input
+            type="text"
+            placeholder="Nome da empresa"
+            {...register('companyName')}
+            error={errors.companyName?.message}
+          />
+        </div>
 
-        <InputMasked format="cpf" placeholder="CPF" />
-        <Input type="text" placeholder="Nome" />
-        <InputMasked format="phone" placeholder="Celular" />
-        <Input type="email" placeholder="Email" />
-        <Input type="password" placeholder="Senha" />
-        <Input type="password" placeholder="Confirmação da senha" />
+        <InputMasked
+          format="cpf"
+          placeholder="CPF"
+          {...register('taxId')}
+          error={errors.taxId?.message}
+        />
+        <Input
+          type="text"
+          placeholder="Nome"
+          {...register('name')}
+          error={errors.name?.message}
+        />
+        <InputMasked
+          format="phone"
+          placeholder="Celular"
+          {...register('mobilePhone')}
+          error={errors.mobilePhone?.message}
+        />
+        <Input
+          type="email"
+          placeholder="Email"
+          {...register('email')}
+          error={errors.email?.message}
+        />
+        <Input
+          type="password"
+          placeholder="Senha"
+          {...register('password')}
+          error={errors.password?.message}
+        />
+        <Input
+          type="password"
+          placeholder="Confirmação da senha"
+          {...register('confirmPassword')}
+          error={errors.confirmPassword?.message}
+        />
       </div>
 
       <div className="flex flex-col gap-4">
@@ -60,7 +122,7 @@ export function SignupFormView({
           type="button"
           variant="outline"
           size="lg"
-          onClick={backToLoginPage}
+          onClick={handleBackButtonClick}
         >
           Voltar
         </Button>

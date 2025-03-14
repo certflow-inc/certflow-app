@@ -7,8 +7,8 @@ export function ContainerView({
   ...props
 }: ContainerViewProps) {
   return (
-    <main className={cn('min-h-dvh pt-12', className)} {...props}>
-      <div className="relative flex min-h-[calc(100vh-48px)] flex-col items-center">
+    <main className={cn('h-dvh pt-12', className)} {...props}>
+      <div className="relative flex min-h-[calc(100vh-48px)] flex-col items-center gap-12">
         {children}
       </div>
     </main>

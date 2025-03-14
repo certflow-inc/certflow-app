@@ -7,7 +7,7 @@ export default function RootNotLoggedInLayout({
 }>) {
   return (
     <NotLoggedIn.Container>
-      <NotLoggedIn.HeaderLogo className="mb-12" />
+      <NotLoggedIn.HeaderLogo />
       {children}
       <NotLoggedIn.FooterWaves />
     </NotLoggedIn.Container>
