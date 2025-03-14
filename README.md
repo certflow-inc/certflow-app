@@ -1,4 +1,4 @@
-CertFlow - Emissor de certificado on-line!!!!!
+CertFlow - Emissor de certificado on-line!
 
 ## Getting Started
 
