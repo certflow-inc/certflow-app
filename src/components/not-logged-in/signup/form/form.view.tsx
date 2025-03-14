@@ -89,7 +89,7 @@ export function SignupFormView({
         />
         <InputMasked
           format="phone"
-          placeholder="Celular"
+          placeholder="Telefone"
           {...register('mobilePhone')}
           error={errors.mobilePhone?.message}
         />

@@ -31,6 +31,7 @@ function Input({ className, type, error, icon, ...props }: InputProps) {
         {isPassword && (
           <div className="absolute top-1/2 right-2 -translate-y-1/2">
             <Button
+              tabIndex={-1}
               type="button"
               variant="ghost"
               onClick={() => setShowPassword(!showPassword)}
