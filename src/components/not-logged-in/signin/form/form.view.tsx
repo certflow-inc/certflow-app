@@ -41,11 +41,12 @@ export function SigninFormView({
       </div>
 
       <div className="flex flex-col gap-4">
-        <Button variant="default" size="lg">
+        <Button type="submit" id="signin-button" variant="default" size="lg">
           Entrar
         </Button>
 
         <Button
+          id="signup-button"
           type="button"
           variant="outline"
           size="lg"
@@ -55,6 +56,7 @@ export function SigninFormView({
         </Button>
 
         <Link
+          id="forgot-password-link"
           href={PUBLIC_ROUTES['FORGOT-PASSWORD']}
           className="text-primary hover:text-primary-600 active:text-primary-700 text-center"
         >

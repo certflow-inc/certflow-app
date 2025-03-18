@@ -10,7 +10,8 @@
     "lint:fix": "eslint src --fix",
     "prepare": "husky install",
     "test": "jest",
-    "test:watch": "jest --watch --coverage"
+    "test:watch": "jest --watch --coverage",
+     "cypress:open": "cypress open"
   },
   "lint-staged": {
     "src/**/*.+(js|jsx|ts|tsx|md|mdx|yml|yaml)": [
@@ -51,6 +52,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "commitizen": "^4.3.1",
+    "cypress": "^14.2.0",
     "eslint": "^9",
     "eslint-config-next": "15.2.2",
     "eslint-config-prettier": "^10.1.1",
