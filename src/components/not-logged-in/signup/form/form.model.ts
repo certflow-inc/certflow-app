@@ -4,11 +4,18 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { Register } from '@/types/register';
 import { PERSON_TYPES } from './form.constants';
 import { SIGNUP_FORM_SCHEMA } from './form.schema';
-import { PersonType, SignupFormData } from './form.types';
+import {
+  PersonType,
+  SignupFormData,
+  UseSignupFormModelProps
+} from './form.types';
 
-export function useSignupFormModel() {
+export function useSignupFormModel({
+  onSignupSubmit
+}: UseSignupFormModelProps) {
   const router = useRouter();
   const [showCorporationInformations, setShowCorporationInformations] =
     useState(false);
@@ -51,9 +58,9 @@ export function useSignupFormModel() {
     }
   };
 
-  const handleSignupSubmit = handleSubmit((data: SignupFormData) => {
-    console.log('data', data);
-  });
+  const handleSignupSubmit = handleSubmit((data: SignupFormData) =>
+    onSignupSubmit(data as Register)
+  );
 
   useEffect(() => {
     setValue('type', 'individual');

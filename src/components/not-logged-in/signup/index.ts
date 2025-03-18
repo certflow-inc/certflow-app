@@ -1,1 +1,1 @@
-export { SignupForm } from './form';
+export { SignupViewModel as Signup } from './signup.viewmodel';

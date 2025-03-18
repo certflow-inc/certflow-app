@@ -8,7 +8,7 @@ import {
   FooterWaves,
   HeaderLogo,
   SigninForm,
-  SignupForm
+  Signup
 } from './not-logged-in';
 
 export const NotLoggedIn = {
@@ -16,5 +16,5 @@ export const NotLoggedIn = {
   FooterWaves,
   HeaderLogo,
   SigninForm,
-  SignupForm
+  Signup
 };
