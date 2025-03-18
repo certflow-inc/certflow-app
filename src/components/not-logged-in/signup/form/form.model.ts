@@ -4,17 +4,15 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { Register } from '@/types/register';
+import { PersonType, Register } from '@/types/register';
 import { PERSON_TYPES } from './form.constants';
 import { SIGNUP_FORM_SCHEMA } from './form.schema';
-import {
-  PersonType,
-  SignupFormData,
-  UseSignupFormModelProps
-} from './form.types';
+import { SignupFormData, UseSignupFormModelProps } from './form.types';
 
 export function useSignupFormModel({
-  onSignupSubmit
+  onSignupSubmit,
+  isProcessing,
+  fieldErrors
 }: UseSignupFormModelProps) {
   const router = useRouter();
   const [showCorporationInformations, setShowCorporationInformations] =
@@ -26,6 +24,7 @@ export function useSignupFormModel({
     setValue,
     resetField,
     setFocus,
+    setError,
     formState: { errors }
   } = useForm<SignupFormData>({
     resolver: zodResolver(SIGNUP_FORM_SCHEMA)
@@ -70,10 +69,19 @@ export function useSignupFormModel({
     setFocus('taxId');
   }, [setFocus]);
 
+  useEffect(() => {
+    if (fieldErrors) {
+      fieldErrors.forEach((error) => {
+        setError(error.field as keyof Register, { message: error.message });
+      });
+    }
+  }, [fieldErrors, setError, setFocus]);
+
   return {
     errors,
     registeredFields,
     showCorporationInformations,
+    isProcessing,
     handleSignupSubmit,
     handleBackButtonClick,
     handleTypePersonChange,

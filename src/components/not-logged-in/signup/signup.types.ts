@@ -8,3 +8,16 @@ export type UseSignupModelProps = {
 export type SignupViewProps = {
   action: typeof signup;
 };
+
+export type SignupFlow = {
+  title: string;
+  description: string;
+  destination?: string;
+  destinationLabel?: string;
+  field?: string;
+};
+
+export type SignupFieldError = {
+  field: string;
+  message: string;
+};

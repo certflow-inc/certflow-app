@@ -10,6 +10,7 @@ import {
   SelectValue
 } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
+import { LoaderCircle } from 'lucide-react';
 import { SignupFormViewProps } from './form.types';
 
 export function SignupFormView({
@@ -18,13 +19,14 @@ export function SignupFormView({
   ...props
 }: SignupFormViewProps) {
   const {
-    handleSignupSubmit,
-    registeredFields,
     errors,
-    handleBackButtonClick,
-    handleTypePersonChange,
+    registeredFields,
     showCorporationInformations,
-    PERSON_TYPES
+    PERSON_TYPES,
+    isProcessing,
+    handleSignupSubmit,
+    handleBackButtonClick,
+    handleTypePersonChange
   } = model;
 
   return (
@@ -114,8 +116,11 @@ export function SignupFormView({
       </div>
 
       <div className="flex flex-col gap-4">
-        <Button variant="default" size="lg">
+        <Button variant="default" size="lg" disabled={isProcessing}>
           Confirmar
+          {isProcessing && (
+            <LoaderCircle className="ml-2 h-4 w-4 animate-spin" />
+          )}
         </Button>
 
         <Button
@@ -123,6 +128,7 @@ export function SignupFormView({
           variant="outline"
           size="lg"
           onClick={handleBackButtonClick}
+          disabled={isProcessing}
         >
           Voltar
         </Button>

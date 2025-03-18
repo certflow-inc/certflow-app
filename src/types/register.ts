@@ -1,5 +1,6 @@
+export type PersonType = 'individual' | 'corporation';
 export type Register = {
-  type: 'individual' | 'corporation';
+  type: PersonType;
   taxId: string;
   name: string;
   companyTaxId?: string;

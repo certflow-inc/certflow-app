@@ -6,9 +6,15 @@ import { SignupFormView } from './form.view';
 
 export function SignupFormViewModel({
   onSignupSubmit,
+  fieldErrors,
+  isProcessing,
   ...props
 }: SignupFormViewModelProps) {
-  const signupFormViewModel = useSignupFormModel({ onSignupSubmit });
+  const model = useSignupFormModel({
+    onSignupSubmit,
+    isProcessing,
+    fieldErrors
+  });
 
-  return <SignupFormView model={signupFormViewModel} {...props} />;
+  return <SignupFormView model={model} {...props} />;
 }

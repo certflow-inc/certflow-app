@@ -1,9 +1,9 @@
 export type ApiResponse<T> = {
-  status: 'ok' | 'error';
+  ok: boolean;
   data?: T;
-  error?: ApiError;
+  dataError?: ApiError;
 };
 
-type ApiError = {
-  message: string;
+export type ApiError = {
+  error: string;
 };

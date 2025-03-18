@@ -1,26 +1,22 @@
 'use server';
 
-import { ApiResponse } from '@/types/api';
+import { SignupService } from '@/service/signup';
 import { Register } from '@/types/register';
 
-export async function signup(register: Register): Promise<ApiResponse<void>> {
+export async function signup(
+  register: Register
+): Promise<ReturnType<typeof SignupService.signup>> {
   try {
-    // TODO chamar a api de cadastro
-    if (register.name === 'ricardo') {
-      return {
-        status: 'ok'
-      };
-    }
+    return SignupService.signup(register);
 
-    // TODO remover quando chamar a api
-    throw new Error('Account already registered');
+    //
   } catch (error: unknown) {
     const err = error as Error;
 
     return {
-      status: 'error',
-      error: {
-        message: err.message
+      ok: false,
+      dataError: {
+        error: err.message
       }
     };
   }
