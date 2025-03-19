@@ -25,6 +25,7 @@ export function SigninFormView({
       )}
       {...props}
     >
+      <h1 className="text-center text-lg font-bold md:text-2xl">Login</h1>
       <div className="flex flex-col gap-2">
         <Input
           type="email"

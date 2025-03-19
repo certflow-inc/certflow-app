@@ -1,5 +1,6 @@
 export type SignupResponse =
   | 'Ok'
+  | 'Internal server error'
   | 'An error occurred while processing your request. Please, try again later'
   | 'User already registered'
   | 'Account already registered'

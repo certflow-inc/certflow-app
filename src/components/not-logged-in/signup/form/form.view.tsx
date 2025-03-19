@@ -39,6 +39,7 @@ export function SignupFormView({
       )}
       {...props}
     >
+      <h1 className="text-center text-lg font-bold md:text-2xl">Cadastro</h1>
       <div className="flex flex-col gap-2">
         <input type="hidden" {...registeredFields.type} />
         <Select

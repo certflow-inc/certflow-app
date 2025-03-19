@@ -4,19 +4,29 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { SignupResponse } from '@/service/signup/signup.types';
 import { PersonType, Register } from '@/types/register';
+import { SIGNUP_FLOW } from '../signup.constants';
 import { PERSON_TYPES } from './form.constants';
 import { SIGNUP_FORM_SCHEMA } from './form.schema';
-import { SignupFormData, UseSignupFormModelProps } from './form.types';
+import {
+  SignupFieldError,
+  SignupFormData,
+  UseSignupFormModelProps
+} from './form.types';
 
 export function useSignupFormModel({
-  onSignupSubmit,
-  isProcessing,
-  fieldErrors
+  action,
+  onSignupSubmit
 }: UseSignupFormModelProps) {
   const router = useRouter();
   const [showCorporationInformations, setShowCorporationInformations] =
     useState(false);
+
+  const [fieldErrors, setFieldErrors] = useState<
+    SignupFieldError[] | undefined
+  >();
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const {
     register,
@@ -27,7 +37,18 @@ export function useSignupFormModel({
     setError,
     formState: { errors }
   } = useForm<SignupFormData>({
-    resolver: zodResolver(SIGNUP_FORM_SCHEMA)
+    resolver: zodResolver(SIGNUP_FORM_SCHEMA),
+    values: {
+      type: 'person',
+      companyTaxId: '',
+      companyName: '',
+      name: 'Rick',
+      taxId: '26852132870',
+      email: 'ricardo.almendro.ruiz@gmail.com',
+      mobilePhone: '(19) 99941-2206',
+      password: 'Cf123456',
+      confirmPassword: 'Cf123456'
+    }
   });
 
   const registeredFields = {
@@ -57,9 +78,27 @@ export function useSignupFormModel({
     }
   };
 
-  const handleSignupSubmit = handleSubmit((data: SignupFormData) =>
-    onSignupSubmit(data as Register)
-  );
+  const handleSignupSubmit = handleSubmit(async (data: SignupFormData) => {
+    setIsProcessing(true);
+    const response = await action(data as Register);
+    setIsProcessing(false);
+
+    if (response.ok) return onSignupSubmit(SIGNUP_FLOW.Ok);
+
+    const error = SIGNUP_FLOW[response.dataError?.error as SignupResponse];
+
+    if (!error.field) {
+      onSignupSubmit(SIGNUP_FLOW[response.dataError?.error as SignupResponse]);
+      return;
+    }
+
+    setFieldErrors([
+      {
+        field: error.field,
+        message: error.title
+      }
+    ]);
+  });
 
   useEffect(() => {
     setValue('type', 'individual');

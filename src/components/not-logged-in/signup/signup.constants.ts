@@ -9,6 +9,13 @@ export const SIGNUP_FLOW: Record<SignupResponse, SignupFlow> = {
     destination: '/signin',
     destinationLabel: 'Voltar para tela de login'
   },
+  'Internal server error': {
+    title: 'Problema ao fazer o cadastro',
+    description:
+      'Ocorreu um erro ao fazer o cadastro. Por favor, tente novamente mais tarde.',
+    destination: '/signin',
+    destinationLabel: 'Voltar para tela de login'
+  },
   'An error occurred while processing your request. Please, try again later': {
     title: 'Problema ao fazer o cadastro',
     description:

@@ -7,9 +7,7 @@ export async function signup(
   register: Register
 ): Promise<ReturnType<typeof SignupService.signup>> {
   try {
-    return SignupService.signup(register);
-
-    //
+    return await SignupService.signup(register);
   } catch (error: unknown) {
     const err = error as Error;
 
