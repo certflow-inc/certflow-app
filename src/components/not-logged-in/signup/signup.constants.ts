@@ -7,35 +7,33 @@ export const SIGNUP_FLOW: Record<SignupResponse, SignupFlow> = {
     description:
       'Verifique sua caixa de mensagens, encontre o email enviado e clique no link existente para ativar a sua conta.',
     destination: '/signin',
-    destinationLabel: 'Voltar para tela de login'
+    destinationLabel: 'Voltar para login'
   },
   'Internal server error': {
-    title: 'Problema ao fazer o cadastro',
-    description:
-      'Ocorreu um erro ao fazer o cadastro. Por favor, tente novamente mais tarde.',
-    destination: '/signin',
-    destinationLabel: 'Voltar para tela de login'
+    title: 'Ops!!! Ocorreu um erro ao realizar o cadastro!',
+    description: 'Clique no botão abaixo para tentar novamente.',
+    destination: '/signup',
+    destinationLabel: 'Tentar novamente'
   },
   'An error occurred while processing your request. Please, try again later': {
-    title: 'Problema ao fazer o cadastro',
-    description:
-      'Ocorreu um erro ao fazer o cadastro. Por favor, tente novamente mais tarde.',
-    destination: '/signin',
-    destinationLabel: 'Voltar para tela de login'
+    title: 'Ops!!! Ocorreu um erro ao realizar o cadastro!',
+    description: 'Clique no botão abaixo para tentar novamente.',
+    destination: '/signup',
+    destinationLabel: 'Tentar novamente'
   },
   'User already registered': {
     title: 'Conta já cadastrada',
     description:
       'Email, CPF ou CNPJ informado já cadastrado!. Caso seja você, clique no link de redefinição de senha para redefini-la.',
     destination: '/signin',
-    destinationLabel: 'Voltar para tela de login'
+    destinationLabel: 'Voltar para login'
   },
   'Account already registered': {
     title: 'Conta já cadastrada',
     description:
       'Email, CPF ou CNPJ informado já cadastrado! Caso seja você, clique no link de redefinição de senha para redefini-la.',
     destination: '/signin',
-    destinationLabel: 'Voltar para tela de login'
+    destinationLabel: 'Voltar para login'
   },
   '\"taxId\" is required': {
     title: 'CPF é obrigatório',
