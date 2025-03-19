@@ -26,14 +26,14 @@ export const SIGNUP_FLOW: Record<SignupResponse, SignupFlow> = {
   'User already registered': {
     title: 'Conta já cadastrada',
     description:
-      'O email informado já foi cadastrado para outra conta. Caso seja você, clique no link de redefinição de senha para redefinir a sua senha.',
+      'Email, CPF ou CNPJ informado já cadastrado!. Caso seja você, clique no link de redefinição de senha para redefini-la.',
     destination: '/signin',
     destinationLabel: 'Voltar para tela de login'
   },
   'Account already registered': {
     title: 'Conta já cadastrada',
     description:
-      'O email informado já foi cadastrado para outra conta. Caso seja você, clique no link de redefinição de senha para redefinir a sua senha.',
+      'Email, CPF ou CNPJ informado já cadastrado! Caso seja você, clique no link de redefinição de senha para redefini-la.',
     destination: '/signin',
     destinationLabel: 'Voltar para tela de login'
   },
