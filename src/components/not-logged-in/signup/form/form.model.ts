@@ -37,18 +37,18 @@ export function useSignupFormModel({
     setError,
     formState: { errors }
   } = useForm<SignupFormData>({
-    resolver: zodResolver(SIGNUP_FORM_SCHEMA),
-    values: {
-      type: 'person',
-      companyTaxId: '',
-      companyName: '',
-      name: 'Rick',
-      taxId: '26852132870',
-      email: 'ricardo.almendro.ruiz@gmail.com',
-      mobilePhone: '(19) 99941-2206',
-      password: 'Cf123456',
-      confirmPassword: 'Cf123456'
-    }
+    resolver: zodResolver(SIGNUP_FORM_SCHEMA)
+    // values: {
+    //   type: 'person',
+    //   companyTaxId: '',
+    //   companyName: '',
+    //   name: 'Rick',
+    //   taxId: '26852132870',
+    //   email: 'ricardo.almendro.ruiz@gmail.com',
+    //   mobilePhone: '(19) 99941-2206',
+    //   password: 'Cf123456',
+    //   confirmPassword: 'Cf123456'
+    // }
   });
 
   const registeredFields = {
@@ -88,7 +88,7 @@ export function useSignupFormModel({
     const error = SIGNUP_FLOW[response.dataError?.error as SignupResponse];
 
     if (!error.field) {
-      onSignupSubmit(SIGNUP_FLOW[response.dataError?.error as SignupResponse]);
+      onSignupSubmit(error);
       return;
     }
 
