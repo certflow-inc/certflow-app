@@ -1,4 +1,4 @@
-import { NotLoggedIn } from '@/components';
+import { EnvironmentIndicator, NotLoggedIn } from '@/components';
 
 export default function RootNotLoggedInLayout({
   children
@@ -7,6 +7,7 @@ export default function RootNotLoggedInLayout({
 }>) {
   return (
     <NotLoggedIn.Container>
+      <EnvironmentIndicator />
       <NotLoggedIn.HeaderLogo />
       {children}
       <NotLoggedIn.FooterWaves />

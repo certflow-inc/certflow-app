@@ -2,6 +2,9 @@
 export { Button } from './ui/button';
 export { Input } from './ui/input';
 
+// commons
+export { EnvironmentIndicator } from './environment-indicator';
+
 // not logged in components
 import {
   Container,
