@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { SignupActivationResponse } from '@/service/signup/signup.types';
+import { ActivateResponse } from '@/service/types';
 import Link from 'next/link';
 import { SIGNUP_ACTIVATION_FLOW } from './signup-activation.constants';
 import { SignupActivationViewProps } from './signup-activation.types';
@@ -11,9 +11,7 @@ export async function SignupActivationView({
 
   const { title, description, destination, destinationLabel } = response.ok
     ? SIGNUP_ACTIVATION_FLOW.Ok
-    : SIGNUP_ACTIVATION_FLOW[
-        response.dataError?.error as SignupActivationResponse
-      ];
+    : SIGNUP_ACTIVATION_FLOW[response.dataError?.error as ActivateResponse];
 
   return (
     <div className="flex max-w-[1000px] flex-1 flex-col items-center gap-12 px-4 lg:px-10">

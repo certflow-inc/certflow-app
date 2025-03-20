@@ -1,4 +1,4 @@
-import { Register } from '@/types/register';
+import { Register } from '@/service/domain/register';
 
 export type UseSignupModelProps = {
   action: (regiser: Register) => Promise<string>;

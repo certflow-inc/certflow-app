@@ -1,9 +1,9 @@
 'use server';
 
-import { SignupService } from '@/service/signup';
+import { CertFlowServices } from '@/service';
 
 export async function signupActivation(
   token: string
-): Promise<ReturnType<typeof SignupService.activate>> {
-  return SignupService.activate(token);
+): Promise<ReturnType<typeof CertFlowServices.activate>> {
+  return CertFlowServices.activate(token);
 }

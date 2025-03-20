@@ -45,6 +45,7 @@ export function SignupFormView({
         <Select
           onValueChange={handleTypePersonChange}
           defaultValue={PERSON_TYPES[0].value}
+          disabled={isProcessing}
         >
           <SelectTrigger className="mb-5 w-full py-6">
             <SelectValue placeholder="Selecione um tipo de pessoa" />
@@ -69,12 +70,14 @@ export function SignupFormView({
             placeholder="CNPJ"
             {...registeredFields.companyTaxId}
             error={errors.companyTaxId?.message}
+            disabled={isProcessing}
           />
           <Input
             type="text"
             placeholder="Nome da empresa"
             {...registeredFields.companyName}
             error={errors.companyName?.message}
+            disabled={isProcessing}
           />
         </div>
 
@@ -83,45 +86,51 @@ export function SignupFormView({
           placeholder="CPF"
           {...registeredFields.taxId}
           error={errors.taxId?.message}
+          disabled={isProcessing}
         />
         <Input
           type="text"
           placeholder="Nome"
           {...registeredFields.name}
           error={errors.name?.message}
+          disabled={isProcessing}
         />
         <InputMasked
           format="phone"
           placeholder="Telefone"
           {...registeredFields.mobilePhone}
           error={errors.mobilePhone?.message}
+          disabled={isProcessing}
         />
         <Input
           type="email"
           placeholder="Email"
           {...registeredFields.email}
           error={errors.email?.message}
+          disabled={isProcessing}
         />
         <Input
           type="password"
           placeholder="Senha"
           {...registeredFields.password}
           error={errors.password?.message}
+          disabled={isProcessing}
         />
         <Input
           type="password"
           placeholder="Confirmação da senha"
           {...registeredFields.confirmPassword}
           error={errors.confirmPassword?.message}
+          disabled={isProcessing}
         />
       </div>
 
       <div className="flex flex-col gap-4">
         <Button variant="default" size="lg" disabled={isProcessing}>
-          Confirmar
           {isProcessing && (
             <LoaderCircle className="ml-2 h-4 w-4 animate-spin" />
           )}
+          Confirmar
         </Button>
 
         <Button

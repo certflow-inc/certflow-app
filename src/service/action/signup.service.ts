@@ -1,8 +1,8 @@
 'server only';
 
-import { ApiError, ApiResponse } from '@/types/api';
-import { API_COMMON_RESPONSE_ERROR } from '@/types/api/constants';
-import { Register } from '@/types/register';
+import { API_COMMON_RESPONSE_ERROR } from '@/service/constants';
+import { Register } from '@/service/domain/register';
+import { ApiError, ApiResponse } from '@/service/types';
 import { StatusCodes } from 'http-status-codes';
 
 /**

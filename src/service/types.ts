@@ -1,4 +1,16 @@
-import { API_SERVER_ERROR } from '@/types/api';
+export type ApiResponse<T> = {
+  ok: boolean;
+  data?: T;
+  dataError?: ApiError;
+};
+
+export type ApiError = {
+  error: string;
+};
+
+export type API_COMMON_ERRORS = 'API_SERVER_ERROR';
+export type API_SERVER_ERROR =
+  'An error occurred while processing your request. Please, try again later';
 
 export type SignupResponse =
   | 'Ok'
@@ -31,7 +43,7 @@ export type SignupResponse =
   | '\"confirmPassword\" does not match'
   | API_SERVER_ERROR;
 
-export type SignupActivationResponse =
+export type ActivateResponse =
   | 'Ok'
   | 'User cannot be activated'
   | 'Link is expired'

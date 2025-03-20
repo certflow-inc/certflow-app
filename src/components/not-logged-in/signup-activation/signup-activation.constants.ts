@@ -1,10 +1,10 @@
 import { PUBLIC_ROUTES } from '@/routes';
 
-import { SignupActivationResponse } from '@/service/signup/signup.types';
+import { ActivateResponse } from '@/service/types';
 import { SignupActivationFlow } from './signup-activation.types';
 
 export const SIGNUP_ACTIVATION_FLOW: Record<
-  SignupActivationResponse,
+  ActivateResponse,
   SignupActivationFlow
 > = {
   Ok: {

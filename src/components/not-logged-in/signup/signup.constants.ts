@@ -1,5 +1,5 @@
 import { PUBLIC_ROUTES } from '@/routes';
-import { SignupResponse } from '@/service/signup/signup.types';
+import { SignupResponse } from '@/service/types';
 import { SignupFlow } from './signup.types';
 
 export const SIGNUP_FLOW: Record<SignupResponse, SignupFlow> = {
