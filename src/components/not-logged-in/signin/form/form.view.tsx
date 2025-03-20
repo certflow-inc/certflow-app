@@ -58,7 +58,7 @@ export function SigninFormView({
 
         <Link
           id="forgot-password-link"
-          href={PUBLIC_ROUTES['FORGOT-PASSWORD']}
+          href={PUBLIC_ROUTES.FORGOT_PASSWORD}
           className="text-primary hover:text-primary-600 active:text-primary-700 text-center"
         >
           Esqueci minha senha

@@ -54,7 +54,7 @@ export async function signup(register: Register): Promise<ApiResponse<void>> {
  * @param {Register} register The register data.
  * @returns {string} The payload as a JSON string.
  */
-function buildPayload(register: Register) {
+function buildPayload(register: Register): string {
   const {
     type,
     taxId,
@@ -89,7 +89,7 @@ function buildPayload(register: Register) {
  *
  * @returns {Record<string, string>} headers object
  */
-function buildHeaders() {
+function buildHeaders(): Record<string, string> {
   return {
     'Content-Type': 'application/json'
   };

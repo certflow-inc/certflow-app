@@ -29,3 +29,9 @@ export type SignupResponse =
   | '\"password\" must contain at least 1 numeric character'
   | '\"confirmPassword\" is required'
   | '\"confirmPassword\" does not match';
+
+export type SignupActivationResponse =
+  | 'Ok'
+  | 'Link is invalid'
+  | 'Link is expired'
+  | 'An error occurred while processing your request. Please, try again later';
