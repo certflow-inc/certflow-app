@@ -14,14 +14,8 @@ export function SigninFormView({
   className,
   ...props
 }: SigninFormViewProps) {
-  const {
-    handleSigninSubmit,
-    registeredFields,
-    rotuer,
-    errors,
-    formError,
-    isProcessing
-  } = model;
+  const { handleSigninSubmit, registeredFields, rotuer, errors, isProcessing } =
+    model;
 
   return (
     <form
@@ -84,11 +78,6 @@ export function SigninFormView({
         >
           Esqueci minha senha
         </Link>
-      </div>
-
-      {/* TODO estilizar melhor ou criar um componente */}
-      <div data-visible={!!formError} className="data-[visible=false]:hidden">
-        <div className="text-center text-red-500">{formError}</div>
       </div>
     </form>
   );

@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { SIGNIN_FLOW } from '../signin.constants';
 import { SIGNIN_FORM_SCHEMA } from './form.schema';
 import {
@@ -18,7 +19,6 @@ export function useFormModel({
 }: UseSigninFormModelProps) {
   const rotuer = useRouter();
   const [isProcessing, setIsProcessing] = useState(false);
-  const [formError, setFormError] = useState('');
   const [fieldErrors, setFieldErrors] = useState<
     SigninFieldError[] | undefined
   >();
@@ -40,11 +40,11 @@ export function useFormModel({
 
   const handleSigninSubmit = handleSubmit(async (data: SigninFormData) => {
     const { email, password } = data;
-    setFormError('');
     setFieldErrors(undefined);
 
     setIsProcessing(true);
     const response = await action(email, password);
+    console.log('🚀 ~ handleSigninSubmit ~ response:', response);
     setIsProcessing(false);
 
     if (response.ok) {
@@ -53,7 +53,6 @@ export function useFormModel({
       return;
     }
 
-    console.log('response.dataError?.error', response.dataError?.error);
     const signinFlow = SIGNIN_FLOW[response.dataError?.error as SigninResponse];
 
     if (signinFlow.flow) {
@@ -61,8 +60,12 @@ export function useFormModel({
       return;
     }
 
-    if (signinFlow.form) {
-      setFormError(signinFlow.title);
+    if (signinFlow.toast) {
+      toast(signinFlow.title, {
+        type: 'error',
+        position: 'bottom-center',
+        closeOnClick: true
+      });
       return;
     }
 
@@ -93,7 +96,6 @@ export function useFormModel({
   return {
     rotuer,
     errors,
-    formError,
     isProcessing,
     registeredFields,
     handleSigninSubmit

@@ -59,16 +59,16 @@ export const SIGNIN_FLOW: Record<SigninResponse, SigninFlow> = {
   'Account is not active': {
     title: 'Conta inativa',
     description: 'Conta inativa',
-    form: true
+    toast: true
   },
   'User is not active': {
     title: 'Usuário inativo',
     description: 'Usuário inativo',
-    form: true
+    toast: true
   },
   'Invalid email or password': {
     title: 'Email ou senha inválidos',
     description: 'Email ou senha inválidos',
-    form: true
+    toast: true
   }
 };

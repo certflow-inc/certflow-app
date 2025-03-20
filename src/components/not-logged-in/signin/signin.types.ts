@@ -4,6 +4,6 @@ export type SigninFlow = {
   destination?: string;
   destinationLabel?: string;
   flow?: boolean;
+  toast?: boolean;
   field?: string;
-  form?: boolean;
 };
