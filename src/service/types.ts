@@ -50,3 +50,9 @@ export type ActivateResponse =
   | 'Link is invalid'
   | '"token" contains an invalid value'
   | API_SERVER_ERROR;
+
+export type AccountVerificationResponse =
+  | 'Ok'
+  | '\"email\" is required'
+  | '\"email\" must be a valid email'
+  | API_SERVER_ERROR;

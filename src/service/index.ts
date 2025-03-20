@@ -1,7 +1,7 @@
-import { activate } from './action/activate.service';
-import { signup } from './action/signup.service';
+import { accountVerification, activate, signup } from './action';
 
 export const CertFlowServices = {
   signup,
-  activate
+  activate,
+  accountVerification
 };
