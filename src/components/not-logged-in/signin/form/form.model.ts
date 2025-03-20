@@ -1,17 +1,32 @@
 import { PRIVATE_ROUTES } from '@/routes';
+import { SigninResponse } from '@/service/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { SIGNIN_FLOW } from '../signin.constants';
 import { SIGNIN_FORM_SCHEMA } from './form.schema';
-import { SigninFormData } from './form.types';
+import {
+  SigninFieldError,
+  SigninFormData,
+  UseSigninFormModelProps
+} from './form.types';
 
-export function useFormModel() {
+export function useFormModel({
+  action,
+  onSigninSubmit
+}: UseSigninFormModelProps) {
   const rotuer = useRouter();
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [formError, setFormError] = useState('');
+  const [fieldErrors, setFieldErrors] = useState<
+    SigninFieldError[] | undefined
+  >();
 
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
     setFocus
   } = useForm<SigninFormData>({
@@ -23,27 +38,64 @@ export function useFormModel() {
     password: register('password')
   };
 
-  const handleSigninSubmit = handleSubmit((data: SigninFormData) => {
+  const handleSigninSubmit = handleSubmit(async (data: SigninFormData) => {
     const { email, password } = data;
+    setFormError('');
+    setFieldErrors(undefined);
 
-    // TODO chamar a action ou diretamente a api de login
-    if (email === 'admin@email.com' && password === '123456') {
+    setIsProcessing(true);
+    const response = await action(email, password);
+    setIsProcessing(false);
+
+    if (response.ok) {
+      // TODO criar a sessão do usuário antes de redirecionar
       rotuer.push(PRIVATE_ROUTES.DASHBOARD);
       return;
     }
 
-    // TODO mostrar mensagem de erro
-    alert('Usuário ou senha inválidos');
+    console.log('response.dataError?.error', response.dataError?.error);
+    const signinFlow = SIGNIN_FLOW[response.dataError?.error as SigninResponse];
+
+    if (signinFlow.flow) {
+      onSigninSubmit(signinFlow);
+      return;
+    }
+
+    if (signinFlow.form) {
+      setFormError(signinFlow.title);
+      return;
+    }
+
+    if (signinFlow.field) {
+      setFieldErrors([
+        {
+          field: signinFlow.field,
+          message: signinFlow.title
+        }
+      ]);
+    }
   });
 
   useEffect(() => {
     setFocus('email');
   }, [setFocus]);
 
+  useEffect(() => {
+    if (fieldErrors) {
+      fieldErrors.forEach((error) => {
+        setError(error.field as keyof SigninFormData, {
+          message: error.message
+        });
+      });
+    }
+  }, [fieldErrors, setError, setFocus]);
+
   return {
     rotuer,
+    errors,
+    formError,
+    isProcessing,
     registeredFields,
-    handleSigninSubmit,
-    errors
+    handleSigninSubmit
   };
 }

@@ -127,10 +127,10 @@ export function SignupFormView({
 
       <div className="flex flex-col gap-4">
         <Button variant="default" size="lg" disabled={isProcessing}>
+          Confirmar
           {isProcessing && (
             <LoaderCircle className="ml-2 h-4 w-4 animate-spin" />
           )}
-          Confirmar
         </Button>
 
         <Button

@@ -1,5 +1,5 @@
 import { NotLoggedIn } from '@/components';
 
 export default function Home() {
-  return <NotLoggedIn.SigninForm className="flex-1" />;
+  return <NotLoggedIn.Signin />;
 }

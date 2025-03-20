@@ -11,7 +11,7 @@ import {
   Container,
   FooterWaves,
   HeaderLogo,
-  SigninForm,
+  Signin,
   Signup,
   SignupActivation
 } from './not-logged-in';
@@ -21,7 +21,7 @@ export const NotLoggedIn = {
   Container,
   FooterWaves,
   HeaderLogo,
-  SigninForm,
+  Signin,
   Signup,
   SignupActivation
 };

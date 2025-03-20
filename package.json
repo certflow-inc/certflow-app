@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "build:local": "npm run lint:fix && next build",
     "start": "next start",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
