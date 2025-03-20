@@ -1,51 +1,47 @@
 'server only';
 
-import { ApiResponse } from '@/types/api';
+import { ApiError, ApiResponse } from '@/types/api';
+import { API_COMMON_RESPONSE_ERROR } from '@/types/api/constants';
+import { StatusCodes } from 'http-status-codes';
 
-export function activate(token: string): Promise<ApiResponse<void>> {
-  return new Promise((resolve) => {
-    // Teremos 4 possíveis cenários:
-    // 1- 200 ok
-    // 2- 400 link inválido
-    // 3- 422 link expirado
-    // 4- 500 erro interno
+/**
+ * Activates a user using the provided token.
+ *
+ * @param {string} token The activation token.
+ * @returns {Promise<ApiResponse<void>>} A promise that resolves to an ApiResponse
+ * indicating the success or failure of the activation operation.
+ *
+ * @throws Will throw an error if the response status is NOT_FOUND or INTERNAL_SERVER_ERROR,
+ * or if any other error occurs during the request.
+ */
+export async function activate(token: string): Promise<ApiResponse<void>> {
+  try {
+    const response = await fetch(`${process.env.API_URL}/activate/${token}`, {
+      method: 'POST'
+    });
 
-    // TODO implementar a chamada ao endpoint de "check"
+    if (
+      !response.ok &&
+      [StatusCodes.NOT_FOUND, StatusCodes.INTERNAL_SERVER_ERROR].includes(
+        response.status
+      )
+    ) {
+      throw new Error();
+    }
 
-    setTimeout(() => {
-      if (token === 'ok') {
-        resolve({
-          ok: true
-        });
-      }
+    if (response.ok) {
+      return {
+        ok: true
+      };
+    }
 
-      if (token === 'invalid') {
-        resolve({
-          ok: false,
-          dataError: {
-            error: 'Link is invalid'
-          }
-        });
-      }
+    const error: ApiError = await response.json();
 
-      if (token === 'expired') {
-        resolve({
-          ok: false,
-          dataError: {
-            error: 'Link is expired'
-          }
-        });
-      }
-
-      if (!['ok', 'invalid', 'expired'].includes(token)) {
-        resolve({
-          ok: false,
-          dataError: {
-            error:
-              'An error occurred while processing your request. Please, try again later'
-          }
-        });
-      }
-    }, 2000);
-  });
+    return {
+      ok: false,
+      dataError: error
+    };
+  } catch (_error: unknown) {
+    throw new Error(API_COMMON_RESPONSE_ERROR.API_SERVER_ERROR);
+  }
 }

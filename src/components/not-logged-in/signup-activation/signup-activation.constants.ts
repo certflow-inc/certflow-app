@@ -13,16 +13,28 @@ export const SIGNUP_ACTIVATION_FLOW: Record<
     destination: PUBLIC_ROUTES.SIGNIN,
     destinationLabel: 'Login'
   },
-  'Link is invalid': {
-    title: 'Link inválido',
-    destination: PUBLIC_ROUTES.SIGNIN,
-    destinationLabel: 'Voltar para o login'
-  },
   'Link is expired': {
     title: 'Link expirado',
     description: 'Clique no botão abaixo para solicitar um novo link.',
     destination: PUBLIC_ROUTES.ACTIVATION_REQUEST,
     destinationLabel: 'Quero um novo link'
+  },
+  'Link is invalid': {
+    title: 'Link inválido',
+    description: 'Clique no botão abaixo para solicitar um novo link.',
+    destination: PUBLIC_ROUTES.ACTIVATION_REQUEST,
+    destinationLabel: 'Quero um novo link'
+  },
+  '"token" contains an invalid value': {
+    title: 'O token informado é inválido',
+    description: 'Clique no botão abaixo para solicitar um novo link.',
+    destination: PUBLIC_ROUTES.ACTIVATION_REQUEST,
+    destinationLabel: 'Quero um novo link'
+  },
+  'User cannot be activated': {
+    title: 'Usuário não pode ser ativado',
+    destination: PUBLIC_ROUTES.SIGNIN,
+    destinationLabel: 'Voltar para o login'
   },
   'An error occurred while processing your request. Please, try again later': {
     title: 'Ops!!! Erro ao validar sua conta! Tente novamente mais tarde.',

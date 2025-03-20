@@ -1,5 +1,4 @@
-import { SignupActivation } from '@/components/not-logged-in';
-import { Suspense } from 'react';
+import { NotLoggedIn } from '@/components';
 
 type SignupActivationPageProps = {
   params: Promise<{ token: string }>;
@@ -10,9 +9,5 @@ export default async function SignupActivationPage({
 }: SignupActivationPageProps) {
   const { token } = await params;
 
-  return (
-    <Suspense fallback={<SignupActivation.Skeleton />}>
-      <SignupActivation.View token={token} />
-    </Suspense>
-  );
+  return <NotLoggedIn.SignupActivation token={token} />;
 }

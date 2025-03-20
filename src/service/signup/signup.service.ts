@@ -1,6 +1,7 @@
 'server only';
 
 import { ApiError, ApiResponse } from '@/types/api';
+import { API_COMMON_RESPONSE_ERROR } from '@/types/api/constants';
 import { Register } from '@/types/register';
 import { StatusCodes } from 'http-status-codes';
 
@@ -45,7 +46,7 @@ export async function signup(register: Register): Promise<ApiResponse<void>> {
       dataError: error
     };
   } catch (_error: unknown) {
-    throw new Error('Internal server error');
+    throw new Error(API_COMMON_RESPONSE_ERROR.API_SERVER_ERROR);
   }
 }
 

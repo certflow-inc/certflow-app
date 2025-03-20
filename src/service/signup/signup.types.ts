@@ -1,7 +1,7 @@
+import { API_SERVER_ERROR } from '@/types/api';
+
 export type SignupResponse =
   | 'Ok'
-  | 'Internal server error'
-  | 'An error occurred while processing your request. Please, try again later'
   | 'User already registered'
   | 'Account already registered'
   | '\"taxId\" is required'
@@ -28,10 +28,13 @@ export type SignupResponse =
   | '\"password\" must contain at least 1 uppercase character'
   | '\"password\" must contain at least 1 numeric character'
   | '\"confirmPassword\" is required'
-  | '\"confirmPassword\" does not match';
+  | '\"confirmPassword\" does not match'
+  | API_SERVER_ERROR;
 
 export type SignupActivationResponse =
   | 'Ok'
-  | 'Link is invalid'
+  | 'User cannot be activated'
   | 'Link is expired'
-  | 'An error occurred while processing your request. Please, try again later';
+  | 'Link is invalid'
+  | '"token" contains an invalid value'
+  | API_SERVER_ERROR;

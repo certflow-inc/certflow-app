@@ -10,12 +10,6 @@ export const SIGNUP_FLOW: Record<SignupResponse, SignupFlow> = {
     destination: PUBLIC_ROUTES.SIGNIN,
     destinationLabel: 'Voltar para login'
   },
-  'Internal server error': {
-    title: 'Ops!!! Ocorreu um erro ao realizar o cadastro!',
-    description: 'Clique no botão abaixo para tentar novamente.',
-    destination: PUBLIC_ROUTES.SIGNUP,
-    destinationLabel: 'Tentar novamente'
-  },
   'An error occurred while processing your request. Please, try again later': {
     title: 'Ops!!! Ocorreu um erro ao realizar o cadastro!',
     description: 'Clique no botão abaixo para tentar novamente.',
