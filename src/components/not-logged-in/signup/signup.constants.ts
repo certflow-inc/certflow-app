@@ -1,4 +1,5 @@
-import { SignupResponse } from '@/service/signup/signup.types';
+import { ROUTES } from '@/routes';
+import { SignupResponse } from '@/service/types';
 import { SignupFlow } from './signup.types';
 
 export const SIGNUP_FLOW: Record<SignupResponse, SignupFlow> = {
@@ -6,36 +7,28 @@ export const SIGNUP_FLOW: Record<SignupResponse, SignupFlow> = {
     title: 'Um email foi enviado para você!',
     description:
       'Verifique sua caixa de mensagens, encontre o email enviado e clique no link existente para ativar a sua conta.',
-    destination: '/signin',
-    destinationLabel: 'Voltar para tela de login'
-  },
-  'Internal server error': {
-    title: 'Problema ao fazer o cadastro',
-    description:
-      'Ocorreu um erro ao fazer o cadastro. Por favor, tente novamente mais tarde.',
-    destination: '/signin',
-    destinationLabel: 'Voltar para tela de login'
+    destination: ROUTES.SIGNIN,
+    destinationLabel: 'Voltar para login'
   },
   'An error occurred while processing your request. Please, try again later': {
-    title: 'Problema ao fazer o cadastro',
-    description:
-      'Ocorreu um erro ao fazer o cadastro. Por favor, tente novamente mais tarde.',
-    destination: '/signin',
-    destinationLabel: 'Voltar para tela de login'
+    title: 'Ops!!! Ocorreu um erro ao realizar o cadastro!',
+    description: 'Clique no botão abaixo para tentar novamente.',
+    destination: ROUTES.SIGNUP,
+    destinationLabel: 'Tentar novamente'
   },
   'User already registered': {
     title: 'Conta já cadastrada',
     description:
-      'O email informado já foi cadastrado para outra conta. Caso seja você, clique no link de redefinição de senha para redefinir a sua senha.',
-    destination: '/signin',
-    destinationLabel: 'Voltar para tela de login'
+      'Email, CPF ou CNPJ informado já cadastrado!. Caso seja você, clique no link de redefinição de senha para redefini-la.',
+    destination: ROUTES.SIGNIN,
+    destinationLabel: 'Voltar para login'
   },
   'Account already registered': {
     title: 'Conta já cadastrada',
     description:
-      'O email informado já foi cadastrado para outra conta. Caso seja você, clique no link de redefinição de senha para redefinir a sua senha.',
-    destination: '/signin',
-    destinationLabel: 'Voltar para tela de login'
+      'Email, CPF ou CNPJ informado já cadastrado! Caso seja você, clique no link de redefinição de senha para redefini-la.',
+    destination: ROUTES.SIGNIN,
+    destinationLabel: 'Voltar para login'
   },
   '\"taxId\" is required': {
     title: 'CPF é obrigatório',

@@ -1,9 +1,3 @@
-import { Register } from '@/types/register';
-
-export type UseSignupModelProps = {
-  action: (regiser: Register) => Promise<string>;
-};
-
 export type SignupFlow = {
   title: string;
   description: string;

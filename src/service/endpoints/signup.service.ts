@@ -1,7 +1,8 @@
 'server only';
 
-import { ApiError, ApiResponse } from '@/types/api';
-import { Register } from '@/types/register';
+import { API_COMMON_RESPONSE_ERROR } from '@/service/constants';
+import { Register } from '@/service/domain/register';
+import { ApiError, ApiResponse } from '@/service/types';
 import { StatusCodes } from 'http-status-codes';
 
 /**
@@ -45,7 +46,7 @@ export async function signup(register: Register): Promise<ApiResponse<void>> {
       dataError: error
     };
   } catch (_error: unknown) {
-    throw new Error('Internal server error');
+    throw new Error(API_COMMON_RESPONSE_ERROR.API_SERVER_ERROR);
   }
 }
 
@@ -54,7 +55,7 @@ export async function signup(register: Register): Promise<ApiResponse<void>> {
  * @param {Register} register The register data.
  * @returns {string} The payload as a JSON string.
  */
-function buildPayload(register: Register) {
+function buildPayload(register: Register): string {
   const {
     type,
     taxId,
@@ -89,7 +90,7 @@ function buildPayload(register: Register) {
  *
  * @returns {Record<string, string>} headers object
  */
-function buildHeaders() {
+function buildHeaders(): Record<string, string> {
   return {
     'Content-Type': 'application/json'
   };
