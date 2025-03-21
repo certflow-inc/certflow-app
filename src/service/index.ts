@@ -1,8 +1,15 @@
-import { accountVerification, activate, signin, signup } from './endpoints';
+import {
+  accountVerification,
+  activate,
+  refresh,
+  signin,
+  signup
+} from './endpoints';
 
 export const CertFlowServices = {
   signup,
   activate,
   accountVerification,
-  signin
+  signin,
+  refresh
 };

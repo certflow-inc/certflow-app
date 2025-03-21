@@ -4,16 +4,26 @@ type PublicRoutes =
   | 'SIGNUP_ACTIVATION'
   | 'ACTIVATION_REQUEST'
   | 'FORGOT_PASSWORD';
-type PrivateRoutes = 'DASHBOARD';
+type PrivateRoutes = 'DASHBOARD' | 'ABOUT';
 
-export const PUBLIC_ROUTES: Record<PublicRoutes, string> = {
+type Routes = PublicRoutes | PrivateRoutes;
+
+export const ROUTES: Record<Routes, string> = {
   SIGNIN: '/signin',
   SIGNUP: '/signup',
   SIGNUP_ACTIVATION: '/signup-activation',
   ACTIVATION_REQUEST: '/activation-request',
-  FORGOT_PASSWORD: '/forgot-password'
+  FORGOT_PASSWORD: '/forgot-password',
+  DASHBOARD: '/dashboard',
+  ABOUT: '/about'
 };
 
-export const PRIVATE_ROUTES: Record<PrivateRoutes, string> = {
-  DASHBOARD: '/dashboard'
-};
+export const PUBLIC_ROUTES = [
+  ROUTES.SIGNIN,
+  ROUTES.SIGNUP,
+  ROUTES.SIGNUP_ACTIVATION,
+  ROUTES.ACTIVATION_REQUEST,
+  ROUTES.FORGOT_PASSWORD
+];
+
+export const PRIVATE_ROUTES = [ROUTES.DASHBOARD, ROUTES.ABOUT];

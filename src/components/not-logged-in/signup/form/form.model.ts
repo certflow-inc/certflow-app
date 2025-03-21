@@ -1,4 +1,4 @@
-import { PUBLIC_ROUTES } from '@/routes';
+import { ROUTES } from '@/routes';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -64,7 +64,7 @@ export function useSignupFormModel({
   };
 
   const handleBackButtonClick = () => {
-    router.push(PUBLIC_ROUTES.SIGNIN);
+    router.push(ROUTES.SIGNIN);
   };
 
   const handleTypePersonChange = (value: PersonType) => {

@@ -1,6 +1,6 @@
 'use client';
 import { Button } from '@/components';
-import { PUBLIC_ROUTES } from '@/routes';
+import { ROUTES } from '@/routes';
 import Link from 'next/link';
 
 export default function Error() {
@@ -15,7 +15,7 @@ export default function Error() {
       </p>
 
       <Button>
-        <Link href={PUBLIC_ROUTES.SIGNIN}>Voltar para o login</Link>
+        <Link href={ROUTES.SIGNIN}>Voltar para o login</Link>
       </Button>
     </div>
   );

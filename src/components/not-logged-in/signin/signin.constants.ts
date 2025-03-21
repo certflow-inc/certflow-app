@@ -1,4 +1,4 @@
-import { PUBLIC_ROUTES } from '@/routes';
+import { ROUTES } from '@/routes';
 import { SigninResponse } from '@/service/types';
 import { SigninFlow } from './signin.types';
 
@@ -10,7 +10,7 @@ export const SIGNIN_FLOW: Record<SigninResponse, SigninFlow> = {
   'An error occurred while processing your request. Please, try again later': {
     title: 'Ops!!! Ocorreu um erro ao realizar o login!',
     description: 'Clique no botão abaixo para tentar novamente.',
-    destination: PUBLIC_ROUTES.SIGNIN,
+    destination: ROUTES.SIGNIN,
     destinationLabel: 'Tentar novamente',
     flow: true
   },

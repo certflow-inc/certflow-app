@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
-import { PUBLIC_ROUTES } from '@/routes';
+import { ROUTES } from '@/routes';
 import { LoaderCircle } from 'lucide-react';
 import { SigninFormViewProps } from './form.types';
 
@@ -64,7 +64,7 @@ export function SigninFormView({
           type="button"
           variant="outline"
           size="lg"
-          onClick={() => rotuer.push(PUBLIC_ROUTES.SIGNUP)}
+          onClick={() => rotuer.push(ROUTES.SIGNUP)}
           disabled={isProcessing}
         >
           Cadastrar
@@ -72,7 +72,7 @@ export function SigninFormView({
 
         <Link
           id="forgot-password-link"
-          href={PUBLIC_ROUTES.FORGOT_PASSWORD}
+          href={ROUTES.FORGOT_PASSWORD}
           aria-disabled={isProcessing}
           className="text-primary hover:text-primary-600 active:text-primary-700 text-center aria-[disabled=true]:pointer-events-none"
         >

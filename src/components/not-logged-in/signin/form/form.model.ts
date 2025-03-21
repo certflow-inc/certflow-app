@@ -1,4 +1,5 @@
-import { PRIVATE_ROUTES } from '@/routes';
+import { createSession } from '@/lib/session';
+import { ROUTES } from '@/routes';
 import { SigninResponse } from '@/service/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
@@ -30,7 +31,11 @@ export function useFormModel({
     formState: { errors },
     setFocus
   } = useForm<SigninFormData>({
-    resolver: zodResolver(SIGNIN_FORM_SCHEMA)
+    resolver: zodResolver(SIGNIN_FORM_SCHEMA),
+    values: {
+      email: 'ricardo.almendro.ruiz@gmail.com',
+      password: 'Cf123456'
+    }
   });
 
   const registeredFields = {
@@ -44,12 +49,11 @@ export function useFormModel({
 
     setIsProcessing(true);
     const response = await action(email, password);
-    console.log('🚀 ~ handleSigninSubmit ~ response:', response);
     setIsProcessing(false);
 
-    if (response.ok) {
-      // TODO criar a sessão do usuário antes de redirecionar
-      rotuer.push(PRIVATE_ROUTES.DASHBOARD);
+    if (response.ok && response.data?.token) {
+      createSession(response.data.token, response.data.refreshToken);
+      rotuer.push(ROUTES.DASHBOARD);
       return;
     }
 
