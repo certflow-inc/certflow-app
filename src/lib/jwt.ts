@@ -15,3 +15,12 @@ type JWT = {
 export const getJWTPayload = (token: string): JWT => {
   return decodeJwt<JWT>(token);
 };
+
+export const isExpired = (token: string): boolean => {
+  if (!token) {
+    return true;
+  }
+  const decoded = decodeJwt<JWT>(token);
+
+  return !!decoded.exp && decoded.exp * 1000 <= Date.now();
+};
