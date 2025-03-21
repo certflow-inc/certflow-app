@@ -3,11 +3,7 @@
 import { cookies } from 'next/headers';
 
 import { CertFlowServices } from '@/service';
-import {
-  COOKIE_NAMES,
-  REVALIDATE_EXPIRES_IN,
-  SESSION_EXPIRES_IN
-} from './common-constants';
+import { COOKIE_NAMES } from './common-constants';
 import { getJWTPayload } from './jwt';
 
 const SAME_SITE = 'lax';
@@ -23,12 +19,12 @@ export const createSession = async (jwt: string, refreshToken: string) => {
   cookieStore.set(COOKIE_NAMES.SESSION, jwt, {
     httpOnly: true,
     secure: true,
-    sameSite: SAME_SITE,
-    expires: SESSION_EXPIRES_IN
+    sameSite: SAME_SITE
   });
-  cookieStore.set(COOKIE_NAMES.REFRESH_TOKEN, refreshToken);
-  cookieStore.set(COOKIE_NAMES.REVALIDATE_TOKEN, jwt, {
-    expires: REVALIDATE_EXPIRES_IN
+  cookieStore.set(COOKIE_NAMES.REFRESH_TOKEN, refreshToken, {
+    httpOnly: true,
+    secure: true,
+    sameSite: SAME_SITE
   });
 };
 
@@ -41,7 +37,6 @@ export const destroySession = async () => {
   const cookieStore = await cookies();
   cookieStore.delete(COOKIE_NAMES.SESSION);
   cookieStore.delete(COOKIE_NAMES.REFRESH_TOKEN);
-  cookieStore.delete(COOKIE_NAMES.REVALIDATE_TOKEN);
 };
 
 /**
