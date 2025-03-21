@@ -7,7 +7,7 @@ export async function refresh(
   token: string,
   refreshToken: string
 ): Promise<ApiResponse<RefreshToken>> {
-  console.log('🚀 ~ refreshToken - renovando o token agora');
+  console.log('🚀 ~ refreshToken - renovando o token agora', refreshToken);
 
   const response = await fetch(`${process.env.API_URL}/refresh`, {
     method: 'POST',
