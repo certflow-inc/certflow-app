@@ -1,11 +1,11 @@
-import { PUBLIC_ROUTES } from '@/routes';
+import { ROUTES } from '@/routes';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { SignupResponse } from '@/service/signup/signup.types';
-import { PersonType, Register } from '@/types/register';
+import { PersonType, Register } from '@/service/domain/register';
+import { SignupResponse } from '@/service/types';
 import { SIGNUP_FLOW } from '../signup.constants';
 import { PERSON_TYPES } from './form.constants';
 import { SIGNUP_FORM_SCHEMA } from './form.schema';
@@ -64,7 +64,7 @@ export function useSignupFormModel({
   };
 
   const handleBackButtonClick = () => {
-    router.push(PUBLIC_ROUTES.SIGNIN);
+    router.push(ROUTES.SIGNIN);
   };
 
   const handleTypePersonChange = (value: PersonType) => {

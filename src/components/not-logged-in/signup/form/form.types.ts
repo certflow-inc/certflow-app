@@ -1,4 +1,4 @@
-import { PersonType } from '@/types/register';
+import { PersonType } from '@/service/domain/register';
 import { ComponentProps } from 'react';
 import { z } from 'zod';
 import { signup } from '../signup.actions';

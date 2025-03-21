@@ -1,13 +1,13 @@
 'use server';
 
-import { SignupService } from '@/service/signup';
-import { Register } from '@/types/register';
+import { CertFlowServices } from '@/service';
+import { Register } from '@/service/domain/register';
 
 export async function signup(
   register: Register
-): Promise<ReturnType<typeof SignupService.signup>> {
+): Promise<ReturnType<typeof CertFlowServices.signup>> {
   try {
-    return await SignupService.signup(register);
+    return await CertFlowServices.signup(register);
   } catch (error: unknown) {
     const err = error as Error;
 

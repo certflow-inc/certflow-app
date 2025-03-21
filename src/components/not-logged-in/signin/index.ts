@@ -1,1 +1,1 @@
-export { SigninForm } from './form';
+export { SigninView as Signin } from './signin.view';

@@ -1,6 +1,8 @@
+'use client';
+
 import { Button } from '@/components';
 import { cn } from '@/lib/utils';
-import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import { ComponentProps } from 'react';
 
 type FeedbackViewProps = ComponentProps<'div'> & {
@@ -18,6 +20,17 @@ export function FeedbackView({
   className,
   ...props
 }: FeedbackViewProps) {
+  const router = useRouter();
+  const pathName = usePathname();
+
+  const handleButtonClick = () => {
+    if (pathName === destination) {
+      window.location.reload();
+      return;
+    }
+    router.push(destination ?? '');
+  };
+
   return (
     <div
       className={cn(
@@ -32,8 +45,8 @@ export function FeedbackView({
       </p>
 
       {destination && destinationLabel && (
-        <Button asChild={true} size="lg">
-          <Link href={destination ?? ''}>{destinationLabel}</Link>
+        <Button size="lg" onClick={handleButtonClick}>
+          {destinationLabel}
         </Button>
       )}
     </div>
