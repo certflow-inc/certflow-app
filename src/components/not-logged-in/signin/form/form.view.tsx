@@ -5,7 +5,8 @@ import { Input } from '@/components/ui/input';
 import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
-import { PUBLIC_ROUTES } from '@/routes';
+import { ROUTES } from '@/routes';
+import { LoaderCircle } from 'lucide-react';
 import { SigninFormViewProps } from './form.types';
 
 export function SigninFormView({
@@ -13,7 +14,8 @@ export function SigninFormView({
   className,
   ...props
 }: SigninFormViewProps) {
-  const { handleSigninSubmit, registeredFields, rotuer, errors } = model;
+  const { handleSigninSubmit, registeredFields, rotuer, errors, isProcessing } =
+    model;
 
   return (
     <form
@@ -32,18 +34,29 @@ export function SigninFormView({
           placeholder="Email"
           error={errors.email?.message}
           {...registeredFields.email}
+          disabled={isProcessing}
         />
         <Input
           type="password"
           placeholder="Senha"
           error={errors.password?.message}
           {...registeredFields.password}
+          disabled={isProcessing}
         />
       </div>
 
       <div className="flex flex-col gap-4">
-        <Button type="submit" id="signin-button" variant="default" size="lg">
-          Entrar
+        <Button
+          type="submit"
+          id="signin-button"
+          variant="default"
+          size="lg"
+          disabled={isProcessing}
+        >
+          Confirmar
+          {isProcessing && (
+            <LoaderCircle className="ml-2 h-4 w-4 animate-spin" />
+          )}
         </Button>
 
         <Button
@@ -51,15 +64,17 @@ export function SigninFormView({
           type="button"
           variant="outline"
           size="lg"
-          onClick={() => rotuer.push(PUBLIC_ROUTES.SIGNUP)}
+          onClick={() => rotuer.push(ROUTES.SIGNUP)}
+          disabled={isProcessing}
         >
           Cadastrar
         </Button>
 
         <Link
           id="forgot-password-link"
-          href={PUBLIC_ROUTES['FORGOT-PASSWORD']}
-          className="text-primary hover:text-primary-600 active:text-primary-700 text-center"
+          href={ROUTES.FORGOT_PASSWORD}
+          aria-disabled={isProcessing}
+          className="text-primary hover:text-primary-600 active:text-primary-700 text-center aria-[disabled=true]:pointer-events-none"
         >
           Esqueci minha senha
         </Link>
