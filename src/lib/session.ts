@@ -2,7 +2,6 @@
 
 import { cookies } from 'next/headers';
 
-import { CertFlowServices } from '@/service';
 import { COOKIE_NAMES } from './common-constants';
 import { getJWTPayload } from './jwt';
 
@@ -13,18 +12,16 @@ const SAME_SITE = 'lax';
  *
  * @param jwt The JWT token to use in the session cookie.
  */
-export const createSession = async (jwt: string, refreshToken: string) => {
+export const createSession = async (jwt: string) => {
   const cookieStore = await cookies();
+
+  const jwwtPayload = getJWTPayload(jwt);
 
   cookieStore.set(COOKIE_NAMES.SESSION, jwt, {
     httpOnly: true,
     secure: true,
-    sameSite: SAME_SITE
-  });
-  cookieStore.set(COOKIE_NAMES.REFRESH_TOKEN, refreshToken, {
-    httpOnly: true,
-    secure: true,
-    sameSite: SAME_SITE
+    sameSite: SAME_SITE,
+    expires: new Date(jwwtPayload.exp * 1000)
   });
 };
 
@@ -61,22 +58,7 @@ export const getSession = async () => {
   return jwtPayload;
 };
 
-/**
- * Retrieves the current session data from the session cookie and updates the
- * session cookie with a new JWT token that has the same payload as the old
- * one, but with a new expiration date.
- *
- * @returns The updated session data as a {@link SessionCookie} or null if no
- * session is set.
- */
-export const updateSession = async (token: string, refreshToken: string) => {
-  const response = await CertFlowServices.refresh(token, refreshToken);
-
-  if (response.ok) {
-    await destroySession();
-    await createSession(response.data!.token, refreshToken);
-    return true;
-  }
-
-  return false;
+export const getToken = async () => {
+  const cookieStore = await cookies();
+  return cookieStore.get(COOKIE_NAMES.SESSION)?.value;
 };

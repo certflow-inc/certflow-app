@@ -52,7 +52,7 @@ export function useFormModel({
     setIsProcessing(false);
 
     if (response.ok && response.data?.token) {
-      createSession(response.data.token, response.data.refreshToken);
+      createSession(response.data.token);
       rotuer.push(ROUTES.DASHBOARD);
       return;
     }

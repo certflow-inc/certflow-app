@@ -71,3 +71,9 @@ export type AccountVerificationResponse =
   | '\"email\" is required'
   | '\"email\" must be a valid email'
   | API_SERVER_ERROR;
+
+export type MeResponse =
+  | 'Ok'
+  | 'Invalid token'
+  | 'User not found"'
+  | API_SERVER_ERROR;

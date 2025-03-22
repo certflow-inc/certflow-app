@@ -2,13 +2,12 @@ import { cookies } from 'next/headers';
 import { NextResponse, type NextRequest } from 'next/server';
 import { COOKIE_NAMES } from './lib/common-constants';
 import { isExpired } from './lib/jwt';
-import { updateSession } from './lib/session';
+import { destroySession } from './lib/session';
 import { PRIVATE_ROUTES, PUBLIC_ROUTES, ROUTES } from './routes';
 
 export async function middleware(request: NextRequest) {
   const cookieStore = await cookies();
   const session = cookieStore.get(COOKIE_NAMES.SESSION);
-  const refreshToken = cookieStore.get(COOKIE_NAMES.REFRESH_TOKEN)?.value;
 
   // Private Routes
   const isPrivateRouteRequested = PRIVATE_ROUTES.some((route) => {
@@ -17,12 +16,9 @@ export async function middleware(request: NextRequest) {
 
   if (isPrivateRouteRequested) {
     if (session) {
-      if (isExpired(session.value) && refreshToken) {
-        const result = await updateSession(session.value, refreshToken);
-
-        return !result
-          ? NextResponse.redirect(new URL(ROUTES.SIGNIN, request.url))
-          : NextResponse.next();
+      if (isExpired(session.value)) {
+        destroySession();
+        return NextResponse.redirect(new URL(ROUTES.SIGNIN, request.url));
       }
       return NextResponse.next();
     }
