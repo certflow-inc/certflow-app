@@ -2,6 +2,7 @@ type PublicRoutes =
   | 'SIGNIN'
   | 'SIGNUP'
   | 'SIGNUP_ACTIVATION'
+  | 'SIGNOUT'
   | 'ACTIVATION_REQUEST'
   | 'FORGOT_PASSWORD';
 type PrivateRoutes = 'DASHBOARD' | 'ABOUT';
@@ -12,6 +13,7 @@ export const ROUTES: Record<Routes, string> = {
   SIGNIN: '/signin',
   SIGNUP: '/signup',
   SIGNUP_ACTIVATION: '/signup-activation',
+  SIGNOUT: '/signout',
   ACTIVATION_REQUEST: '/activation-request',
   FORGOT_PASSWORD: '/forgot-password',
   DASHBOARD: '/dashboard',

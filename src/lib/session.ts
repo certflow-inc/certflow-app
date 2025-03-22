@@ -33,7 +33,6 @@ export const createSession = async (jwt: string) => {
 export const destroySession = async () => {
   const cookieStore = await cookies();
   cookieStore.delete(COOKIE_NAMES.SESSION);
-  cookieStore.delete(COOKIE_NAMES.REFRESH_TOKEN);
 };
 
 /**

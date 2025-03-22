@@ -12,5 +12,5 @@ export function SignoutView() {
     router.push('/');
   }, [router]);
 
-  return <div>Signout</div>;
+  return <div className="flex-1">Encerrando sessão...</div>;
 }
