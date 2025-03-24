@@ -9,7 +9,7 @@ export const FORGOT_PASSWOR_FLOW: Record<
   Ok: {
     title: 'Um email foi enviado para você!',
     description:
-      'Verifique sua caixa de mensagens, encontre o email enviado e clique no link existente para ativar a sua conta.',
+      'Verifique sua caixa de mensagens, encontre o email enviado e clique no link existente para mudar sua senha.',
     destination: ROUTES.SIGNIN,
     destinationLabel: 'Voltar para login'
   },

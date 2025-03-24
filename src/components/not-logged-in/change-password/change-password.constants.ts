@@ -5,7 +5,7 @@ import { ChangePasswordFlow } from './change-password.types';
 export const CHECK_RECOVERY_FLOW: Record<CheckResponse, ChangePasswordFlow> = {
   Ok: {
     title: 'Token válido',
-    description: 'Token válidp'
+    description: 'Token válido'
   },
   '"flow" is required': {
     title: 'Ops!!! Ocorreu um erro ao validar o link de redefinição de senha!',
