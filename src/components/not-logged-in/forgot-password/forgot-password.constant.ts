@@ -17,7 +17,8 @@ export const FORGOT_PASSWOR_FLOW: Record<
     title: 'Ops!!! Ocorreu um erro ao realizar o cadastro!',
     description: 'Clique no botão abaixo para tentar novamente.',
     destination: ROUTES.FORGOT_PASSWORD,
-    destinationLabel: 'Tentar novamente'
+    destinationLabel: 'Tentar novamente',
+    toast: true
   },
   '\"email\" is required': {
     title: 'Email é obrigatório',

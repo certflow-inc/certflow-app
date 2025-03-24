@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { FORGOT_PASSWOR_FLOW } from '../forgot-password.constant';
 import { FORGOT_PASSWORD_FORM_SCHEMA } from './form.schema';
 import {
@@ -48,22 +49,33 @@ export function useForgotPasswordFormModel({
 
       if (response.ok) return onForgotPasswordSubmit(FORGOT_PASSWOR_FLOW.Ok);
 
-      const error =
+      const forgotPasswordFlow =
         FORGOT_PASSWOR_FLOW[
           response.dataError?.error as PasswordRecoveryResponse
         ];
 
-      if (!error.field) {
-        onForgotPasswordSubmit(error);
+      if (forgotPasswordFlow.flow) {
+        onForgotPasswordSubmit(forgotPasswordFlow);
         return;
       }
 
-      setFieldErrors([
-        {
-          field: error.field,
-          message: error.title
-        }
-      ]);
+      if (forgotPasswordFlow.toast) {
+        toast(forgotPasswordFlow.title, {
+          type: 'error',
+          position: 'bottom-center',
+          closeOnClick: true
+        });
+        return;
+      }
+
+      if (forgotPasswordFlow.field) {
+        setFieldErrors([
+          {
+            field: forgotPasswordFlow.field,
+            message: forgotPasswordFlow.title
+          }
+        ]);
+      }
     }
   );
 

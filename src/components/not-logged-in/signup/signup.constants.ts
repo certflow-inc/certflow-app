@@ -14,21 +14,24 @@ export const SIGNUP_FLOW: Record<SignupResponse, SignupFlow> = {
     title: 'Ops!!! Ocorreu um erro ao realizar o cadastro!',
     description: 'Clique no botão abaixo para tentar novamente.',
     destination: ROUTES.SIGNUP,
-    destinationLabel: 'Tentar novamente'
+    destinationLabel: 'Tentar novamente',
+    toast: true
   },
   'User already registered': {
     title: 'Conta já cadastrada',
     description:
       'Email, CPF ou CNPJ informado já cadastrado!. Caso seja você, clique no link de redefinição de senha para redefini-la.',
     destination: ROUTES.SIGNIN,
-    destinationLabel: 'Voltar para login'
+    destinationLabel: 'Voltar para login',
+    toast: true
   },
   'Account already registered': {
     title: 'Conta já cadastrada',
     description:
       'Email, CPF ou CNPJ informado já cadastrado! Caso seja você, clique no link de redefinição de senha para redefini-la.',
     destination: ROUTES.SIGNIN,
-    destinationLabel: 'Voltar para login'
+    destinationLabel: 'Voltar para login',
+    toast: true
   },
   '\"taxId\" is required': {
     title: 'CPF é obrigatório',

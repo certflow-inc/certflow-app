@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 
 import { PersonType, Register } from '@/service/domain/register';
 import { SignupResponse } from '@/service/types';
+import { toast } from 'react-toastify';
 import { SIGNUP_FLOW } from '../signup.constants';
 import { PERSON_TYPES } from './form.constants';
 import { SIGNUP_FORM_SCHEMA } from './form.schema';
@@ -85,19 +86,30 @@ export function useSignupFormModel({
 
     if (response.ok) return onSignupSubmit(SIGNUP_FLOW.Ok);
 
-    const error = SIGNUP_FLOW[response.dataError?.error as SignupResponse];
+    const signupFlow = SIGNUP_FLOW[response.dataError?.error as SignupResponse];
 
-    if (!error.field) {
-      onSignupSubmit(error);
+    if (signupFlow.flow) {
+      onSignupSubmit(signupFlow);
       return;
     }
 
-    setFieldErrors([
-      {
-        field: error.field,
-        message: error.title
-      }
-    ]);
+    if (signupFlow.toast) {
+      toast(signupFlow.title, {
+        type: 'error',
+        position: 'bottom-center',
+        closeOnClick: true
+      });
+      return;
+    }
+
+    if (signupFlow.field) {
+      setFieldErrors([
+        {
+          field: signupFlow.field,
+          message: signupFlow.title
+        }
+      ]);
+    }
   });
 
   useEffect(() => {
