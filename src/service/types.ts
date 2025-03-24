@@ -77,3 +77,9 @@ export type MeResponse =
   | 'Invalid token'
   | 'User not found"'
   | API_SERVER_ERROR;
+
+export type PasswordRecoveryResponse =
+  | 'Ok'
+  | '\"email\" is required'
+  | '\"email\" must be a valid email'
+  | API_SERVER_ERROR;

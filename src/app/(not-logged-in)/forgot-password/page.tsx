@@ -1,3 +1,5 @@
+import { ForgotPassword } from '@/components/not-logged-in';
+
 export default function ForgotPasswordPage() {
-  return <div>CertFlow - Forgot Password Page</div>;
+  return <ForgotPassword />;
 }
