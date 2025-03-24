@@ -23,15 +23,14 @@ const interceptor = new BatchInterceptor({
 interceptor.apply();
 
 interceptor.on('request', async ({ request, controller }) => {
-  console.log(
-    `Interceptando a requisição "${request.url}" para adicionar o token`
-  );
+  console.log(`Interceptando a requisição "${request.url}"`);
 
   const needsAuth = PRIVATE_ENDPOINTS.some((endpoint) =>
     request.url?.includes(endpoint)
   );
 
   if (needsAuth) {
+    console.log(`Adicionando o token na requisição "${request.url}"`);
     const token = await getToken();
 
     if (!token || isExpired(token)) {
