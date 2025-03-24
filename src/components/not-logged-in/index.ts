@@ -1,4 +1,5 @@
 export { ActivationRequest } from './activation-request';
+export { ChangePassword } from './change-password';
 export { Container } from './container';
 export { FooterWaves } from './footer-waves';
 export { ForgotPassword } from './forgot-password';

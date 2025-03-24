@@ -1,6 +1,8 @@
 import {
   accountVerification,
   activate,
+  changePassword,
+  check,
   passwordRecovery,
   refresh,
   signin,
@@ -13,5 +15,7 @@ export const CertFlowServices = {
   accountVerification,
   signin,
   refresh,
-  passwordRecovery
+  passwordRecovery,
+  changePassword,
+  check
 };

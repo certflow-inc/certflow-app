@@ -6,3 +6,8 @@ export type Auth = {
 export type RefreshToken = {
   token: string;
 };
+
+export type ChangePassword = {
+  password: string;
+  confirmPassword: string;
+};

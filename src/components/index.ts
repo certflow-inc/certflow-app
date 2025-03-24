@@ -8,6 +8,7 @@ export { EnvironmentIndicator } from './environment-indicator';
 // not logged in components
 import {
   ActivationRequest,
+  ChangePassword,
   Container,
   FooterWaves,
   ForgotPassword,
@@ -25,5 +26,6 @@ export const NotLoggedIn = {
   HeaderLogo,
   Signin,
   Signup,
-  SignupActivation
+  SignupActivation,
+  ChangePassword
 };

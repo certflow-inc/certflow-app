@@ -83,3 +83,29 @@ export type PasswordRecoveryResponse =
   | '\"email\" is required'
   | '\"email\" must be a valid email'
   | API_SERVER_ERROR;
+
+export type ChangePasswordResponse =
+  | 'Ok'
+  | '\"password\" is required'
+  | '"password" is not allowed to be empty'
+  | '\"password\" length must be at least 8 characters long'
+  | '\"password\" must contain at least 1 lowercase character'
+  | '\"password\" must contain at least 1 uppercase character'
+  | '\"password\" must contain at least 1 numeric character'
+  | '\"password\" length must be less than or equal to 128 characters long'
+  | '\"confirmPassword\" is required'
+  | '\"confirmPassword\" does not match'
+  | 'Link is invalid'
+  | 'User is not active'
+  | 'Link is expired'
+  | API_SERVER_ERROR;
+
+export type CheckResponse =
+  | 'Ok'
+  | '\"flow\" is required'
+  | '\"flow\" must be one of [verification, recovery]'
+  | '\"token\" is required'
+  | '\"token\" contains an invalid value'
+  | 'Link is invalid'
+  | 'Link is expired'
+  | API_SERVER_ERROR;

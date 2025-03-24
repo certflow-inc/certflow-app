@@ -1,28 +1,26 @@
-'server only';
-
 import { UnAuthenticatedException } from '@/exceptions/UnAuthenticatedException';
 import { ROUTES } from '@/routes';
 import { redirect } from 'next/navigation';
 import { API_COMMON_RESPONSE_ERROR } from '../constants';
-import { Me } from '../domain/me';
-import { ApiError, ApiResponse } from '../types';
+import { ApiError } from '../types';
 
-export const TAG_GET_ME = 'getMe';
+type CheckRequest = {
+  flow: 'recovery' | 'verification';
+  token: string;
+};
 
-export async function getMe(): Promise<ApiResponse<Me>> {
+export async function check(request: CheckRequest) {
   try {
-    const response = await fetch(`${process.env.API_URL}/me`, {
-      method: 'GET',
-      next: {
-        tags: [TAG_GET_ME]
-        // revalidate: 60 * 60 * 24 // 1 day
+    const response = await fetch(
+      `${process.env.API_URL}/check/${request.flow}/${request.token}`,
+      {
+        method: 'GET'
       }
-    });
+    );
 
     if (response.ok) {
       return {
-        ok: true,
-        data: await response.json()
+        ok: true
       };
     }
 

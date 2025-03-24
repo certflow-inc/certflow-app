@@ -24,7 +24,10 @@ export function FeedbackView({
   const pathName = usePathname();
 
   const handleButtonClick = () => {
-    if (pathName === destination) {
+    if (
+      pathName === destination ||
+      (!!destination && pathName.includes(destination))
+    ) {
       window.location.reload();
       return;
     }
@@ -39,7 +42,9 @@ export function FeedbackView({
       )}
       {...props}
     >
-      <h1 className="text-center text-xl font-bold md:text-5xl">{title}</h1>
+      <h1 className="text-center text-xl/relaxed font-bold md:text-5xl/relaxed">
+        {title}
+      </h1>
       <p className="text-center text-lg/relaxed md:text-3xl/relaxed">
         {description}
       </p>
