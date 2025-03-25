@@ -1,5 +1,5 @@
-import { SignoutView } from '@/components/not-logged-in/signout/signout.view';
+import { NotLoggedIn } from '@/components';
 
 export default function SignoutPage() {
-  return <SignoutView />;
+  return <NotLoggedIn.Signout />;
 }

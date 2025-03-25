@@ -14,6 +14,7 @@ import {
   ForgotPassword,
   HeaderLogo,
   Signin,
+  Signout,
   Signup,
   SignupActivation
 } from './not-logged-in';
@@ -27,5 +28,6 @@ export const NotLoggedIn = {
   Signin,
   Signup,
   SignupActivation,
-  ChangePassword
+  ChangePassword,
+  Signout
 };

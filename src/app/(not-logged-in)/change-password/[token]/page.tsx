@@ -1,4 +1,4 @@
-import { ChangePassword } from '@/components/not-logged-in';
+import { NotLoggedIn } from '@/components';
 import { checkRecovery } from '@/components/not-logged-in/change-password/change-password.actions';
 import { CHECK_RECOVERY_FLOW } from '@/components/not-logged-in/change-password/change-password.constants';
 import { CheckResponse } from '@/service/types';
@@ -18,5 +18,5 @@ export default async function ChangePasswordPage({
     ? null
     : CHECK_RECOVERY_FLOW[response.dataError?.error as CheckResponse];
 
-  return <ChangePassword checkTokenResult={checkTokenResult} />;
+  return <NotLoggedIn.ChangePassword checkTokenResult={checkTokenResult} />;
 }

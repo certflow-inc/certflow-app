@@ -1,5 +1,5 @@
-import { ForgotPassword } from '@/components/not-logged-in';
+import { NotLoggedIn } from '@/components';
 
 export default function ForgotPasswordPage() {
-  return <ForgotPassword />;
+  return <NotLoggedIn.ForgotPassword />;
 }
