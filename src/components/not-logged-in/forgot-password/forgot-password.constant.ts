@@ -1,10 +1,10 @@
 import { ROUTES } from '@/routes';
 import { PasswordRecoveryResponse } from '@/service/types';
-import { ForgotPasswordFlow } from './forgot-password.types';
+import { IntegrationFlow } from '@/types';
 
 export const FORGOT_PASSWOR_FLOW: Record<
   PasswordRecoveryResponse,
-  ForgotPasswordFlow
+  IntegrationFlow
 > = {
   Ok: {
     title: 'Um email foi enviado para você!',

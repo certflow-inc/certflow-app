@@ -6,12 +6,12 @@ import { useForm } from 'react-hook-form';
 
 import { Register } from '@/service/domain/register';
 import { ChangePasswordResponse } from '@/service/types';
+import { IntegrationFieldError } from '@/types';
 import { toast } from 'react-toastify';
 import { CHANGE_PASSWORD_FLOW } from '../change-password.constants';
 import { CHANGE_PASSWORD_FORM_SCHEMA } from './form.schema';
 import {
   ChangePasswordFormData,
-  SignupFieldError,
   UseChangePasswordFormModelProps
 } from './form.types';
 
@@ -22,7 +22,7 @@ export function useSignupFormModel({
   const router = useRouter();
 
   const [fieldErrors, setFieldErrors] = useState<
-    SignupFieldError[] | undefined
+    IntegrationFieldError[] | undefined
   >();
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -54,18 +54,18 @@ export function useSignupFormModel({
       if (response.ok)
         return onChangePasswordFormSubmit(CHANGE_PASSWORD_FLOW.Ok);
 
-      const signupFlow =
+      const feedbackError =
         CHANGE_PASSWORD_FLOW[
           response.dataError?.error as ChangePasswordResponse
         ];
 
-      if (signupFlow.flow) {
-        onChangePasswordFormSubmit(signupFlow);
+      if (feedbackError.flow) {
+        onChangePasswordFormSubmit(feedbackError);
         return;
       }
 
-      if (signupFlow.toast) {
-        toast(signupFlow.title, {
+      if (feedbackError.toast) {
+        toast(feedbackError.title, {
           type: 'error',
           position: 'bottom-center',
           closeOnClick: true
@@ -73,11 +73,11 @@ export function useSignupFormModel({
         return;
       }
 
-      if (signupFlow.field) {
+      if (feedbackError.field) {
         setFieldErrors([
           {
-            field: signupFlow.field,
-            message: signupFlow.title
+            field: feedbackError.field,
+            message: feedbackError.title
           }
         ]);
       }

@@ -1,16 +1,16 @@
 'use client';
 
+import { IntegrationFlow } from '@/types';
 import { useState } from 'react';
 import { Feedback } from '../feedback';
-import { ChangePasswordFlow } from './change-password.types';
 import { ChangePasswordForm } from './form';
 
 export function ChangePasswordView({
   checkTokenResult
 }: {
-  checkTokenResult: ChangePasswordFlow | null;
+  checkTokenResult: IntegrationFlow | null;
 }) {
-  const [flowError, setFlowError] = useState<ChangePasswordFlow | null>(
+  const [flowError, setFlowError] = useState<IntegrationFlow | null>(
     checkTokenResult
   );
 

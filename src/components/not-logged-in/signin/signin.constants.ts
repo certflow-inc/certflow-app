@@ -1,8 +1,8 @@
 import { ROUTES } from '@/routes';
 import { SigninResponse } from '@/service/types';
-import { SigninFlow } from './signin.types';
+import { IntegrationFlow } from '@/types';
 
-export const SIGNIN_FLOW: Record<SigninResponse, SigninFlow> = {
+export const SIGNIN_FLOW: Record<SigninResponse, IntegrationFlow> = {
   Ok: {
     title: 'Um email foi enviado para você!',
     description: 'Um email foi enviado para você!'

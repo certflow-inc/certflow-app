@@ -1,5 +1,6 @@
 import { ROUTES } from '@/routes';
 import { PasswordRecoveryResponse } from '@/service/types';
+import { IntegrationFieldError } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -8,7 +9,6 @@ import { toast } from 'react-toastify';
 import { FORGOT_PASSWOR_FLOW } from '../forgot-password.constant';
 import { FORGOT_PASSWORD_FORM_SCHEMA } from './form.schema';
 import {
-  ForgotPasswordFieldError,
   ForgotPasswordFormData,
   UseForgotPasswordFormModelProps
 } from './form.types';
@@ -19,7 +19,7 @@ export function useForgotPasswordFormModel({
 }: UseForgotPasswordFormModelProps) {
   const router = useRouter();
   const [fieldErrors, setFieldErrors] = useState<
-    ForgotPasswordFieldError[] | undefined
+    IntegrationFieldError[] | undefined
   >();
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -49,18 +49,18 @@ export function useForgotPasswordFormModel({
 
       if (response.ok) return onForgotPasswordSubmit(FORGOT_PASSWOR_FLOW.Ok);
 
-      const forgotPasswordFlow =
+      const feedbackError =
         FORGOT_PASSWOR_FLOW[
           response.dataError?.error as PasswordRecoveryResponse
         ];
 
-      if (forgotPasswordFlow.flow) {
-        onForgotPasswordSubmit(forgotPasswordFlow);
+      if (feedbackError.flow) {
+        onForgotPasswordSubmit(feedbackError);
         return;
       }
 
-      if (forgotPasswordFlow.toast) {
-        toast(forgotPasswordFlow.title, {
+      if (feedbackError.toast) {
+        toast(feedbackError.title, {
           type: 'error',
           position: 'bottom-center',
           closeOnClick: true
@@ -68,11 +68,11 @@ export function useForgotPasswordFormModel({
         return;
       }
 
-      if (forgotPasswordFlow.field) {
+      if (feedbackError.field) {
         setFieldErrors([
           {
-            field: forgotPasswordFlow.field,
-            message: forgotPasswordFlow.title
+            field: feedbackError.field,
+            message: feedbackError.title
           }
         ]);
       }

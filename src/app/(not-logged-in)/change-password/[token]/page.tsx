@@ -1,8 +1,8 @@
 import { ChangePassword } from '@/components/not-logged-in';
 import { checkRecovery } from '@/components/not-logged-in/change-password/change-password.actions';
 import { CHECK_RECOVERY_FLOW } from '@/components/not-logged-in/change-password/change-password.constants';
-import { ChangePasswordFlow } from '@/components/not-logged-in/change-password/change-password.types';
 import { CheckResponse } from '@/service/types';
+import { IntegrationFlow } from '@/types';
 
 type ChangePasswordPageProps = {
   params: Promise<{ token: string }>;
@@ -14,7 +14,7 @@ export default async function ChangePasswordPage({
   const { token } = await params;
   const response = await checkRecovery(token);
 
-  const checkTokenResult: ChangePasswordFlow | null = response.ok
+  const checkTokenResult: IntegrationFlow | null = response.ok
     ? null
     : CHECK_RECOVERY_FLOW[response.dataError?.error as CheckResponse];
 

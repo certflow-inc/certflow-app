@@ -1,7 +1,7 @@
+import { IntegrationFlow } from '@/types';
 import { ComponentProps } from 'react';
 import { z } from 'zod';
 import { requestPasswordReset } from '../forgot-password.actions';
-import { ForgotPasswordFlow } from '../forgot-password.types';
 import { useForgotPasswordFormModel } from './form.model';
 import { FORGOT_PASSWORD_FORM_SCHEMA } from './form.schema';
 
@@ -11,7 +11,7 @@ export type ForgotPasswordFormData = z.infer<
 
 export type UseForgotPasswordFormModelProps = {
   action: typeof requestPasswordReset;
-  onForgotPasswordSubmit: (data: ForgotPasswordFlow | null) => void;
+  onForgotPasswordSubmit: (data: IntegrationFlow | null) => void;
 };
 
 export type ForgotPasswordFormViewProps = ComponentProps<'form'> & {
@@ -22,10 +22,5 @@ export type ForgotPasswordFormViewModelProps = Omit<
   ForgotPasswordFormViewProps,
   'model'
 > & {
-  onForgotPasswordSubmit: (data: ForgotPasswordFlow | null) => void;
-};
-
-export type ForgotPasswordFieldError = {
-  field: string;
-  message: string;
+  onForgotPasswordSubmit: (data: IntegrationFlow | null) => void;
 };

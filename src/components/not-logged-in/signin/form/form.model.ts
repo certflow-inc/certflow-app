@@ -1,6 +1,7 @@
 import { createSession } from '@/lib/session';
 import { ROUTES } from '@/routes';
 import { SigninResponse } from '@/service/types';
+import { IntegrationFieldError } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -8,11 +9,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { SIGNIN_FLOW } from '../signin.constants';
 import { SIGNIN_FORM_SCHEMA } from './form.schema';
-import {
-  SigninFieldError,
-  SigninFormData,
-  UseSigninFormModelProps
-} from './form.types';
+import { SigninFormData, UseSigninFormModelProps } from './form.types';
 
 export function useFormModel({
   action,
@@ -21,7 +18,7 @@ export function useFormModel({
   const rotuer = useRouter();
   const [isProcessing, setIsProcessing] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<
-    SigninFieldError[] | undefined
+    IntegrationFieldError[] | undefined
   >();
 
   const {
@@ -53,15 +50,16 @@ export function useFormModel({
       return;
     }
 
-    const signinFlow = SIGNIN_FLOW[response.dataError?.error as SigninResponse];
+    const feedbackError =
+      SIGNIN_FLOW[response.dataError?.error as SigninResponse];
 
-    if (signinFlow.flow) {
-      onSigninSubmit(signinFlow);
+    if (feedbackError.flow) {
+      onSigninSubmit(feedbackError);
       return;
     }
 
-    if (signinFlow.toast) {
-      toast(signinFlow.title, {
+    if (feedbackError.toast) {
+      toast(feedbackError.title, {
         type: 'error',
         position: 'bottom-center',
         closeOnClick: true
@@ -69,11 +67,11 @@ export function useFormModel({
       return;
     }
 
-    if (signinFlow.field) {
+    if (feedbackError.field) {
       setFieldErrors([
         {
-          field: signinFlow.field,
-          message: signinFlow.title
+          field: feedbackError.field,
+          message: feedbackError.title
         }
       ]);
     }

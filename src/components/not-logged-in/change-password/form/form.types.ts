@@ -1,14 +1,14 @@
 import { ChangePassword } from '@/service/domain/auth';
 import { ApiResponse } from '@/service/types';
+import { IntegrationFlow } from '@/types';
 import { ComponentProps } from 'react';
 import { z } from 'zod';
-import { ChangePasswordFlow } from '../change-password.types';
 import { useSignupFormModel } from './form.model';
 import { CHANGE_PASSWORD_FORM_SCHEMA } from './form.schema';
 
 export type UseChangePasswordFormModelProps = {
   action: (data: ChangePassword) => Promise<ApiResponse<void>>;
-  onChangePasswordFormSubmit: (data: ChangePasswordFlow | null) => void;
+  onChangePasswordFormSubmit: (data: IntegrationFlow | null) => void;
 };
 
 export type ChangePasswordFormData = z.infer<
@@ -23,10 +23,5 @@ export type ChangePasswordFormViewModelProps = Omit<
   ChangePasswordFormViewProps,
   'model'
 > & {
-  onChangePasswordFormSubmit: (data: ChangePasswordFlow | null) => void;
-};
-
-export type SignupFieldError = {
-  field: string;
-  message: string;
+  onChangePasswordFormSubmit: (data: IntegrationFlow | null) => void;
 };

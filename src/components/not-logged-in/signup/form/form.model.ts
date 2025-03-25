@@ -6,15 +6,12 @@ import { useForm } from 'react-hook-form';
 
 import { PersonType, Register } from '@/service/domain/register';
 import { SignupResponse } from '@/service/types';
+import { IntegrationFieldError } from '@/types';
 import { toast } from 'react-toastify';
 import { SIGNUP_FLOW } from '../signup.constants';
 import { PERSON_TYPES } from './form.constants';
 import { SIGNUP_FORM_SCHEMA } from './form.schema';
-import {
-  SignupFieldError,
-  SignupFormData,
-  UseSignupFormModelProps
-} from './form.types';
+import { SignupFormData, UseSignupFormModelProps } from './form.types';
 
 export function useSignupFormModel({
   action,
@@ -25,7 +22,7 @@ export function useSignupFormModel({
     useState(false);
 
   const [fieldErrors, setFieldErrors] = useState<
-    SignupFieldError[] | undefined
+    IntegrationFieldError[] | undefined
   >();
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -86,15 +83,16 @@ export function useSignupFormModel({
 
     if (response.ok) return onSignupSubmit(SIGNUP_FLOW.Ok);
 
-    const signupFlow = SIGNUP_FLOW[response.dataError?.error as SignupResponse];
+    const feedbackError =
+      SIGNUP_FLOW[response.dataError?.error as SignupResponse];
 
-    if (signupFlow.flow) {
-      onSignupSubmit(signupFlow);
+    if (feedbackError.flow) {
+      onSignupSubmit(feedbackError);
       return;
     }
 
-    if (signupFlow.toast) {
-      toast(signupFlow.title, {
+    if (feedbackError.toast) {
+      toast(feedbackError.title, {
         type: 'error',
         position: 'bottom-center',
         closeOnClick: true
@@ -102,11 +100,11 @@ export function useSignupFormModel({
       return;
     }
 
-    if (signupFlow.field) {
+    if (feedbackError.field) {
       setFieldErrors([
         {
-          field: signupFlow.field,
-          message: signupFlow.title
+          field: feedbackError.field,
+          message: feedbackError.title
         }
       ]);
     }

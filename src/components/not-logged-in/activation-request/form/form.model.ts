@@ -1,11 +1,12 @@
 import { AccountVerificationResponse } from '@/service/types';
+import { IntegrationFieldError } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { ACTIVATION_REQUEST_FLOW } from '../activation-request.constants';
 import { ACTIVATION_REQUEST_FORM_SCHEMA } from './form.schema';
 import {
-  ActivationRequestFieldError,
   ActivatioRequestFormData,
   UseActivationRequestFormModelProps
 } from './form.types';
@@ -15,7 +16,7 @@ export function useActivationRequestModel({
   onActivationRequestFormSubmit
 }: UseActivationRequestFormModelProps) {
   const [fieldErrors, setFieldErrors] = useState<
-    ActivationRequestFieldError[] | undefined
+    IntegrationFieldError[] | undefined
   >();
   const [isProcessing, setIsProcessing] = useState(false);
   const {
@@ -41,22 +42,33 @@ export function useActivationRequestModel({
       if (response.ok)
         return onActivationRequestFormSubmit(ACTIVATION_REQUEST_FLOW.Ok);
 
-      const error =
+      const feedbackError =
         ACTIVATION_REQUEST_FLOW[
           response.dataError?.error as AccountVerificationResponse
         ];
 
-      if (!error.field) {
-        onActivationRequestFormSubmit(error);
+      if (feedbackError.flow) {
+        onActivationRequestFormSubmit(feedbackError);
         return;
       }
 
-      setFieldErrors([
-        {
-          field: error.field,
-          message: error.title
-        }
-      ]);
+      if (feedbackError.toast) {
+        toast(feedbackError.title, {
+          type: 'error',
+          position: 'bottom-center',
+          closeOnClick: true
+        });
+        return;
+      }
+
+      if (feedbackError.field) {
+        setFieldErrors([
+          {
+            field: feedbackError.field,
+            message: feedbackError.title
+          }
+        ]);
+      }
     }
   );
 

@@ -1,8 +1,8 @@
 import { ROUTES } from '@/routes';
 import { ChangePasswordResponse, CheckResponse } from '@/service/types';
-import { ChangePasswordFlow } from './change-password.types';
+import { IntegrationFlow } from '@/types';
 
-export const CHECK_RECOVERY_FLOW: Record<CheckResponse, ChangePasswordFlow> = {
+export const CHECK_RECOVERY_FLOW: Record<CheckResponse, IntegrationFlow> = {
   Ok: {
     title: 'Token válido',
     description: 'Token válido'
@@ -53,7 +53,7 @@ export const CHECK_RECOVERY_FLOW: Record<CheckResponse, ChangePasswordFlow> = {
 
 export const CHANGE_PASSWORD_FLOW: Record<
   ChangePasswordResponse,
-  ChangePasswordFlow
+  IntegrationFlow
 > = {
   Ok: {
     title: 'Senha alterada com sucesso!',

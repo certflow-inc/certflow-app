@@ -1,10 +1,10 @@
 import { ROUTES } from '@/routes';
 import { AccountVerificationResponse } from '@/service/types';
-import { ActivationRequestFlow } from './activation-request.types';
+import { IntegrationFlow } from '@/types';
 
 export const ACTIVATION_REQUEST_FLOW: Record<
   AccountVerificationResponse,
-  ActivationRequestFlow
+  IntegrationFlow
 > = {
   Ok: {
     title: 'Novo link enviado com sucesso!',

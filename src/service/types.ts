@@ -63,6 +63,7 @@ export type ActivateResponse =
   | 'User cannot be activated'
   | 'Link is expired'
   | 'Link is invalid'
+  | 'User cannot be activated'
   | '"token" contains an invalid value'
   | API_SERVER_ERROR;
 

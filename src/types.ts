@@ -1,4 +1,4 @@
-export type ForgotPasswordFlow = {
+export type IntegrationFlow = {
   title: string;
   description: string;
   destination?: string;
@@ -6,4 +6,9 @@ export type ForgotPasswordFlow = {
   flow?: boolean;
   toast?: boolean;
   field?: string;
+};
+
+export type IntegrationFieldError = {
+  field: string;
+  message: string;
 };
