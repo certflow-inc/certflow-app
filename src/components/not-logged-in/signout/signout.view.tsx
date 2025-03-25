@@ -1,16 +1,22 @@
 'use client';
 
-import { destroySession } from '@/lib/session';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
+import { signout } from './signout.actions';
 
 export function SignoutView() {
-  const router = useRouter();
+  const logout = useCallback(async () => {
+    await signout();
+  }, []);
 
   useEffect(() => {
-    destroySession();
-    router.push('/');
-  }, [router]);
+    logout();
+  }, [logout]);
 
-  return <div className="flex-1">Encerrando sessão...</div>;
+  return (
+    <div className="flex-1">
+      <h1 className="text-center text-lg font-bold md:text-2xl">
+        Encerrando sessão...
+      </h1>
+    </div>
+  );
 }

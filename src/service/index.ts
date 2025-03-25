@@ -6,6 +6,7 @@ import {
   passwordRecovery,
   refresh,
   signin,
+  signout,
   signup
 } from './endpoints';
 
@@ -17,5 +18,6 @@ export const CertFlowServices = {
   refresh,
   passwordRecovery,
   changePassword,
-  check
+  check,
+  signout
 };

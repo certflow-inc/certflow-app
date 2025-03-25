@@ -8,12 +8,13 @@ export type ApiError = {
   error: string;
 };
 
+type API_OK = 'Ok';
 export type API_COMMON_ERRORS = 'API_SERVER_ERROR';
 export type API_SERVER_ERROR =
   'An error occurred while processing your request. Please, try again later';
 
 export type SigninResponse =
-  | 'Ok'
+  | API_OK
   | 'Invalid email or password'
   | '\"email\" is required'
   | '\"email\" length must be less than or equal to 254 characters long'
@@ -28,7 +29,7 @@ export type SigninResponse =
   | API_SERVER_ERROR;
 
 export type SignupResponse =
-  | 'Ok'
+  | API_OK
   | 'User already registered'
   | 'Account already registered'
   | '\"taxId\" is required'
@@ -58,8 +59,15 @@ export type SignupResponse =
   | '\"confirmPassword\" does not match'
   | API_SERVER_ERROR;
 
+export type SignoutResponse =
+  | API_OK
+  | '\"refresh-token\" is required'
+  | '\"refresh-token\" is invalid'
+  | 'Invalid token'
+  | API_SERVER_ERROR;
+
 export type ActivateResponse =
-  | 'Ok'
+  | API_OK
   | 'User cannot be activated'
   | 'Link is expired'
   | 'Link is invalid'
@@ -68,25 +76,25 @@ export type ActivateResponse =
   | API_SERVER_ERROR;
 
 export type AccountVerificationResponse =
-  | 'Ok'
+  | API_OK
   | '\"email\" is required'
   | '\"email\" must be a valid email'
   | API_SERVER_ERROR;
 
 export type MeResponse =
-  | 'Ok'
+  | API_OK
   | 'Invalid token'
   | 'User not found"'
   | API_SERVER_ERROR;
 
 export type PasswordRecoveryResponse =
-  | 'Ok'
+  | API_OK
   | '\"email\" is required'
   | '\"email\" must be a valid email'
   | API_SERVER_ERROR;
 
 export type ChangePasswordResponse =
-  | 'Ok'
+  | API_OK
   | '\"password\" is required'
   | '"password" is not allowed to be empty'
   | '\"password\" length must be at least 8 characters long'
@@ -102,7 +110,7 @@ export type ChangePasswordResponse =
   | API_SERVER_ERROR;
 
 export type CheckResponse =
-  | 'Ok'
+  | API_OK
   | '\"flow\" is required'
   | '\"flow\" must be one of [verification, recovery]'
   | '\"token\" is required'

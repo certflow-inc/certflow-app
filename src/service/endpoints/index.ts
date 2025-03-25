@@ -5,4 +5,5 @@ export { check } from './check.service';
 export { passwordRecovery } from './password-recovery.service';
 export { refresh } from './refresh.service';
 export { signin } from './signin.service';
+export { signout } from './signout.service';
 export { signup } from './signup.service';

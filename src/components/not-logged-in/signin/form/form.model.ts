@@ -28,7 +28,11 @@ export function useFormModel({
     formState: { errors },
     setFocus
   } = useForm<SigninFormData>({
-    resolver: zodResolver(SIGNIN_FORM_SCHEMA)
+    resolver: zodResolver(SIGNIN_FORM_SCHEMA),
+    values: {
+      email: 'ricardo.almendro.ruiz@gmail.com',
+      password: 'Cf123456'
+    }
   });
 
   const registeredFields = {
@@ -45,7 +49,7 @@ export function useFormModel({
     setIsProcessing(false);
 
     if (response.ok && response.data?.token) {
-      createSession(response.data.token);
+      createSession(response.data.token, response.data.refreshToken);
       rotuer.push(ROUTES.DASHBOARD);
       return;
     }

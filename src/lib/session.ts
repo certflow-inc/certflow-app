@@ -12,7 +12,7 @@ const SAME_SITE = 'lax';
  *
  * @param jwt The JWT token to use in the session cookie.
  */
-export const createSession = async (jwt: string) => {
+export const createSession = async (jwt: string, refreshToken: string) => {
   const cookieStore = await cookies();
 
   const jwwtPayload = getJWTPayload(jwt);
@@ -22,6 +22,12 @@ export const createSession = async (jwt: string) => {
     secure: true,
     sameSite: SAME_SITE,
     expires: new Date(jwwtPayload.exp * 1000)
+  });
+
+  cookieStore.set(COOKIE_NAMES.REGFRESH_TOKEN, refreshToken, {
+    httpOnly: true,
+    secure: true,
+    sameSite: SAME_SITE
   });
 };
 
@@ -33,6 +39,7 @@ export const createSession = async (jwt: string) => {
 export const destroySession = async () => {
   const cookieStore = await cookies();
   cookieStore.delete(COOKIE_NAMES.SESSION);
+  cookieStore.delete(COOKIE_NAMES.REGFRESH_TOKEN);
 };
 
 /**
@@ -60,4 +67,9 @@ export const getSession = async () => {
 export const getToken = async () => {
   const cookieStore = await cookies();
   return cookieStore.get(COOKIE_NAMES.SESSION)?.value;
+};
+
+export const getRefreshToken = async () => {
+  const cookieStore = await cookies();
+  return cookieStore.get(COOKIE_NAMES.REGFRESH_TOKEN)?.value;
 };

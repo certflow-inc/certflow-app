@@ -9,7 +9,7 @@ import { UnAuthenticatedException } from '@/exceptions/UnAuthenticatedException'
 import { isExpired } from './jwt';
 import { getToken } from './session';
 
-const PRIVATE_ENDPOINTS = ['/me'];
+const PRIVATE_ENDPOINTS = ['/sign-out', '/me'];
 
 const interceptor = new BatchInterceptor({
   name: 'my-interceptor',
@@ -30,13 +30,18 @@ interceptor.on('request', async ({ request, controller }) => {
   );
 
   if (needsAuth) {
-    console.log(`Adicionando o token na requisição "${request.url}"`);
     const token = await getToken();
+    console.log(`🚀 - Interceptando a requisição requisição "${request.url}"`);
 
     if (!token || isExpired(token)) {
       controller.errorWith(new UnAuthenticatedException('Expired Token'));
     } else {
+      console.log(`🚀 - Adicionando o token na requisição "${request.url}"`);
       request.headers.set('Authorization', `Bearer ${token}`);
+      console.log(
+        `🚀 ~ Header da requisição "${request.url}": `,
+        request.headers
+      );
     }
   }
 });
