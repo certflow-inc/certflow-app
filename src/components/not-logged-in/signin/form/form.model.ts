@@ -28,11 +28,7 @@ export function useFormModel({
     formState: { errors },
     setFocus
   } = useForm<SigninFormData>({
-    resolver: zodResolver(SIGNIN_FORM_SCHEMA),
-    values: {
-      email: 'ricardo.almendro.ruiz@gmail.com',
-      password: 'Cf123456'
-    }
+    resolver: zodResolver(SIGNIN_FORM_SCHEMA)
   });
 
   const registeredFields = {
