@@ -44,10 +44,8 @@ export function useFormModel({ onSigninSubmit }: UseSigninFormModelProps) {
 
   return {
     rotuer,
-    form: {
-      formState,
-      formAction,
-      pending
-    }
+    formState,
+    formAction,
+    pending
   };
 }

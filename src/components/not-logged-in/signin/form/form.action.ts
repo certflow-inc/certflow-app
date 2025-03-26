@@ -27,28 +27,23 @@ export async function signinAction(
       SIGNIN_FORM_SCHEMA
     );
 
-    const response = await CertFlowServices.signin(data.email, data.password);
+    const { email, password } = data;
+    const response = await CertFlowServices.signin(email, password);
 
     if (!response.ok) {
       const feedbackError =
         SIGNIN_FLOW[response.dataError?.error as SigninResponse];
 
-      if (feedbackError.flow || feedbackError.toast) {
-        return {
-          ok: false,
-          data,
-          integrationFlow: feedbackError
-        };
-      }
-
-      if (feedbackError.field) {
-        const fieldError = { [feedbackError.field]: [feedbackError.title] };
-        return {
-          ok: false,
-          data,
-          fieldErrors: { ...fieldError }
-        };
-      }
+      return {
+        ok: false,
+        data,
+        ...(feedbackError.flow || feedbackError.toast
+          ? { integrationFlow: feedbackError }
+          : {}),
+        ...(feedbackError.field
+          ? { fieldErrors: { [feedbackError.field]: [] } }
+          : {})
+      };
     }
 
     if (!response.data?.token || !response.data.refreshToken) {
@@ -60,12 +55,12 @@ export async function signinAction(
     }
 
     createSession(response.data!.token, response.data!.refreshToken);
-  } catch (error: unknown) {
-    if (error instanceof FormFieldsValidationException) {
+  } catch (e: unknown) {
+    if (e instanceof FormFieldsValidationException) {
       return {
         ok: false,
         data,
-        fieldErrors: error.errors
+        fieldErrors: e.errors
       };
     }
 

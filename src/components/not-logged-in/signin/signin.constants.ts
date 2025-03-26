@@ -8,11 +8,11 @@ export const SIGNIN_FLOW: Record<SigninResponse, IntegrationFlow> = {
     description: 'Um email foi enviado para você!'
   },
   'An error occurred while processing your request. Please, try again later': {
-    title: 'Ops!!! Ocorreu um erro ao realizar o login!',
+    title: 'Ocorreu um erro ao fazer o login. Tente novamente.',
     description: 'Clique no botão abaixo para tentar novamente.',
     destination: ROUTES.SIGNIN,
     destinationLabel: 'Tentar novamente',
-    flow: true
+    toast: true
   },
   // Field messages
   '\"email\" is required': {
