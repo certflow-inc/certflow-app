@@ -1,14 +1,20 @@
+import { FormValidations } from '@/helpers/form-validations';
+import { Auth } from '@/service/domain/auth';
 import { IntegrationFlow } from '@/types';
 import { ComponentProps } from 'react';
 import { z } from 'zod';
-import { signin } from '../signin.actions';
 import { useFormModel } from './form.model';
 import { SIGNIN_FORM_SCHEMA } from './form.schema';
 
 export type SigninFormData = z.infer<typeof SIGNIN_FORM_SCHEMA>;
 
+export type SigninFormValidations = FormValidations<
+  Pick<z.inferFlattenedErrors<typeof SIGNIN_FORM_SCHEMA>, 'fieldErrors'>,
+  SigninFormData,
+  Auth
+>;
+
 export type UseSigninFormModelProps = {
-  action: typeof signin;
   onSigninSubmit: (data: IntegrationFlow | null) => void;
 };
 

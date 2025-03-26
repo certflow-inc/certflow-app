@@ -1,5 +1,3 @@
-'use client';
-
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Link from 'next/link';
@@ -14,13 +12,12 @@ export function SigninFormView({
   className,
   ...props
 }: SigninFormViewProps) {
-  const { handleSigninSubmit, registeredFields, rotuer, errors, isProcessing } =
-    model;
+  const { form, rotuer } = model;
 
   return (
     <form
       noValidate
-      onSubmit={handleSigninSubmit}
+      action={form.formAction}
       className={cn(
         'flex w-full max-w-96 flex-col gap-6 px-4 md:px-0',
         className
@@ -31,17 +28,25 @@ export function SigninFormView({
       <div className="flex flex-col gap-2">
         <Input
           type="email"
+          name="email"
           placeholder="Email"
-          error={errors.email?.message}
-          {...registeredFields.email}
-          disabled={isProcessing}
+          defaultValue={form.formState.data?.email}
+          error={
+            form.formState.fieldErrors?.email &&
+            form.formState.fieldErrors.email[0]
+          }
+          disabled={form.pending}
         />
         <Input
           type="password"
+          name="password"
           placeholder="Senha"
-          error={errors.password?.message}
-          {...registeredFields.password}
-          disabled={isProcessing}
+          defaultValue={form.formState.data?.password}
+          error={
+            form.formState.fieldErrors?.password &&
+            form.formState.fieldErrors.password[0]
+          }
+          disabled={form.pending}
         />
       </div>
 
@@ -51,10 +56,10 @@ export function SigninFormView({
           id="signin-button"
           variant="default"
           size="lg"
-          disabled={isProcessing}
+          disabled={form.pending}
         >
           Confirmar
-          {isProcessing && (
+          {form.pending && (
             <LoaderCircle className="ml-2 h-4 w-4 animate-spin" />
           )}
         </Button>
@@ -65,7 +70,7 @@ export function SigninFormView({
           variant="outline"
           size="lg"
           onClick={() => rotuer.push(ROUTES.SIGNUP)}
-          disabled={isProcessing}
+          disabled={form.pending}
         >
           Cadastrar
         </Button>
@@ -73,7 +78,7 @@ export function SigninFormView({
         <Link
           id="forgot-password-link"
           href={ROUTES.FORGOT_PASSWORD}
-          aria-disabled={isProcessing}
+          aria-disabled={form.pending}
           className="text-primary hover:text-primary-600 active:text-primary-700 text-center aria-[disabled=true]:pointer-events-none"
         >
           Esqueci minha senha
