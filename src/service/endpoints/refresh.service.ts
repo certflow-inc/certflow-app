@@ -4,7 +4,6 @@ import { RefreshToken } from '../domain/auth';
 import { ApiResponse } from '../types';
 
 export async function refresh(
-  token: string,
   refreshToken: string
 ): Promise<ApiResponse<RefreshToken>> {
   console.log('🚀 ~ refreshToken - renovando o token agora', refreshToken);
@@ -13,8 +12,7 @@ export async function refresh(
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'refresh-token': refreshToken,
-      Authorization: `Bearer ${token}`
+      'refresh-token': refreshToken
     }
   });
 
