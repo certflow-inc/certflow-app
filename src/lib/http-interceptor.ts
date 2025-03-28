@@ -26,7 +26,6 @@ interceptor.apply();
 interceptor.on('request', async ({ request, controller }) => {
   const userAgent = await getUserAgent();
   request.headers.set('User-Agent', userAgent.ua);
-  request.headers.set('Content-Type', 'application/json');
 
   const needsAuth = PRIVATE_ENDPOINTS.some((endpoint) =>
     request.url?.includes(endpoint)
