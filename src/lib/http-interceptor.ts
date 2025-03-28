@@ -43,13 +43,13 @@ interceptor.on('request', async ({ request, controller }) => {
   }
 });
 
-interceptor.on('response', async ({ request, response }) => {
-  console.log(`🚀 ~ ${request.url} => Request`);
-  console.log(`Method: `, request.method);
-  console.log(`Header: `, request.headers);
-  console.log(`Body: `, await request.text());
+// interceptor.on('response', async ({ request, response }) => {
+//   console.log(`🚀 ~ ${request.url} => Request`);
+//   console.log(`Method: `, request.method);
+//   console.log(`Header: `, request.headers);
+//   console.log(`Body: `, await request.text());
 
-  console.log(`🚀 ~ ${request.url} => Response`);
-  console.log(`Status: `, response.status);
-  console.log(`Body: `, await response.text());
-});
+//   console.log(`🚀 ~ ${request.url} => Response`);
+//   console.log(`Status: `, response.status);
+//   console.log(`Body: `, await response.text());
+// });
