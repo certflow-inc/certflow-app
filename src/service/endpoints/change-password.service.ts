@@ -4,6 +4,7 @@ import { API_COMMON_RESPONSE_ERROR } from '@/service/constants';
 import { ApiError, ApiResponse } from '@/service/types';
 import { StatusCodes } from 'http-status-codes';
 import { ChangePassword } from '../domain/auth';
+import { TIME_OUT } from './endpoints.constants';
 
 export async function changePassword(
   data: ChangePassword,
@@ -13,6 +14,7 @@ export async function changePassword(
     const response = await fetch(
       `${process.env.API_URL}/change-password/${token}`,
       {
+        signal: AbortSignal.timeout(TIME_OUT),
         method: 'POST',
         body: JSON.stringify(data),
         headers: {

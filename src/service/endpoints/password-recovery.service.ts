@@ -3,6 +3,7 @@
 import { StatusCodes } from 'http-status-codes';
 import { API_COMMON_RESPONSE_ERROR } from '../constants';
 import { ApiError, ApiResponse } from '../types';
+import { TIME_OUT } from './endpoints.constants';
 
 export async function passwordRecovery(
   email: string
@@ -11,6 +12,7 @@ export async function passwordRecovery(
     const response = await fetch(
       `${process.env.API_URL}/password-recovery/${email}`,
       {
+        signal: AbortSignal.timeout(TIME_OUT),
         method: 'POST',
         body: JSON.stringify({ email }),
         headers: {
