@@ -9,7 +9,7 @@ import { UnAuthenticatedException } from '@/exceptions/UnAuthenticatedException'
 import { isExpired } from './jwt';
 import { getToken } from './session';
 
-const PRIVATE_ENDPOINTS = ['/sign-out', '/me'];
+const PRIVATE_ENDPOINTS = ['/me'];
 
 const interceptor = new BatchInterceptor({
   name: 'my-interceptor',
@@ -23,9 +23,9 @@ const interceptor = new BatchInterceptor({
 interceptor.apply();
 
 interceptor.on('request', async ({ request, controller }) => {
-  // const agent: UserAgent = await getUserAgent();
-  // request.headers.set('User-Agent', agent.ua);
-  request.headers.set('Content-Type', 'application/json');
+  console.log(
+    `Interceptando a requisição "${request.url}" para adicionar o token`
+  );
 
   const needsAuth = PRIVATE_ENDPOINTS.some((endpoint) =>
     request.url?.includes(endpoint)
@@ -42,13 +42,4 @@ interceptor.on('request', async ({ request, controller }) => {
   }
 });
 
-// interceptor.on('response', async ({ request, response }) => {
-//   console.log(`🚀 ~ ${request.url} => Request`);
-//   console.log(`Method: `, request.method);
-//   console.log(`Header: `, request.headers);
-//   console.log(`Body: `, await request.text());
-
-//   console.log(`🚀 ~ ${request.url} => Response`);
-//   console.log(`Status: `, response.status);
-//   console.log(`Body: `, await response.text());
-// });
+// interceptor.on('response', console.log);

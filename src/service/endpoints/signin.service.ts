@@ -12,7 +12,10 @@ export async function signin(
   try {
     const response = await fetch(`${process.env.API_URL}/sign-in`, {
       method: 'POST',
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ email, password }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
     });
 
     if (
