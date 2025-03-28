@@ -2,7 +2,6 @@
 
 import { RefreshToken } from '../domain/auth';
 import { ApiResponse } from '../types';
-import { TIME_OUT } from './endpoints.constants';
 
 export async function refresh(
   refreshToken: string
@@ -10,7 +9,6 @@ export async function refresh(
   console.log('🚀 ~ refreshToken - renovando o token agora', refreshToken);
 
   const response = await fetch(`${process.env.API_URL}/refresh`, {
-    signal: AbortSignal.timeout(TIME_OUT),
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

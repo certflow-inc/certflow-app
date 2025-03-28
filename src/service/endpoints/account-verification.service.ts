@@ -3,14 +3,12 @@
 import { StatusCodes } from 'http-status-codes';
 import { API_COMMON_RESPONSE_ERROR } from '../constants';
 import { ApiError } from '../types';
-import { TIME_OUT } from './endpoints.constants';
 
 export async function accountVerification(email: string) {
   try {
     const response = await fetch(
       `${process.env.API_URL}/account-verification/${email}`,
       {
-        signal: AbortSignal.timeout(TIME_OUT),
         method: 'POST'
       }
     );

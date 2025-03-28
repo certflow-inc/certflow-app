@@ -4,7 +4,6 @@ import { API_COMMON_RESPONSE_ERROR } from '@/service/constants';
 import { Register } from '@/service/domain/register';
 import { ApiError, ApiResponse } from '@/service/types';
 import { StatusCodes } from 'http-status-codes';
-import { TIME_OUT } from './endpoints.constants';
 
 /**
  * Sends a sign-up request to the API with the provided registration data.
@@ -20,7 +19,6 @@ import { TIME_OUT } from './endpoints.constants';
 export async function signup(register: Register): Promise<ApiResponse<void>> {
   try {
     const response = await fetch(`${process.env.API_URL}/sign-up`, {
-      signal: AbortSignal.timeout(TIME_OUT),
       method: 'POST',
       body: buildPayload(register),
       headers: {

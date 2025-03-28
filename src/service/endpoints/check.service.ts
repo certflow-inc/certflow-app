@@ -3,7 +3,6 @@ import { ROUTES } from '@/routes';
 import { redirect } from 'next/navigation';
 import { API_COMMON_RESPONSE_ERROR } from '../constants';
 import { ApiError } from '../types';
-import { TIME_OUT } from './endpoints.constants';
 
 type CheckRequest = {
   flow: 'recovery' | 'verification';
@@ -15,7 +14,6 @@ export async function check(request: CheckRequest) {
     const response = await fetch(
       `${process.env.API_URL}/check/${request.flow}/${request.token}`,
       {
-        signal: AbortSignal.timeout(TIME_OUT),
         method: 'GET'
       }
     );

@@ -4,7 +4,6 @@ import { StatusCodes } from 'http-status-codes';
 import { API_COMMON_RESPONSE_ERROR } from '../constants';
 import { Auth } from '../domain/auth';
 import { ApiError, ApiResponse } from '../types';
-import { TIME_OUT } from './endpoints.constants';
 
 export async function signin(
   email: string,
@@ -12,7 +11,6 @@ export async function signin(
 ): Promise<ApiResponse<Auth>> {
   try {
     const response = await fetch(`${process.env.API_URL}/sign-in`, {
-      signal: AbortSignal.timeout(TIME_OUT),
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: {

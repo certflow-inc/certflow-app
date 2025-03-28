@@ -3,7 +3,6 @@
 import { API_COMMON_RESPONSE_ERROR } from '@/service/constants';
 import { ApiError, ApiResponse } from '@/service/types';
 import { StatusCodes } from 'http-status-codes';
-import { TIME_OUT } from './endpoints.constants';
 
 /**
  * Activates a user using the provided token.
@@ -18,7 +17,6 @@ import { TIME_OUT } from './endpoints.constants';
 export async function activate(token: string): Promise<ApiResponse<void>> {
   try {
     const response = await fetch(`${process.env.API_URL}/activate/${token}`, {
-      signal: AbortSignal.timeout(TIME_OUT),
       method: 'POST'
     });
 
