@@ -18,6 +18,10 @@ const interceptor = new BatchInterceptor({
 interceptor.apply();
 
 interceptor.on('request', async ({ request, controller }) => {
+  console.log(`🚀 ~ Interceptando a request ${request.url}`);
+  console.log(`Method: `, request.method);
+  console.log(`Header: `, request.headers);
+
   const agent: UserAgent = await getUserAgent();
   request.headers.set('User-Agent', agent.ua);
   request.headers.set('Content-Type', 'application/json');
@@ -41,8 +45,8 @@ interceptor.on('request', async ({ request, controller }) => {
     console.log(`Method: `, requestClone.method);
     console.log(`Header: `, requestClone.headers);
     console.log(`Body: `, await requestClone.text());
+    console.groupEnd();
   }
-  console.groupEnd();
 });
 
 interceptor.on('response', async ({ request, response }) => {
