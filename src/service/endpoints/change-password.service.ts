@@ -14,7 +14,10 @@ export async function changePassword(
       `${process.env.API_URL}/change-password/${token}`,
       {
         method: 'POST',
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
       }
     );
 

@@ -21,7 +21,9 @@ export async function signup(register: Register): Promise<ApiResponse<void>> {
     const response = await fetch(`${process.env.API_URL}/sign-up`, {
       method: 'POST',
       body: buildPayload(register),
-      headers: buildHeaders()
+      headers: {
+        'Content-Type': 'application/json'
+      }
     });
 
     if (
@@ -83,15 +85,4 @@ function buildPayload(register: Register): string {
       : {}),
     ...(companyName ? { companyName: companyName } : {})
   });
-}
-
-/**
- * Build headers for the request.
- *
- * @returns {Record<string, string>} headers object
- */
-function buildHeaders(): Record<string, string> {
-  return {
-    'Content-Type': 'application/json'
-  };
 }

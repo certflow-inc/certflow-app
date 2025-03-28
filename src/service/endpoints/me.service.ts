@@ -14,8 +14,8 @@ export async function getMe(): Promise<ApiResponse<Me>> {
     const response = await fetch(`${process.env.API_URL}/me`, {
       method: 'GET',
       next: {
-        tags: [TAG_GET_ME],
-        revalidate: 60 * 60 * 24 // 1 day
+        tags: [TAG_GET_ME]
+        // revalidate: 60 * 60 * 24 // 1 day
       }
     });
 
