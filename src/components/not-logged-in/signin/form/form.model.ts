@@ -45,8 +45,8 @@ export function useFormModel({
     setIsProcessing(false);
 
     if (response.ok && response.data?.token) {
-      createSession(response.data.token, response.data.refreshToken);
-      rotuer.push(ROUTES.DASHBOARD);
+      await createSession(response.data.token, response.data.refreshToken);
+      rotuer.replace(ROUTES.DASHBOARD);
       return;
     }
 

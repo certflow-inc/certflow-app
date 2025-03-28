@@ -1,11 +1,16 @@
 import { ROUTES } from '@/routes';
-import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import { Button } from '../ui/button';
 
 export function LogoutButton() {
+  async function exit() {
+    'use server';
+    redirect(ROUTES.SIGNOUT);
+  }
+
   return (
-    <Button asChild>
-      <Link href={ROUTES.SIGNOUT}>Sair</Link>
-    </Button>
+    <form action={exit}>
+      <Button type="submit">Sair</Button>
+    </form>
   );
 }

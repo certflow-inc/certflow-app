@@ -12,11 +12,7 @@ export async function signout(
     const response = await fetch(`${process.env.API_URL}/sign-out`, {
       method: 'POST',
       headers: {
-        'Content-Type': '*/*',
         'refresh-token': refreshToken
-      },
-      next: {
-        revalidate: 0
       }
     });
 
