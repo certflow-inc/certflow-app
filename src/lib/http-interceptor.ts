@@ -7,7 +7,6 @@ import { FetchInterceptor } from '@mswjs/interceptors/fetch';
 
 import { UnAuthenticatedException } from '@/exceptions/UnAuthenticatedException';
 import { isExpired } from './jwt';
-import { getUserAgent, UserAgent } from './server-utils';
 import { getToken } from './session';
 
 const PRIVATE_ENDPOINTS = ['/sign-out', '/me'];
@@ -24,8 +23,8 @@ const interceptor = new BatchInterceptor({
 interceptor.apply();
 
 interceptor.on('request', async ({ request, controller }) => {
-  const agent: UserAgent = await getUserAgent();
-  request.headers.set('User-Agent', agent.ua);
+  // const agent: UserAgent = await getUserAgent();
+  // request.headers.set('User-Agent', agent.ua);
   request.headers.set('Content-Type', 'application/json');
 
   const needsAuth = PRIVATE_ENDPOINTS.some((endpoint) =>
