@@ -12,7 +12,7 @@ export const SIGNIN_FLOW: Record<SigninResponse, IntegrationFlow> = {
     description: 'Clique no botão abaixo para tentar novamente.',
     destination: ROUTES.SIGNIN,
     destinationLabel: 'Tentar novamente',
-    flow: true
+    toast: true
   },
   // Field messages
   '\"email\" is required': {

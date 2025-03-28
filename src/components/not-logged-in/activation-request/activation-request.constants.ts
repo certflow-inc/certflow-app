@@ -27,6 +27,7 @@ export const ACTIVATION_REQUEST_FLOW: Record<
     title: 'Ops!!! Ocorreu um erro ao enviar o novo link!',
     description: 'Clique no botão abaixo para tentar novamente.',
     destination: ROUTES.ACTIVATION_REQUEST,
-    destinationLabel: 'Tentar novamente'
+    destinationLabel: 'Tentar novamente',
+    toast: true
   }
 };
