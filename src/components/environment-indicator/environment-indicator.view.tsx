@@ -4,7 +4,7 @@ export function EnvironmentIndicatorView() {
   }
 
   return (
-    <div className="bg-primary-500 fixed top-0 right-0 left-0 flex h-6 items-center justify-center font-bold text-white">
+    <div className="bg-primary-600 fixed top-0 right-0 left-0 flex h-6 items-center justify-center font-bold text-white">
       {process.env.ENVIRONMENT}
     </div>
   );
