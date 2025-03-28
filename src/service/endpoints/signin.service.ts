@@ -15,9 +15,6 @@ export async function signin(
       body: JSON.stringify({ email, password })
     });
 
-    console.log('🚀 ~ signin - request:', JSON.stringify({ email, password }));
-    console.log('🚀 ~ signin - response:', response);
-
     if (
       !response.ok &&
       [StatusCodes.NOT_FOUND, StatusCodes.INTERNAL_SERVER_ERROR].includes(

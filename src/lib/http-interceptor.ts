@@ -1,6 +1,8 @@
 'use server';
 
 import { BatchInterceptor } from '@mswjs/interceptors';
+import { ClientRequestInterceptor } from '@mswjs/interceptors/ClientRequest';
+import { XMLHttpRequestInterceptor } from '@mswjs/interceptors/XMLHttpRequest';
 import { FetchInterceptor } from '@mswjs/interceptors/fetch';
 
 import { UnAuthenticatedException } from '@/exceptions/UnAuthenticatedException';
@@ -12,15 +14,17 @@ const PRIVATE_ENDPOINTS = ['/sign-out', '/me'];
 
 const interceptor = new BatchInterceptor({
   name: 'my-interceptor',
-  interceptors: [new FetchInterceptor()]
+  interceptors: [
+    new ClientRequestInterceptor(),
+    new XMLHttpRequestInterceptor(),
+    new FetchInterceptor()
+  ]
 });
 
 interceptor.apply();
 
 interceptor.on('request', async ({ request, controller }) => {
   console.log(`🚀 ~ Interceptando a request ${request.url}`);
-  console.log(`Method: `, request.method);
-  console.log(`Header: `, request.headers);
 
   const agent: UserAgent = await getUserAgent();
   request.headers.set('User-Agent', agent.ua);
@@ -39,21 +43,21 @@ interceptor.on('request', async ({ request, controller }) => {
       request.headers.set('Authorization', `Bearer ${token}`);
     }
   }
-  if (process.env.LOG === 'ON') {
-    const requestClone = request.clone();
-    console.group(`🚀 ~ ${requestClone.url} => Request`);
-    console.log(`Method: `, requestClone.method);
-    console.log(`Header: `, requestClone.headers);
-    console.log(`Body: `, await requestClone.text());
-    console.groupEnd();
-  }
+  // if (process.env.LOG === 'ON') {
+  const requestClone = request.clone();
+  console.log(`🚀 ~ ${requestClone.url} => Request`);
+  console.log(`Method: `, requestClone.method);
+  console.log(`Header: `, requestClone.headers);
+  console.log(`Body: `, await requestClone.text());
+  // console.groupEnd();
+  // }
 });
 
 interceptor.on('response', async ({ request, response }) => {
-  if (process.env.LOG === 'ON') {
-    console.group(`🚀 ~ ${request.url} => Response`);
-    console.log(`Status: `, response.status);
-    console.log(`Body: `, await response.text());
-    console.groupEnd();
-  }
+  // if (process.env.LOG === 'ON') {
+  console.log(`🚀 ~ ${request.url} => Response`);
+  console.log(`Status: `, response.status);
+  console.log(`Body: `, await response.text());
+  // console.groupEnd();
+  // }
 });
