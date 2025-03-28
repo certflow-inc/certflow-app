@@ -35,6 +35,7 @@ export function useSignupFormModel({
     setError,
     formState: { errors }
   } = useForm<SignupFormData>({
+    mode: 'onChange',
     resolver: zodResolver(SIGNUP_FORM_SCHEMA)
     // values: {
     //   type: 'person',

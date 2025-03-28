@@ -26,6 +26,7 @@ export function useActivationRequestModel({
     formState: { errors, isValid },
     setFocus
   } = useForm<ActivatioRequestFormData>({
+    mode: 'onChange',
     resolver: zodResolver(ACTIVATION_REQUEST_FORM_SCHEMA)
   });
 

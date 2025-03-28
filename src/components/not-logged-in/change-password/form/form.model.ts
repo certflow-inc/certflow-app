@@ -33,6 +33,7 @@ export function useSignupFormModel({
     setError,
     formState: { errors }
   } = useForm<ChangePasswordFormData>({
+    mode: 'onChange',
     resolver: zodResolver(CHANGE_PASSWORD_FORM_SCHEMA)
   });
 

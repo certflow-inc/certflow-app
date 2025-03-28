@@ -28,6 +28,7 @@ export function useFormModel({
     formState: { errors },
     setFocus
   } = useForm<SigninFormData>({
+    mode: 'onChange',
     resolver: zodResolver(SIGNIN_FORM_SCHEMA)
   });
 

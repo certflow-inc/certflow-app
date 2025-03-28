@@ -30,6 +30,7 @@ export function useForgotPasswordFormModel({
     setError,
     formState: { errors }
   } = useForm<ForgotPasswordFormData>({
+    mode: 'onChange',
     resolver: zodResolver(FORGOT_PASSWORD_FORM_SCHEMA)
   });
 
