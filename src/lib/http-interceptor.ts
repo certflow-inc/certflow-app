@@ -26,7 +26,7 @@ interceptor.on('request', async ({ request, controller }) => {
   console.log(
     `Interceptando a requisição "${request.url}" para adicionar o token`
   );
-  request.headers.set('Content-Type', 'application/json');
+  // request.headers.set('Content-Type', 'application/json');
 
   const needsAuth = PRIVATE_ENDPOINTS.some((endpoint) =>
     request.url?.includes(endpoint)
@@ -41,6 +41,9 @@ interceptor.on('request', async ({ request, controller }) => {
       request.headers.set('Authorization', `Bearer ${token}`);
     }
   }
+
+  console.log(`🚀 ~ ${request.url} - Request`);
+  console.log(`🚀 ~ Headers - ${request.headers}`);
 });
 
 // interceptor.on('response', console.log);
