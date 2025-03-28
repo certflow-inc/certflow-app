@@ -24,8 +24,6 @@ const interceptor = new BatchInterceptor({
 interceptor.apply();
 
 interceptor.on('request', async ({ request, controller }) => {
-  console.log(`🚀 ~ Interceptando a request ${request.url}`);
-
   const agent: UserAgent = await getUserAgent();
   request.headers.set('User-Agent', agent.ua);
   request.headers.set('Content-Type', 'application/json');
@@ -43,21 +41,15 @@ interceptor.on('request', async ({ request, controller }) => {
       request.headers.set('Authorization', `Bearer ${token}`);
     }
   }
-  // if (process.env.LOG === 'ON') {
-  const requestClone = request.clone();
-  console.log(`🚀 ~ ${requestClone.url} => Request`);
-  console.log(`Method: `, requestClone.method);
-  console.log(`Header: `, requestClone.headers);
-  console.log(`Body: `, await requestClone.text());
-  // console.groupEnd();
-  // }
 });
 
 interceptor.on('response', async ({ request, response }) => {
-  // if (process.env.LOG === 'ON') {
+  console.log(`🚀 ~ ${request.url} => Request`);
+  console.log(`Method: `, request.method);
+  console.log(`Header: `, request.headers);
+  console.log(`Body: `, await request.text());
+
   console.log(`🚀 ~ ${request.url} => Response`);
   console.log(`Status: `, response.status);
   console.log(`Body: `, await response.text());
-  // console.groupEnd();
-  // }
 });
