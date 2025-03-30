@@ -1,4 +1,4 @@
-'server only';
+'use server';
 
 import { httpRequest } from '@/lib/fetch';
 import { StatusCodes } from 'http-status-codes';
