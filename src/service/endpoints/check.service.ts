@@ -1,4 +1,5 @@
 import { UnAuthenticatedException } from '@/exceptions/UnAuthenticatedException';
+import { httpRequest } from '@/lib/fetch';
 import { ROUTES } from '@/routes';
 import { redirect } from 'next/navigation';
 import { API_COMMON_RESPONSE_ERROR } from '../constants';
@@ -11,7 +12,7 @@ type CheckRequest = {
 
 export async function check(request: CheckRequest) {
   try {
-    const response = await fetch(
+    const response = await httpRequest(
       `${process.env.API_URL}/check/${request.flow}/${request.token}`,
       {
         method: 'GET'

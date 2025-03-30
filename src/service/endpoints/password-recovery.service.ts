@@ -1,5 +1,6 @@
 'server only';
 
+import { httpRequest } from '@/lib/fetch';
 import { StatusCodes } from 'http-status-codes';
 import { API_COMMON_RESPONSE_ERROR } from '../constants';
 import { ApiError, ApiResponse } from '../types';
@@ -8,7 +9,7 @@ export async function passwordRecovery(
   email: string
 ): Promise<ApiResponse<void>> {
   try {
-    const response = await fetch(
+    const response = await httpRequest(
       `${process.env.API_URL}/password-recovery/${email}`,
       {
         method: 'POST',

@@ -1,5 +1,6 @@
 'server only';
 
+import { httpRequest } from '@/lib/fetch';
 import { RefreshToken } from '../domain/auth';
 import { ApiResponse } from '../types';
 
@@ -8,7 +9,7 @@ export async function refresh(
 ): Promise<ApiResponse<RefreshToken>> {
   console.log('🚀 ~ refreshToken - renovando o token agora', refreshToken);
 
-  const response = await fetch(`${process.env.API_URL}/refresh`, {
+  const response = await httpRequest(`${process.env.API_URL}/refresh`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

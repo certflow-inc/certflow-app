@@ -1,5 +1,6 @@
 'server only';
 
+import { httpRequest } from '@/lib/fetch';
 import { StatusCodes } from 'http-status-codes';
 import { API_COMMON_RESPONSE_ERROR } from '../constants';
 import { Auth } from '../domain/auth';
@@ -9,7 +10,7 @@ export async function signout(
   refreshToken: string
 ): Promise<ApiResponse<Auth>> {
   try {
-    const response = await fetch(`${process.env.API_URL}/sign-out`, {
+    const response = await httpRequest(`${process.env.API_URL}/sign-out`, {
       method: 'POST',
       headers: {
         'refresh-token': refreshToken

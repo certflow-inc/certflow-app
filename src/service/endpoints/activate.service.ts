@@ -1,5 +1,6 @@
 'server only';
 
+import { httpRequest } from '@/lib/fetch';
 import { API_COMMON_RESPONSE_ERROR } from '@/service/constants';
 import { ApiError, ApiResponse } from '@/service/types';
 import { StatusCodes } from 'http-status-codes';
@@ -16,9 +17,12 @@ import { StatusCodes } from 'http-status-codes';
  */
 export async function activate(token: string): Promise<ApiResponse<void>> {
   try {
-    const response = await fetch(`${process.env.API_URL}/activate/${token}`, {
-      method: 'POST'
-    });
+    const response = await httpRequest(
+      `${process.env.API_URL}/activate/${token}`,
+      {
+        method: 'POST'
+      }
+    );
 
     if (
       !response.ok &&

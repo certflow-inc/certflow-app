@@ -1,5 +1,6 @@
 'server only';
 
+import { httpRequest } from '@/lib/fetch';
 import { API_COMMON_RESPONSE_ERROR } from '@/service/constants';
 import { Register } from '@/service/domain/register';
 import { ApiError, ApiResponse } from '@/service/types';
@@ -18,7 +19,7 @@ import { StatusCodes } from 'http-status-codes';
 
 export async function signup(register: Register): Promise<ApiResponse<void>> {
   try {
-    const response = await fetch(`${process.env.API_URL}/sign-up`, {
+    const response = await httpRequest(`${process.env.API_URL}/sign-up`, {
       method: 'POST',
       body: buildPayload(register),
       headers: {

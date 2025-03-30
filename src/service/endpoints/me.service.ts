@@ -1,6 +1,7 @@
 'server only';
 
 import { UnAuthenticatedException } from '@/exceptions/UnAuthenticatedException';
+import { httpRequest } from '@/lib/fetch';
 import { ROUTES } from '@/routes';
 import { redirect } from 'next/navigation';
 import { API_COMMON_RESPONSE_ERROR } from '../constants';
@@ -11,7 +12,7 @@ export const TAG_GET_ME = 'getMe';
 
 export async function getMe(): Promise<ApiResponse<Me>> {
   try {
-    const response = await fetch(`${process.env.API_URL}/me`, {
+    const response = await httpRequest(`${process.env.API_URL}/me`, {
       method: 'GET',
       next: {
         tags: [TAG_GET_ME]

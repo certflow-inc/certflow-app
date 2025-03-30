@@ -1,5 +1,6 @@
 'server only';
 
+import { httpRequest } from '@/lib/fetch';
 import { API_COMMON_RESPONSE_ERROR } from '@/service/constants';
 import { ApiError, ApiResponse } from '@/service/types';
 import { StatusCodes } from 'http-status-codes';
@@ -10,7 +11,7 @@ export async function changePassword(
   token: string
 ): Promise<ApiResponse<void>> {
   try {
-    const response = await fetch(
+    const response = await httpRequest(
       `${process.env.API_URL}/change-password/${token}`,
       {
         method: 'POST',
