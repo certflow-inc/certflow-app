@@ -34,15 +34,28 @@ export function NavUser() {
   const { isMobile } = useSidebar();
   const [user, setUser] = useState<{
     name: string;
+    initials: string;
     email: string;
     avatar?: string;
   } | null>();
+
+  const getInitials = (name: string | undefined) => {
+    if (!name) {
+      return 'NA';
+    }
+
+    const splitName = name.split(' ');
+    return splitName.length === 1
+      ? splitName[0].slice(0, 2)
+      : `${splitName[0][0]}${splitName[splitName.length - 1][0]}`;
+  };
 
   useEffect(() => {
     const loadUserData = async () => {
       const session = await getSession();
       setUser({
         name: session?.name ?? '',
+        initials: getInitials(session?.name),
         email: session?.email ?? ''
       });
     };
@@ -60,7 +73,9 @@ export function NavUser() {
             >
               <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage src={user?.avatar} alt={user?.name} />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                <AvatarFallback className="rounded-lg bg-blue-100">
+                  {user?.initials}
+                </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">{user?.name}</span>
@@ -79,7 +94,9 @@ export function NavUser() {
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
                   <AvatarImage src={user?.avatar} alt={user?.name} />
-                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                  <AvatarFallback className="rounded-lg bg-blue-100">
+                    {user?.initials}
+                  </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-medium">{user?.name}</span>
