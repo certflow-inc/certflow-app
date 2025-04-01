@@ -1,17 +1,16 @@
-import { LogoutButton } from '@/components/logout-button/logout-button';
-import { getMe } from '@/service/endpoints/me.service';
-import Link from 'next/link';
+import { Container } from '@/components/logged-in';
 
-export default async function Home() {
-  const myData = await getMe();
-
+export default function Page() {
   return (
-    <div className="flex flex-col pt-10">
-      <h1>
-        CertFlow - Dashboard - {myData.data?.name} - {myData.data?.status}
-      </h1>
-      <Link href="/about">About</Link>
-      <LogoutButton />
-    </div>
+    <Container breadcrumb={[{ label: 'Geral' }, { label: 'Dashboard' }]}>
+      <div className="flex flex-1 flex-col gap-4 bg-blue-100 p-4">
+        <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+          <div className="aspect-video rounded-xl bg-blue-200" />
+          <div className="aspect-video rounded-xl bg-blue-200" />
+          <div className="aspect-video rounded-xl bg-blue-200" />
+        </div>
+        <div className="flex-1 rounded-xl bg-blue-200 md:min-h-min" />
+      </div>
+    </Container>
   );
 }

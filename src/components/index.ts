@@ -31,3 +31,10 @@ export const NotLoggedIn = {
   ChangePassword,
   Signout
 };
+
+import { AppSidebar } from './logged-in';
+
+export const LoggedIn = {
+  AppSidebar,
+  Container
+};

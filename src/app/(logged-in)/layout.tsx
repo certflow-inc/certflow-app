@@ -1,4 +1,6 @@
 import { EnvironmentIndicator } from '@/components';
+import { AppSidebar } from '@/components/logged-in/app-sidebar/app-sidebar';
+import { SidebarProvider } from '@/components/ui/sidebar';
 
 export default function RootLoggedInLayout({
   children
@@ -8,7 +10,11 @@ export default function RootLoggedInLayout({
   return (
     <>
       <EnvironmentIndicator />
-      {children}
+
+      <SidebarProvider>
+        <AppSidebar />
+        {children}
+      </SidebarProvider>
     </>
   );
 }
