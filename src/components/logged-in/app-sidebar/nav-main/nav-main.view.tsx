@@ -17,6 +17,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem
 } from '@/components/ui/sidebar';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 type Item = {
@@ -69,10 +70,10 @@ export function NavMain({ items }: { items: Item[] }) {
                         asChild
                         isActive={isItemActive(subItem.url)}
                       >
-                        <a href={subItem.url}>
+                        <Link href={subItem.url}>
                           {subItem.icon && <subItem.icon />}
                           <span>{subItem.title}</span>
-                        </a>
+                        </Link>
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                   ))}
