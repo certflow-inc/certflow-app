@@ -26,18 +26,12 @@ import {
   SidebarMenuItem,
   useSidebar
 } from '@/components/ui/sidebar';
-import { getSession } from '@/lib/session';
+import { useAppSession } from '@/providers/session-provider';
 import { ROUTES } from '@/routes';
-import { useEffect, useState } from 'react';
 
 export function NavUser() {
   const { isMobile } = useSidebar();
-  const [user, setUser] = useState<{
-    name: string;
-    initials: string;
-    email: string;
-    avatar?: string;
-  } | null>();
+  const { user } = useAppSession();
 
   const getInitials = (name: string | undefined) => {
     if (!name) {
@@ -50,18 +44,6 @@ export function NavUser() {
       : `${splitName[0][0]}${splitName[splitName.length - 1][0]}`;
   };
 
-  useEffect(() => {
-    const loadUserData = async () => {
-      const session = await getSession();
-      setUser({
-        name: session?.name ?? '',
-        initials: getInitials(session?.name),
-        email: session?.email ?? ''
-      });
-    };
-    loadUserData();
-  }, []);
-
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -72,9 +54,9 @@ export function NavUser() {
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={user?.avatar} alt={user?.name} />
+                <AvatarImage src={user?.picture} alt={user?.name} />
                 <AvatarFallback className="rounded-lg bg-blue-100">
-                  {user?.initials}
+                  {getInitials(user?.name)}
                 </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
@@ -93,9 +75,9 @@ export function NavUser() {
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user?.avatar} alt={user?.name} />
+                  <AvatarImage src={user?.picture} alt={user?.name} />
                   <AvatarFallback className="rounded-lg bg-blue-100">
-                    {user?.initials}
+                    {getInitials(user?.name)}
                   </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">

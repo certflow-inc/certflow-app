@@ -1,10 +1,16 @@
 'use client';
 import {
   AudioWaveform,
+  BookOpenCheck,
+  Building2,
+  CircleDollarSign,
   Command,
+  Dock,
   GalleryVerticalEnd,
+  LayoutDashboard,
+  LibraryBig,
   Settings,
-  Wallpaper
+  Users
 } from 'lucide-react';
 import * as React from 'react';
 
@@ -15,6 +21,7 @@ import {
   SidebarHeader,
   SidebarRail
 } from '@/components/ui/sidebar';
+import { cn } from '@/lib/utils';
 import { NavHeader } from './nav-header';
 import { NavMain } from './nav-main';
 import { NavUser } from './nav-user';
@@ -42,32 +49,18 @@ const data = {
     {
       title: 'Geral',
       url: '#',
-      icon: Wallpaper,
+      icon: Dock,
       isActive: false,
       items: [
         {
           title: 'Dashboard',
-          url: '/dashboard'
+          url: '/dashboard',
+          icon: LayoutDashboard
         },
         {
           title: 'Sobre',
-          url: '/about'
-        }
-      ]
-    },
-    {
-      title: 'Outros',
-      url: '#',
-      icon: Wallpaper,
-      isActive: false,
-      items: [
-        {
-          title: 'Outros1',
-          url: '#'
-        },
-        {
-          title: 'Outros2',
-          url: '#'
+          url: '/about',
+          icon: LibraryBig
         }
       ]
     },
@@ -78,45 +71,39 @@ const data = {
       items: [
         {
           title: 'Empresa',
-          url: '#'
+          url: '#',
+          icon: Building2
         },
         {
           title: 'Usuários',
-          url: '#'
+          url: '#',
+          icon: Users
         },
         {
           title: 'Planos',
-          url: '#'
+          url: '#',
+          icon: BookOpenCheck
         },
         {
           title: 'Pagamentos',
-          url: '#'
+          url: '#',
+          icon: CircleDollarSign
         }
       ]
     }
   ]
-  // projects: [
-  //   {
-  //     name: 'Design Engineering',
-  //     url: '#',
-  //     icon: Frame
-  //   },
-  //   {
-  //     name: 'Sales & Marketing',
-  //     url: '#',
-  //     icon: PieChart
-  //   },
-  //   {
-  //     name: 'Travel',
-  //     url: '#',
-  //     icon: Map
-  //   }
-  // ]
 };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({
+  className,
+  ...props
+}: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar
+      collapsible="icon"
+      className={cn('bg-blue-50', className)}
+      {...props}
+    >
       <SidebarHeader className="border border-b-blue-50 pb-2">
         <NavHeader />
       </SidebarHeader>

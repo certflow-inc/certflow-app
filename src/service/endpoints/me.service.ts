@@ -1,4 +1,4 @@
-'server only';
+'use server';
 
 import { UnAuthenticatedException } from '@/exceptions/UnAuthenticatedException';
 import { httpRequest } from '@/lib/fetch';
@@ -7,16 +7,15 @@ import { redirect } from 'next/navigation';
 import { API_COMMON_RESPONSE_ERROR } from '../constants';
 import { Me } from '../domain/me';
 import { ApiError, ApiResponse } from '../types';
-
-export const TAG_GET_ME = 'getMe';
+import { FETCH_TAGS } from './endpoints.constants';
 
 export async function getMe(): Promise<ApiResponse<Me>> {
   try {
     const response = await httpRequest(`${process.env.API_URL}/me`, {
       method: 'GET',
       next: {
-        tags: [TAG_GET_ME]
-        // revalidate: 60 * 60 * 24 // 1 day
+        tags: [FETCH_TAGS.TAG_GET_ME],
+        revalidate: 60 * 60 * 24 // 1 day
       }
     });
 

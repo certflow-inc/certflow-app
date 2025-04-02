@@ -1,6 +1,6 @@
 import { EnvironmentIndicator } from '@/components';
 import { AppSidebar } from '@/components/logged-in/app-sidebar/app-sidebar';
-import { SidebarProvider } from '@/components/ui/sidebar';
+import { AppProviders } from '@/providers';
 
 export default function RootLoggedInLayout({
   children
@@ -8,13 +8,11 @@ export default function RootLoggedInLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <AppProviders>
       <EnvironmentIndicator />
 
-      <SidebarProvider>
-        <AppSidebar />
-        {children}
-      </SidebarProvider>
-    </>
+      <AppSidebar />
+      {children}
+    </AppProviders>
   );
 }

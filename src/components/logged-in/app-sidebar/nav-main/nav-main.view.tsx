@@ -27,6 +27,7 @@ type Item = {
   items?: {
     title: string;
     url: string;
+    icon?: LucideIcon;
   }[];
 };
 
@@ -69,6 +70,7 @@ export function NavMain({ items }: { items: Item[] }) {
                         isActive={isItemActive(subItem.url)}
                       >
                         <a href={subItem.url}>
+                          {subItem.icon && <subItem.icon />}
                           <span>{subItem.title}</span>
                         </a>
                       </SidebarMenuSubButton>
