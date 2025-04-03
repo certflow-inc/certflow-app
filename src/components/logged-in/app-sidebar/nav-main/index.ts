@@ -1,1 +1,1 @@
-export { NavMain } from './nav-main.view';
+export { NavMainViewModel as NavMain } from './nav-main.viewmodel';

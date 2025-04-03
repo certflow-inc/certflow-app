@@ -1,6 +1,6 @@
 'use client';
 
-import { ChevronRight, type LucideIcon } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 
 import {
   Collapsible,
@@ -18,30 +18,10 @@ import {
   SidebarMenuSubItem
 } from '@/components/ui/sidebar';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { NavMainViewProps } from './nav-main.types';
 
-type Item = {
-  title: string;
-  url: string;
-  icon?: LucideIcon;
-  isActive?: boolean;
-  items?: {
-    title: string;
-    url: string;
-    icon?: LucideIcon;
-  }[];
-};
-
-export function NavMain({ items }: { items: Item[] }) {
-  const pathName = usePathname();
-
-  const isItemActive = (url: string) => {
-    return pathName === url || (!!url && pathName.includes(url));
-  };
-
-  const isGroupActive = (item: Item) => {
-    return item.items?.some((i) => isItemActive(i.url));
-  };
+export function NavMainVeiw({ model }: NavMainViewProps) {
+  const { isGroupActive, isItemActive, onItemClick, items } = model;
 
   return (
     <SidebarGroup>
@@ -70,7 +50,7 @@ export function NavMain({ items }: { items: Item[] }) {
                         asChild
                         isActive={isItemActive(subItem.url)}
                       >
-                        <Link href={subItem.url}>
+                        <Link href={subItem.url} onClick={onItemClick}>
                           {subItem.icon && <subItem.icon />}
                           <span>{subItem.title}</span>
                         </Link>
