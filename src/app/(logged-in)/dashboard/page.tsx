@@ -8,7 +8,7 @@ export default function Page() {
         <div className="aspect-video rounded-xl bg-blue-100" />
         <div className="aspect-video rounded-xl bg-blue-100" />
       </div>
-      <div className="flex-1 rounded-xl bg-blue-100" />
+      <div className="min-h-80 flex-1 rounded-xl bg-blue-100" />
     </Container>
   );
 }
