@@ -1,5 +1,5 @@
 import { EnvironmentIndicator } from '@/components';
-import { AppSidebar } from '@/components/logged-in/app-sidebar/app-sidebar';
+import { AppSidebar } from '@/components/logged-in/app-sidebar/app-sidebar.view';
 import { AppProviders } from '@/providers';
 
 export default function RootLoggedInLayout({

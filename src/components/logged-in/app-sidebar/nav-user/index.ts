@@ -1,1 +1,1 @@
-export { NavUser } from './nav-user.view';
+export { NavUserViewModel as NavUser } from './nav-user.viewmodel';

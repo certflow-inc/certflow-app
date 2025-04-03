@@ -2,7 +2,7 @@ import { useSidebar } from '@/components/ui/sidebar';
 import { usePathname } from 'next/navigation';
 import { Item, NavMainModelProps } from './nav-main.types';
 
-export function useNavMain({ items }: NavMainModelProps) {
+export function useNavMainModel({ items }: NavMainModelProps) {
   const pathName = usePathname();
   const { setOpenMobile, isMobile } = useSidebar();
 

@@ -23,26 +23,13 @@ import {
 import {
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem,
-  useSidebar
+  SidebarMenuItem
 } from '@/components/ui/sidebar';
-import { useAppSession } from '@/providers/session-provider';
 import { ROUTES } from '@/routes';
+import { NavUserViewProps } from './nav-user.types';
 
-export function NavUser() {
-  const { isMobile } = useSidebar();
-  const { user } = useAppSession();
-
-  const getInitials = (name: string | undefined) => {
-    if (!name) {
-      return 'NA';
-    }
-
-    const splitName = name.split(' ');
-    return splitName.length === 1
-      ? splitName[0].slice(0, 2)
-      : `${splitName[0][0]}${splitName[splitName.length - 1][0]}`;
-  };
+export function NavUserView({ model }: NavUserViewProps) {
+  const { user, isMobile, getInitials } = model;
 
   return (
     <SidebarMenu>

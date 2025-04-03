@@ -1,5 +1,5 @@
 import { LucideIcon } from 'lucide-react';
-import { useNavMain } from './nav-main.model';
+import { useNavMainModel } from './nav-main.model';
 
 export type Item = {
   title: string;
@@ -11,4 +11,4 @@ export type Item = {
 
 export type NavMainModelProps = { items: Item[] };
 
-export type NavMainViewProps = { model: ReturnType<typeof useNavMain> };
+export type NavMainViewProps = { model: ReturnType<typeof useNavMainModel> };
