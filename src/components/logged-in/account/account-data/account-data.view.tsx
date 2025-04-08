@@ -17,7 +17,7 @@ export function AccountDataView({ data }: AccountDataViewProps) {
         </div>
       </div>
 
-      <div className="flex flex-1 gap-2">
+      <div className="flex flex-1 flex-col gap-2 md:flex-row">
         <div className="grid flex-1 gap-2">
           <label htmlFor="type">Tipo</label>
           <Input
@@ -45,7 +45,7 @@ export function AccountDataView({ data }: AccountDataViewProps) {
         </div>
       </div>
 
-      <div className="flex flex-1 gap-2">
+      <div className="flex flex-1 flex-col gap-2 md:flex-row">
         <div className="grid flex-1 gap-2">
           <label htmlFor="name">Nome</label>
           <Input
