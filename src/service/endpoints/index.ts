@@ -1,4 +1,5 @@
 export { accountVerification } from './account-verification.service';
+export { getAccount } from './account.service';
 export { activate } from './activate.service';
 export { changePassword } from './change-password.service';
 export { check } from './check.service';
