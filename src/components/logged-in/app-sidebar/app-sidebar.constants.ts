@@ -1,11 +1,12 @@
+import { ROUTES } from '@/routes';
 import {
   BookOpenCheck,
-  Building2,
   CircleDollarSign,
   Dock,
   LayoutDashboard,
   LibraryBig,
   Settings,
+  SquareUser,
   Users
 } from 'lucide-react';
 
@@ -19,12 +20,12 @@ export const DATA = {
       items: [
         {
           title: 'Dashboard',
-          url: '/dashboard',
+          url: ROUTES.DASHBOARD,
           icon: LayoutDashboard
         },
         {
           title: 'Sobre',
-          url: '/about',
+          url: ROUTES.ABOUT,
           icon: LibraryBig
         }
       ]
@@ -35,9 +36,9 @@ export const DATA = {
       icon: Settings,
       items: [
         {
-          title: 'Empresa',
-          url: '#',
-          icon: Building2
+          title: 'Conta',
+          url: ROUTES.ACCOUNT,
+          icon: SquareUser
         },
         {
           title: 'Usuários',

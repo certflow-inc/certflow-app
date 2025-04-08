@@ -6,7 +6,7 @@ type PublicRoutes =
   | 'ACTIVATION_REQUEST'
   | 'FORGOT_PASSWORD'
   | 'CHANGE_PASSWORD';
-type PrivateRoutes = 'DASHBOARD' | 'ABOUT';
+type PrivateRoutes = 'ACCOUNT' | 'DASHBOARD' | 'ABOUT';
 
 type Routes = PublicRoutes | PrivateRoutes;
 
@@ -18,6 +18,7 @@ export const ROUTES: Record<Routes, string> = {
   ACTIVATION_REQUEST: '/activation-request',
   FORGOT_PASSWORD: '/forgot-password',
   CHANGE_PASSWORD: '/change-password',
+  ACCOUNT: '/account',
   DASHBOARD: '/dashboard',
   ABOUT: '/about'
 };
@@ -31,4 +32,4 @@ export const PUBLIC_ROUTES = [
   ROUTES.CHANGE_PASSWORD
 ];
 
-export const PRIVATE_ROUTES = [ROUTES.DASHBOARD, ROUTES.ABOUT];
+export const PRIVATE_ROUTES = [ROUTES.ACCOUNT, ROUTES.DASHBOARD, ROUTES.ABOUT];
