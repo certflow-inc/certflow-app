@@ -90,7 +90,7 @@ export function useFormModel({
         });
       });
     }
-  }, [fieldErrors, setError, setFocus]);
+  }, [fieldErrors, setError]);
 
   return {
     rotuer,

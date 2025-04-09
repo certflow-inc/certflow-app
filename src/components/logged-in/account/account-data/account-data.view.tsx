@@ -1,9 +1,23 @@
 import { Button, Input } from '@/components';
+import { LoaderCircle } from 'lucide-react';
 import { AccountDataViewProps } from './account-data.types';
 
-export function AccountDataView({ data }: AccountDataViewProps) {
+export function AccountDataView({ model }: AccountDataViewProps) {
+  const {
+    data,
+    handleFormSubmit,
+    registeredFields,
+    isProcessing,
+    errors,
+    isValid
+  } = model;
+
   return (
-    <form className="flex flex-col rounded-md bg-white p-6">
+    <form
+      noValidate
+      onSubmit={handleFormSubmit}
+      className="flex flex-col rounded-md bg-white p-6"
+    >
       <div className="flex">
         <div className="grid flex-1 gap-2">
           <label htmlFor="status" className="text-slate-500">
@@ -70,14 +84,22 @@ export function AccountDataView({ data }: AccountDataViewProps) {
           <Input
             type="text"
             id="fantasy"
-            name="fantasy"
             defaultValue={data.fantasy}
+            disabled={isProcessing}
+            {...registeredFields.fantasy}
+            error={errors.fantasy?.message}
+            maxLength={128}
           />
         </div>
       </div>
 
       <div className="flex justify-end">
-        <Button size="lg">Salvar</Button>
+        <Button type="submit" size="lg" disabled={!isValid || isProcessing}>
+          Salvar
+          {isProcessing && (
+            <LoaderCircle className="ml-2 h-4 w-4 animate-spin" />
+          )}
+        </Button>
       </div>
     </form>
   );

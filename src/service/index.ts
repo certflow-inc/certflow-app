@@ -9,7 +9,8 @@ import {
   refresh,
   signin,
   signout,
-  signup
+  signup,
+  updateAccount
 } from './endpoints';
 
 export const CertFlowServices = {
@@ -23,5 +24,6 @@ export const CertFlowServices = {
   check,
   signout,
   getAccount,
+  updateAccount,
   getAddress
 };

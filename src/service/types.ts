@@ -118,3 +118,10 @@ export type CheckResponse =
   | 'Link is invalid'
   | 'Link is expired'
   | API_SERVER_ERROR;
+
+export type AccountUpdateResponse =
+  | API_OK
+  | '\"fantasy\" is not allowed to be empty'
+  | '\"fantasy\" length must be at least 3 characters long'
+  | '\"fantasy\" length must be less than or equal to 128 characters long'
+  | API_SERVER_ERROR;
