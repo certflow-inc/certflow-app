@@ -3,6 +3,8 @@
 import { Button, LoggedIn } from '@/components';
 
 export default function AccountErrorPage() {
+  // TODO criar componente genérico de erro e utilizar em todas as páginas
+  // https://trello.com/c/XOu0034W/11-estilizar-as-p%C3%A1ginas-de-erro
   return (
     <LoggedIn.Container
       breadcrumb={[{ label: 'Configurações' }, { label: 'Conta' }]}

@@ -1,6 +1,8 @@
 import { LoggedIn } from '@/components';
 
 export default function AccountNotFoundPage() {
+  // TODO criar componente genérico de not-found e utilizar em todas as páginas
+  // https://trello.com/c/YIMdRDEw/12-estilizar-as-p%C3%A1ginas-de-not-found
   return (
     <LoggedIn.Container
       breadcrumb={[{ label: 'Configurações' }, { label: 'Conta' }]}

@@ -1,6 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { notFound } from 'next/navigation';
 import { AccountData } from './account-data';
+import { AccountModule } from './account-module';
 import { AccountService } from './account-service';
 import { AccountViewProps } from './account.types';
 
@@ -28,7 +29,9 @@ export async function AccountView({ accountAction }: AccountViewProps) {
         <AccountService data={accountData.services} />
       </TabsContent>
 
-      <TabsContent value="modules">Módulos</TabsContent>
+      <TabsContent value="modules">
+        <AccountModule data={accountData.modules} />
+      </TabsContent>
 
       <TabsContent value="address">Endereço</TabsContent>
     </Tabs>
