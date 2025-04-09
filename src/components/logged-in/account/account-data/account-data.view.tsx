@@ -6,7 +6,9 @@ export function AccountDataView({ data }: AccountDataViewProps) {
     <form className="flex flex-col rounded-md bg-white p-6">
       <div className="flex">
         <div className="grid flex-1 gap-2">
-          <label htmlFor="status">Status</label>
+          <label htmlFor="status" className="text-slate-500">
+            Status
+          </label>
           <Input
             type="text"
             id="status"
@@ -19,7 +21,9 @@ export function AccountDataView({ data }: AccountDataViewProps) {
 
       <div className="flex flex-1 flex-col gap-2 md:flex-row">
         <div className="grid flex-1 gap-2">
-          <label htmlFor="type">Tipo</label>
+          <label htmlFor="type" className="text-slate-500">
+            Tipo
+          </label>
           <Input
             type="text"
             id="type"
@@ -32,7 +36,7 @@ export function AccountDataView({ data }: AccountDataViewProps) {
         </div>
 
         <div className="grid flex-1 gap-2">
-          <label htmlFor="document">
+          <label htmlFor="document" className="text-slate-500">
             {data.type === 'individual' ? 'CPF' : 'CNPJ'}
           </label>
           <Input
@@ -47,7 +51,9 @@ export function AccountDataView({ data }: AccountDataViewProps) {
 
       <div className="flex flex-1 flex-col gap-2 md:flex-row">
         <div className="grid flex-1 gap-2">
-          <label htmlFor="name">Nome</label>
+          <label htmlFor="name" className="text-slate-500">
+            Nome
+          </label>
           <Input
             type="text"
             id="name"
@@ -58,7 +64,9 @@ export function AccountDataView({ data }: AccountDataViewProps) {
         </div>
 
         <div className="grid flex-1 gap-2">
-          <label htmlFor="fantasy">Nome Fantasia</label>
+          <label htmlFor="fantasy" className="text-slate-500">
+            Nome Fantasia
+          </label>
           <Input
             type="text"
             id="fantasy"

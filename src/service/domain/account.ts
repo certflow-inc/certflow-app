@@ -8,3 +8,14 @@ export type Account = {
   modules: Record<string, boolean>;
   status: 'active' | 'suspended' | 'canceled' | 'trial';
 };
+
+export type Address = {
+  address: string;
+  number: string;
+  complement: string;
+  district: string;
+  city: string;
+  state: string;
+  zip: string;
+  country: string;
+};

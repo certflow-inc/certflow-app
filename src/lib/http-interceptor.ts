@@ -10,7 +10,13 @@ import { isExpired } from './jwt';
 import { getUserAgent } from './server-utils';
 import { getToken } from './session';
 
-const PRIVATE_ENDPOINTS = ['/refresh', '/sign-out', '/me', '/account'];
+const PRIVATE_ENDPOINTS = [
+  '/refresh',
+  '/sign-out',
+  '/me',
+  '/account',
+  '/address'
+];
 
 const interceptor = new BatchInterceptor({
   name: 'my-interceptor',
