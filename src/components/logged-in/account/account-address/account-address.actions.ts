@@ -31,10 +31,7 @@ export async function updateAccountAddressData(
   data: Address
 ): Promise<ReturnType<typeof CertFlowServices.updateAccount>> {
   try {
-    const response = await CertFlowServices.updateAddress(data);
-    // revalidateTag(FETCH_TAGS.TAG_GET_ADDRESS);
-
-    return response;
+    return await CertFlowServices.updateAddress(data);
   } catch (error: unknown) {
     const err = error as Error;
 

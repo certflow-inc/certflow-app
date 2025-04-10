@@ -6,10 +6,7 @@ export async function updateAccountData(
   fantasy: string
 ): Promise<ReturnType<typeof CertFlowServices.updateAccount>> {
   try {
-    const response = await CertFlowServices.updateAccount(fantasy);
-    // revalidateTag(FETCH_TAGS.TAG_GET_ACCOUNT);
-
-    return response;
+    return await CertFlowServices.updateAccount(fantasy);
   } catch (error: unknown) {
     const err = error as Error;
 
