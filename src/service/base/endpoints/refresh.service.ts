@@ -7,8 +7,6 @@ import { ApiResponse } from '../types';
 export async function refresh(
   refreshToken: string
 ): Promise<ApiResponse<RefreshToken>> {
-  console.log('🚀 ~ refreshToken - renovando o token agora', refreshToken);
-
   const response = await httpRequest(`${process.env.API_URL}/refresh`, {
     method: 'POST',
     headers: {

@@ -1,1 +1,1 @@
-export { cepV2 } from './cep-v2';
+export { cepV2 } from './cep-v2.service';

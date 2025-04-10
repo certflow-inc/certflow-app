@@ -3,7 +3,8 @@ export { Button } from './ui/button';
 export { Input } from './ui/input';
 
 // commons
-export { EnvironmentIndicator } from './environment-indicator';
+export { EnvironmentIndicator } from './commons/environment-indicator';
+export { NoData } from './commons/fallbacks';
 
 // not logged in components
 import {

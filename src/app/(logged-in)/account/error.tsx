@@ -1,19 +1,23 @@
 'use client';
 
 import { Button, LoggedIn } from '@/components';
+import { ServerError } from '@/components/commons/fallbacks';
 
 export default function AccountErrorPage() {
-  // TODO criar componente genérico de erro e utilizar em todas as páginas
-  // https://trello.com/c/XOu0034W/11-estilizar-as-p%C3%A1ginas-de-erro
   return (
     <LoggedIn.Container
       breadcrumb={[{ label: 'Configurações' }, { label: 'Conta' }]}
     >
-      <div className="flex flex-1 flex-col items-center gap-4 rounded-xl bg-blue-100 p-2">
-        <h2>Ocorreu um erro ao carregar os dados da conta</h2>
-        <Button onClick={() => window.location.reload()}>
-          Tentar novamente
-        </Button>
+      <div className="flex-1 rounded-xl bg-blue-100 p-2">
+        <ServerError message="Erro ao carregar a Conta.">
+          <Button
+            onClick={() => window.location.reload()}
+            size="lg"
+            variant="outline"
+          >
+            Tentar novamente
+          </Button>
+        </ServerError>
       </div>
     </LoggedIn.Container>
   );

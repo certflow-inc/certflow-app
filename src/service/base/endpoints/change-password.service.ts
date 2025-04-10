@@ -38,7 +38,6 @@ export async function changePassword(
     }
 
     const error: ApiError = await response.json();
-    console.log('🚀 ~ error:', error);
 
     return {
       ok: false,

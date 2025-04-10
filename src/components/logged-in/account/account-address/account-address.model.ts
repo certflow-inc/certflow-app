@@ -125,7 +125,7 @@ export function useAccountAddressModel({
           const response = await cepAction(formattedCep);
 
           if (!response.ok) {
-            toast('Problema ao buscar cep. Informe o endereço manualmente', {
+            toast(response.error, {
               type: 'error',
               position: 'bottom-center',
               closeOnClick: true

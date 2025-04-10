@@ -1,19 +1,19 @@
 'use client';
 
 import { Button, LoggedIn } from '@/components';
+import { ServerError } from '@/components/commons/fallbacks';
 
-export default function Error() {
-  // TODO criar componente genérico de erro e utilizar em todas as páginas
-  // https://trello.com/c/XOu0034W/11-estilizar-as-p%C3%A1ginas-de-erro
+export default function DashboardErrorPage() {
   return (
     <LoggedIn.Container
-      breadcrumb={[{ label: 'Configurações' }, { label: 'Conta' }]}
+      breadcrumb={[{ label: 'Geral' }, { label: 'Dashboard' }]}
     >
-      <div className="flex flex-1 flex-col items-center gap-4 rounded-xl bg-blue-100 p-2">
-        <h2>Ocorreu um erro ao carregar os dados!</h2>
-        <Button onClick={() => window.location.reload()}>
-          Tentar novamente
-        </Button>
+      <div className="flex-1 rounded-xl bg-blue-100 p-2">
+        <ServerError message="Erro ao carregar o Dashboard.">
+          <Button onClick={() => window.location.reload()} size="lg">
+            Tentar novamente
+          </Button>
+        </ServerError>
       </div>
     </LoggedIn.Container>
   );
