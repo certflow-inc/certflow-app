@@ -1,7 +1,6 @@
 import { Separator } from '@/components/ui/separator';
 import { SidebarInset, SidebarTrigger } from '@/components/ui/sidebar';
 import { cn } from '@/lib/utils';
-import { CertFlowServices } from '@/service';
 import { Breadcrumb } from './breadcrumb';
 import { ContainerViewProps } from './container.types';
 
@@ -11,9 +10,6 @@ export async function ContainerView({
   className,
   ...props
 }: ContainerViewProps) {
-  const account = await CertFlowServices.getAccount();
-  const address = await CertFlowServices.getAddress();
-
   return (
     <SidebarInset className={cn(className)} {...props}>
       <header className="bg-sidebar sticky top-0 flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
@@ -23,8 +19,7 @@ export async function ContainerView({
             orientation="vertical"
             className="mr-2 data-[orientation=vertical]:h-4"
           />
-          <Breadcrumb data={breadcrumb} /> - ({account.data?.fantasy} -{' '}
-          {address.data?.complement})
+          <Breadcrumb data={breadcrumb} />
         </div>
       </header>
 
