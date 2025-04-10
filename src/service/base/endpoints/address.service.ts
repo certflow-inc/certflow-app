@@ -4,7 +4,6 @@ import { UnAuthenticatedException } from '@/exceptions/UnAuthenticatedException'
 import { httpRequest } from '@/lib/fetch';
 import { ROUTES } from '@/routes';
 import { StatusCodes } from 'http-status-codes';
-import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { API_COMMON_RESPONSE_ERROR } from '../constants';
 import { Address } from '../domain/account';
@@ -87,7 +86,7 @@ export async function updateAddress(
     }
 
     if (response.ok) {
-      revalidateTag(FETCH_TAGS.TAG_GET_ADDRESS);
+      // revalidateTag(FETCH_TAGS.TAG_GET_ADDRESS);
       return {
         ok: true
       };
