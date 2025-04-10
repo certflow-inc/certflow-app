@@ -22,6 +22,7 @@ export function useAccountAddressModel({
   const [selectedState, setSelectedState] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [isCepSearching, setIsCepSearching] = useState(false);
+  const [previousCep, setPreviousCep] = useState('');
   const [fieldErrors, setFieldErrors] = useState<
     IntegrationFieldError[] | undefined
   >();
@@ -119,12 +120,13 @@ export function useAccountAddressModel({
   const loadAddressByCep = useCallback(
     async (cep: string) => {
       try {
-        if (cep.length === 9) {
+        if (cep.length === 9 && cep !== previousCep) {
           setIsCepSearching(true);
           const formattedCep = cep.replace(/[^0-9]/g, '');
           const response = await cepAction(formattedCep);
 
           if (!response.ok) {
+            console.log('loadAddressByCep error', response.error);
             toast(response.error, {
               type: 'error',
               position: 'bottom-center',
@@ -134,10 +136,7 @@ export function useAccountAddressModel({
           }
 
           if (response.ok) {
-            if (response.data?.street === getValues('address')) {
-              return;
-            }
-
+            console.log('loadAddressByCep sucesso', response.data);
             const state = BRAZILIAN_STATES.find(
               (state) => state.key === response.data?.state
             );
@@ -150,13 +149,21 @@ export function useAccountAddressModel({
             setValue('country', 'Brasil');
             handleBrazilianStateChange(state?.value || '');
             setFocus('number');
+            setPreviousCep(cep);
           }
         }
+      } catch (_error: unknown) {
+        setValue('zip', previousCep);
+        toast('Erro ao obter endereço do CEP', {
+          type: 'error',
+          position: 'bottom-center',
+          closeOnClick: true
+        });
       } finally {
         setIsCepSearching(false);
       }
     },
-    [cepAction, getValues, handleBrazilianStateChange, setFocus, setValue]
+    [cepAction, handleBrazilianStateChange, previousCep, setFocus, setValue]
   );
 
   useEffect(() => {
@@ -174,6 +181,10 @@ export function useAccountAddressModel({
       handleBrazilianStateChange(data.state);
     }
   }, [data?.state, handleBrazilianStateChange]);
+
+  useEffect(() => {
+    setPreviousCep(getValues('zip'));
+  }, [getValues]);
 
   return {
     errors,

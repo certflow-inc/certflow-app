@@ -1,6 +1,5 @@
 'use server';
 
-import { FETCH_CACHE_TIME } from '@/service/base/endpoints/endpoints.constants';
 import { StatusCodes } from 'http-status-codes';
 import { Cep } from '../domain/cep';
 import { CEPResponse } from '../types';
@@ -12,10 +11,7 @@ import { CEPResponse } from '../types';
  *          If found, the object will have a data property with the Cep model.
  */
 export async function cepV2(cep: string): Promise<CEPResponse> {
-  const response = await fetch(`https://brasilapi.com.br/api/cep/v2/${cep}`, {
-    method: 'GET',
-    next: { revalidate: FETCH_CACHE_TIME.ONE_DAY }
-  });
+  const response = await fetch(`https://brasilapi.com.br/api/cep/v2/${cep}`);
 
   if (!response.ok) {
     if (response.status === StatusCodes.NOT_FOUND) {
@@ -27,7 +23,7 @@ export async function cepV2(cep: string): Promise<CEPResponse> {
 
     return {
       ok: false,
-      error: 'Erro ao obter enredeço do CEP'
+      error: 'Erro ao obter endereço do CEP'
     };
   }
 

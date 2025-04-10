@@ -44,8 +44,26 @@ export async function updateAccountAddressData(
   }
 }
 
+/**
+ * Searches for an address by cep.
+ *
+ * @param {string} cep - The cep to be searched.
+ * @returns {Promise<ApiResponse<Cep>>} A promise that resolves to an ApiResponse
+ * containing the cep address if successful, or an error if the request fails.
+ *
+ * @throws Will throw a generic server error if any other error occurs during the request.
+ */
 export async function getCep(
   cep: string
 ): Promise<ReturnType<typeof CepService.cepV2>> {
-  return CepService.cepV2(cep);
+  try {
+    return await CepService.cepV2(cep);
+  } catch (error: unknown) {
+    const err = error as Error;
+
+    return {
+      ok: false,
+      error: err.message
+    };
+  }
 }
