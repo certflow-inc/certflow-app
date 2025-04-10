@@ -126,7 +126,7 @@ export function useAccountAddressModel({
           const response = await cepAction(formattedCep);
 
           if (!response.ok) {
-            console.log('loadAddressByCep error', response.error);
+            setValue('zip', previousCep);
             toast(response.error, {
               type: 'error',
               position: 'bottom-center',
