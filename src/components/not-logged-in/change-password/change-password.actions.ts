@@ -1,8 +1,8 @@
 'use server';
 
-import { CertFlowServices } from '@/service';
-import { ChangePassword } from '@/service/domain/auth';
-import { ApiResponse } from '@/service/types';
+import { CertFlowServices } from '@/service/base';
+import { ChangePassword } from '@/service/base/domain/auth';
+import { ApiResponse } from '@/service/base/types';
 
 export async function checkRecovery(token: string) {
   try {

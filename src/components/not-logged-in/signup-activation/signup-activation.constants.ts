@@ -1,6 +1,6 @@
 import { ROUTES } from '@/routes';
 
-import { ActivateResponse } from '@/service/types';
+import { ActivateResponse } from '@/service/base/types';
 import { IntegrationFlow } from '@/types';
 
 export const SIGNUP_ACTIVATION_FLOW: Record<ActivateResponse, IntegrationFlow> =

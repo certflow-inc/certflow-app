@@ -1,7 +1,7 @@
 'use server';
 
-import { CertFlowServices } from '@/service';
-import { Register } from '@/service/domain/register';
+import { CertFlowServices } from '@/service/base';
+import { Register } from '@/service/base/domain/register';
 
 export async function signup(
   register: Register

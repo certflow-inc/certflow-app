@@ -1,6 +1,6 @@
 import { createSession } from '@/lib/session';
 import { ROUTES } from '@/routes';
-import { SigninResponse } from '@/service/types';
+import { SigninResponse } from '@/service/base/types';
 import { IntegrationFieldError } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';

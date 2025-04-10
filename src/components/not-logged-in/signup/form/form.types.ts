@@ -1,4 +1,4 @@
-import { PersonType } from '@/service/domain/register';
+import { PersonType } from '@/service/base/domain/register';
 import { IntegrationFlow } from '@/types';
 import { ComponentProps } from 'react';
 import { z } from 'zod';

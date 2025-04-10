@@ -1,5 +1,5 @@
 import { ROUTES } from '@/routes';
-import { SigninResponse } from '@/service/types';
+import { SigninResponse } from '@/service/base/types';
 import { IntegrationFlow } from '@/types';
 
 export const SIGNIN_FLOW: Record<SigninResponse, IntegrationFlow> = {

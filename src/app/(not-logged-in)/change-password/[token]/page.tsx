@@ -1,7 +1,7 @@
 import { NotLoggedIn } from '@/components';
 import { checkRecovery } from '@/components/not-logged-in/change-password/change-password.actions';
 import { CHECK_RECOVERY_FLOW } from '@/components/not-logged-in/change-password/change-password.constants';
-import { CheckResponse } from '@/service/types';
+import { CheckResponse } from '@/service/base/types';
 import { IntegrationFlow } from '@/types';
 
 type ChangePasswordPageProps = {

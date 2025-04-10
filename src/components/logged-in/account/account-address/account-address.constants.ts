@@ -1,4 +1,4 @@
-import { AccountAddressUpdateResponse } from '@/service/types';
+import { AccountAddressUpdateResponse } from '@/service/base/types';
 import { IntegrationFlow } from '@/types';
 
 export const ACCOUNT_ADDRESS_FLOW: Record<

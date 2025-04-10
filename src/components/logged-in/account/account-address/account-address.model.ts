@@ -1,6 +1,6 @@
 'use client';
 
-import { AccountAddressUpdateResponse } from '@/service/types';
+import { AccountAddressUpdateResponse } from '@/service/base/types';
 import { IntegrationFieldError } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useCallback, useEffect, useState } from 'react';

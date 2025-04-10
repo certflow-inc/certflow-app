@@ -1,4 +1,4 @@
-import { Address } from '@/service/domain/account';
+import { Address } from '@/service/base/domain/account';
 import { z } from 'zod';
 import { updateAccountAddressData } from './account-address.actions';
 import { ACCOUNT_ADDRESS_SCHEMA } from './account-address.schema';

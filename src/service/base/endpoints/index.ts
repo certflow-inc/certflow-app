@@ -4,6 +4,7 @@ export { activate } from './activate.service';
 export { getAddress, updateAddress } from './address.service';
 export { changePassword } from './change-password.service';
 export { check } from './check.service';
+export { getMe } from './me.service';
 export { passwordRecovery } from './password-recovery.service';
 export { refresh } from './refresh.service';
 export { signin } from './signin.service';

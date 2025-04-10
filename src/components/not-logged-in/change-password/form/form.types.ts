@@ -1,5 +1,5 @@
-import { ChangePassword } from '@/service/domain/auth';
-import { ApiResponse } from '@/service/types';
+import { ChangePassword } from '@/service/base/domain/auth';
+import { ApiResponse } from '@/service/base/types';
 import { IntegrationFlow } from '@/types';
 import { ComponentProps } from 'react';
 import { z } from 'zod';

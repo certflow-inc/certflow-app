@@ -1,7 +1,7 @@
 'use client';
 
-import { Me } from '@/service/domain/me';
-import { getMe } from '@/service/endpoints/me.service';
+import { CertFlowServices } from '@/service/base';
+import { Me } from '@/service/base/domain/me';
 import {
   ComponentProps,
   createContext,
@@ -34,7 +34,7 @@ const SessionProvider = ({ children }: SessionProviderProps) => {
   const [user, setUser] = useState<Me | undefined>();
 
   const loadUser = async () => {
-    const response = await getMe();
+    const response = await CertFlowServices.getMe();
 
     if (response.ok) {
       setUser(response.data);

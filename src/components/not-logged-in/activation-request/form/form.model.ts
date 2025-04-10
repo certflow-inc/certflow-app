@@ -1,4 +1,4 @@
-import { AccountVerificationResponse } from '@/service/types';
+import { AccountVerificationResponse } from '@/service/base/types';
 import { IntegrationFieldError } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';

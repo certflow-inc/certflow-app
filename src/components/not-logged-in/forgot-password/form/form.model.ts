@@ -1,5 +1,5 @@
 import { ROUTES } from '@/routes';
-import { PasswordRecoveryResponse } from '@/service/types';
+import { PasswordRecoveryResponse } from '@/service/base/types';
 import { IntegrationFieldError } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';

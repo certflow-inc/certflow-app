@@ -2,7 +2,7 @@
 
 import { destroySession, getRefreshToken } from '@/lib/session';
 import { ROUTES } from '@/routes';
-import { CertFlowServices } from '@/service';
+import { CertFlowServices } from '@/service/base';
 import { redirect } from 'next/navigation';
 
 export async function signout(): Promise<void> {

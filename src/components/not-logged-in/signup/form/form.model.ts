@@ -4,8 +4,8 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { PersonType, Register } from '@/service/domain/register';
-import { SignupResponse } from '@/service/types';
+import { PersonType, Register } from '@/service/base/domain/register';
+import { SignupResponse } from '@/service/base/types';
 import { IntegrationFieldError } from '@/types';
 import { toast } from 'react-toastify';
 import { SIGNUP_FLOW } from '../signup.constants';

@@ -1,5 +1,5 @@
 import { ROUTES } from '@/routes';
-import { ChangePasswordResponse, CheckResponse } from '@/service/types';
+import { ChangePasswordResponse, CheckResponse } from '@/service/base/types';
 import { IntegrationFlow } from '@/types';
 
 export const CHECK_RECOVERY_FLOW: Record<CheckResponse, IntegrationFlow> = {

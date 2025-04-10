@@ -1,9 +1,9 @@
 'server only';
 
 import { httpRequest } from '@/lib/fetch';
-import { API_COMMON_RESPONSE_ERROR } from '@/service/constants';
-import { Register } from '@/service/domain/register';
-import { ApiError, ApiResponse } from '@/service/types';
+import { API_COMMON_RESPONSE_ERROR } from '@/service/base/constants';
+import { Register } from '@/service/base/domain/register';
+import { ApiError, ApiResponse } from '@/service/base/types';
 import { StatusCodes } from 'http-status-codes';
 
 /**

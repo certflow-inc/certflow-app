@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { ActivateResponse } from '@/service/types';
+import { ActivateResponse } from '@/service/base/types';
 import Link from 'next/link';
 import { SIGNUP_ACTIVATION_FLOW } from './signup-activation.constants';
 import { SignupActivationViewProps } from './signup-activation.types';

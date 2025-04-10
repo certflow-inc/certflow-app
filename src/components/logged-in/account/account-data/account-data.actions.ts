@@ -1,6 +1,6 @@
 'use server';
 
-import { CertFlowServices } from '@/service';
+import { CertFlowServices } from '@/service/base';
 
 export async function updateAccountData(
   fantasy: string

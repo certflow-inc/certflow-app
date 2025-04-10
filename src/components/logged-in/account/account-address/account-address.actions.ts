@@ -1,7 +1,7 @@
 'use server';
 
-import { CertFlowServices } from '@/service';
-import { Address } from '@/service/domain/account';
+import { CertFlowServices } from '@/service/base';
+import { Address } from '@/service/base/domain/account';
 
 /**
  * Fetches the account address from the server.

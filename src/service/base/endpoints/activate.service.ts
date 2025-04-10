@@ -1,8 +1,8 @@
 'server only';
 
 import { httpRequest } from '@/lib/fetch';
-import { API_COMMON_RESPONSE_ERROR } from '@/service/constants';
-import { ApiError, ApiResponse } from '@/service/types';
+import { API_COMMON_RESPONSE_ERROR } from '@/service/base/constants';
+import { ApiError, ApiResponse } from '@/service/base/types';
 import { StatusCodes } from 'http-status-codes';
 
 /**

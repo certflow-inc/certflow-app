@@ -4,8 +4,8 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { Register } from '@/service/domain/register';
-import { ChangePasswordResponse } from '@/service/types';
+import { Register } from '@/service/base/domain/register';
+import { ChangePasswordResponse } from '@/service/base/types';
 import { IntegrationFieldError } from '@/types';
 import { toast } from 'react-toastify';
 import { CHANGE_PASSWORD_FLOW } from '../change-password.constants';

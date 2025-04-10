@@ -1,5 +1,5 @@
 import { ROUTES } from '@/routes';
-import { PasswordRecoveryResponse } from '@/service/types';
+import { PasswordRecoveryResponse } from '@/service/base/types';
 import { IntegrationFlow } from '@/types';
 
 export const FORGOT_PASSWOR_FLOW: Record<

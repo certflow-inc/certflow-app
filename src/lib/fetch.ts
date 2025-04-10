@@ -1,4 +1,4 @@
-import { TIME_OUT } from '@/service/endpoints/endpoints.constants';
+import { TIME_OUT } from '@/service/base/endpoints/endpoints.constants';
 
 type HTTPRequestOptions = RequestInit & {
   timeout?: number;

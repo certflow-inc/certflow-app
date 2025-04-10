@@ -1,4 +1,4 @@
-import { Account } from '@/service/domain/account';
+import { Account } from '@/service/base/domain/account';
 import { z } from 'zod';
 import { updateAccountData } from './account-data.actions';
 import { useAccountDataModel } from './account-data.model';

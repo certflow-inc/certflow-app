@@ -1,5 +1,5 @@
 import { ROUTES } from '@/routes';
-import { AccountVerificationResponse } from '@/service/types';
+import { AccountVerificationResponse } from '@/service/base/types';
 import { IntegrationFlow } from '@/types';
 
 export const ACTIVATION_REQUEST_FLOW: Record<

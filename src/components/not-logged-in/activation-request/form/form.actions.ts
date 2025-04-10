@@ -1,7 +1,7 @@
 'use server';
 
-import { CertFlowServices } from '@/service';
-import { ApiResponse } from '@/service/types';
+import { CertFlowServices } from '@/service/base';
+import { ApiResponse } from '@/service/base/types';
 
 /**
  * Sends an account verification request to the API with the provided email address.
