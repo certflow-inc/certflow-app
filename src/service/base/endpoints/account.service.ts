@@ -8,7 +8,7 @@ import { redirect } from 'next/navigation';
 import { API_COMMON_RESPONSE_ERROR } from '../constants';
 import { Account } from '../domain/account';
 import { ApiError, ApiResponse } from '../types';
-import { FETCH_CACHE_TIME, FETCH_TAGS } from './endpoints.constants';
+import { FETCH_TAGS } from './endpoints.constants';
 
 /**
  * Fetches the account details from the server.
@@ -25,8 +25,8 @@ export async function getAccount(): Promise<ApiResponse<Account>> {
     const response = await httpRequest(`${process.env.API_URL}/account`, {
       method: 'GET',
       next: {
-        tags: [FETCH_TAGS.TAG_GET_ACCOUNT],
-        revalidate: FETCH_CACHE_TIME.ONE_DAY
+        tags: [FETCH_TAGS.TAG_GET_ACCOUNT]
+        // revalidate: FETCH_CACHE_TIME.ONE_DAY
       }
     });
 

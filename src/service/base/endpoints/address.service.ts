@@ -8,7 +8,7 @@ import { redirect } from 'next/navigation';
 import { API_COMMON_RESPONSE_ERROR } from '../constants';
 import { Address } from '../domain/account';
 import { ApiError, ApiResponse } from '../types';
-import { FETCH_CACHE_TIME, FETCH_TAGS } from './endpoints.constants';
+import { FETCH_TAGS } from './endpoints.constants';
 
 const RESOURCE = 'address';
 const RESOURCE_PATH = `${process.env.API_URL}/${RESOURCE}`;
@@ -27,8 +27,8 @@ export async function getAddress(): Promise<ApiResponse<Address>> {
     const response = await httpRequest(RESOURCE_PATH, {
       method: 'GET',
       next: {
-        tags: [FETCH_TAGS.TAG_GET_ADDRESS],
-        revalidate: FETCH_CACHE_TIME.ONE_DAY
+        tags: [FETCH_TAGS.TAG_GET_ADDRESS]
+        // revalidate: FETCH_CACHE_TIME.ONE_DAY
       }
     });
 
