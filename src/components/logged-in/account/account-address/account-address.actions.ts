@@ -2,6 +2,8 @@
 
 import { CepService, CertFlowServices } from '@/service';
 import { Address } from '@/service/base/domain/account';
+import { FETCH_TAGS } from '@/service/base/endpoints/endpoints.constants';
+import { revalidateTag } from 'next/cache';
 
 /**
  * Fetches the account address from the server.
@@ -31,7 +33,9 @@ export async function updateAccountAddressData(
   data: Address
 ): Promise<ReturnType<typeof CertFlowServices.updateAccount>> {
   try {
-    return await CertFlowServices.updateAddress(data);
+    const response = await CertFlowServices.updateAddress(data);
+    revalidateTag(FETCH_TAGS.TAG_GET_ADDRESS);
+    return response;
   } catch (error: unknown) {
     const err = error as Error;
 

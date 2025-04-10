@@ -1,10 +1,9 @@
-'use server';
+'server only';
 
 import { UnAuthenticatedException } from '@/exceptions/UnAuthenticatedException';
 import { httpRequest } from '@/lib/fetch';
 import { ROUTES } from '@/routes';
 import { StatusCodes } from 'http-status-codes';
-import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { API_COMMON_RESPONSE_ERROR } from '../constants';
 import { Account } from '../domain/account';
@@ -85,7 +84,6 @@ export async function updateAccount(
     }
 
     if (response.ok) {
-      revalidateTag(FETCH_TAGS.TAG_GET_ACCOUNT);
       return {
         ok: true
       };
