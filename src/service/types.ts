@@ -125,3 +125,31 @@ export type AccountUpdateResponse =
   | '\"fantasy\" length must be at least 3 characters long'
   | '\"fantasy\" length must be less than or equal to 128 characters long'
   | API_SERVER_ERROR;
+
+export type AccountAddressUpdateResponse =
+  | API_OK
+  | API_SERVER_ERROR
+  | '\"address\" is required'
+  | '\"address\" length must be at least 3 characters long'
+  | '\"address\" length must be less than or equal to 128 characters long'
+  | '\"number\" is required'
+  | '\"number\" is not allowed to be empty'
+  | '\"number\" length must be less than or equal to 20 characters long'
+  | '\"complement\" is not allowed to be empty'
+  | '\"complement\" length must be at least 3 characters long'
+  | '\"complement\" length must be less than or equal to 128 characters long'
+  | '\"district\" is required'
+  | '\"district\" length must be at least 3 characters long'
+  | '\"district\" length must be less than or equal to 64 characters long'
+  | '\"city\" is required'
+  | '\"city\" length must be at least 3 characters long'
+  | '\"city\" length must be less than or equal to 128 characters long'
+  | '\"state\" is required'
+  | '\"state\" length must be at least 3 characters long'
+  | '\"state\" length must be less than or equal to 64 characters long'
+  | '\"zip\" is required'
+  | '\"zip\" length must be at least 3 characters long'
+  | '\"zip\" length must be less than or equal to 16 characters long'
+  | '\"country\" is required'
+  | '\"country\" length must be at least 3 characters long'
+  | '\"country\" length must be less than or equal to 32 characters long';

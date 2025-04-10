@@ -40,7 +40,7 @@ export function useAccountDataModel({ data, action }: UseAccountModelProps) {
     setIsProcessing(false);
 
     if (response.ok) {
-      toast('Dados atualizados com sucesso', {
+      toast(ACCOUNT_DATA_FLOW.Ok.title, {
         type: 'success',
         position: 'bottom-center',
         closeOnClick: true

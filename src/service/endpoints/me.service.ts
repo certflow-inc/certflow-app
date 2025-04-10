@@ -7,7 +7,7 @@ import { redirect } from 'next/navigation';
 import { API_COMMON_RESPONSE_ERROR } from '../constants';
 import { Me } from '../domain/me';
 import { ApiError, ApiResponse } from '../types';
-import { FETCH_TAGS } from './endpoints.constants';
+import { FETCH_CACHE_TIME, FETCH_TAGS } from './endpoints.constants';
 
 export async function getMe(): Promise<ApiResponse<Me>> {
   try {
@@ -15,7 +15,7 @@ export async function getMe(): Promise<ApiResponse<Me>> {
       method: 'GET',
       next: {
         tags: [FETCH_TAGS.TAG_GET_ME],
-        revalidate: 60 * 60 * 24 // 1 day
+        revalidate: FETCH_CACHE_TIME.ONE_DAY
       }
     });
 

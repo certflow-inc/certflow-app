@@ -4,7 +4,7 @@ import { IntegrationFlow } from '@/types';
 export const ACCOUNT_DATA_FLOW: Record<AccountUpdateResponse, IntegrationFlow> =
   {
     Ok: {
-      title: 'Dados atualizados com sucesso!',
+      title: 'Dados da conta atualizados com sucesso!',
       description: 'Seus dados foram atualizados com sucesso.'
     },
     '"fantasy" is not allowed to be empty': {

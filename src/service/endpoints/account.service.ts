@@ -9,7 +9,7 @@ import { redirect } from 'next/navigation';
 import { API_COMMON_RESPONSE_ERROR } from '../constants';
 import { Account } from '../domain/account';
 import { ApiError, ApiResponse } from '../types';
-import { FETCH_TAGS } from './endpoints.constants';
+import { FETCH_CACHE_TIME, FETCH_TAGS } from './endpoints.constants';
 
 /**
  * Fetches the account details from the server.
@@ -27,7 +27,7 @@ export async function getAccount(): Promise<ApiResponse<Account>> {
       method: 'GET',
       next: {
         tags: [FETCH_TAGS.TAG_GET_ACCOUNT],
-        revalidate: 60 * 60 * 24 // 1 day
+        revalidate: FETCH_CACHE_TIME.ONE_DAY
       }
     });
 

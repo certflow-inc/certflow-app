@@ -1,15 +1,17 @@
 'use client';
 
-import { InputMask, Replacement } from '@react-input/mask';
+import { InputMask, Replacement, format } from '@react-input/mask';
 import { Input, InputProps } from './input';
 
 type InputMakedProps = InputProps & {
   format: Formats;
 };
 
-type Formats = 'phone' | 'cpf' | 'cnpj';
+type Formats = 'phone' | 'cpf' | 'cnpj' | 'cep';
 
-const formats: Record<
+export { format };
+
+export const INPUT_MASKED_FORMATS: Record<
   Formats,
   { mask: string; replacement: string | Replacement }
 > = {
@@ -24,11 +26,15 @@ const formats: Record<
   cnpj: {
     mask: '__.___.___/____-__',
     replacement: { _: /\d/ }
+  },
+  cep: {
+    mask: '_____-___',
+    replacement: { _: /\d/ }
   }
 };
 
 export function InputMasked({ format, ...props }: InputMakedProps) {
-  const maskConfig = formats[format];
+  const maskConfig = INPUT_MASKED_FORMATS[format];
 
   return (
     <InputMask

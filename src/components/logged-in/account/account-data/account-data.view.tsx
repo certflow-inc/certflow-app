@@ -1,4 +1,5 @@
 import { Button, Input } from '@/components';
+import { format, INPUT_MASKED_FORMATS } from '@/components/ui/input-masked';
 import { LoaderCircle } from 'lucide-react';
 import { AccountDataViewProps } from './account-data.types';
 
@@ -57,7 +58,11 @@ export function AccountDataView({ model }: AccountDataViewProps) {
             type="text"
             id="document"
             name="document"
-            defaultValue={data.taxId}
+            defaultValue={
+              data.type === 'individual'
+                ? format(data.taxId, INPUT_MASKED_FORMATS.cpf)
+                : format(data.taxId, INPUT_MASKED_FORMATS.cnpj)
+            }
             disabled
           />
         </div>
