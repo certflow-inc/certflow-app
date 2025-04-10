@@ -1,6 +1,6 @@
 'use server';
 
-import { CertFlowServices } from '@/service/base';
+import { CepService, CertFlowServices } from '@/service';
 import { Address } from '@/service/base/domain/account';
 
 /**
@@ -42,4 +42,10 @@ export async function updateAccountAddressData(
       }
     };
   }
+}
+
+export async function getCep(
+  cep: string
+): Promise<ReturnType<typeof CepService.cepV2>> {
+  return CepService.cepV2(cep);
 }

@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/select';
 import { BRAZILIAN_STATES } from '@/lib/common-constants';
 import { LoaderCircle } from 'lucide-react';
-import { updateAccountAddressData } from './account-address.actions';
+import { getCep, updateAccountAddressData } from './account-address.actions';
 import { useAccountAddressModel } from './account-address.model';
 import { AccountAddressViewProps } from './account-address.types';
 
@@ -25,11 +25,17 @@ export function AccountAddressView({ data }: AccountAddressViewProps) {
     errors,
     isValid,
     isProcessing,
+    isCepSearching,
     registeredFields,
     selectedState,
-    handleBrazilianStateChange,
-    handleFormSubmit
-  } = useAccountAddressModel({ action: updateAccountAddressData, data });
+    handleFormSubmit,
+    loadAddressByCep,
+    handleBrazilianStateChange
+  } = useAccountAddressModel({
+    data,
+    action: updateAccountAddressData,
+    cepAction: getCep
+  });
 
   return (
     <form
@@ -38,21 +44,27 @@ export function AccountAddressView({ data }: AccountAddressViewProps) {
       className="flex flex-col rounded-md bg-white p-6"
     >
       <div className="flex flex-1 flex-col gap-1 lg:flex-row">
-        <div className="grid flex-1 gap-2">
-          <label htmlFor="zip" className="text-slate-500">
+        <div className="grid w-full gap-2 lg:w-40">
+          <label htmlFor="zip" className="flex text-sm text-slate-500">
             CEP
+            {isCepSearching && (
+              <LoaderCircle className="ml-2 h-4 w-4 animate-spin" />
+            )}
           </label>
           <InputMasked
             format="cep"
             defaultValue={format(data?.zip ?? '', INPUT_MASKED_FORMATS.cep)}
             {...registeredFields.zip}
             error={errors.zip?.message}
-            disabled={isProcessing}
+            disabled={isProcessing || isCepSearching}
+            onBlur={(event) => {
+              loadAddressByCep(event.currentTarget.value);
+            }}
           />
         </div>
 
-        <div className="grid flex-5 gap-2">
-          <label htmlFor="address" className="text-slate-500">
+        <div className="grid flex-1 gap-2">
+          <label htmlFor="address" className="text-sm text-slate-500">
             Rua
           </label>
           <Input
@@ -61,12 +73,13 @@ export function AccountAddressView({ data }: AccountAddressViewProps) {
             defaultValue={data?.address}
             error={errors.address?.message}
             {...registeredFields.address}
-            disabled={isProcessing}
+            disabled={isProcessing || isCepSearching}
+            maxLength={128}
           />
         </div>
 
-        <div className="grid flex-1 gap-2">
-          <label htmlFor="number" className="text-slate-500">
+        <div className="grid w-full gap-2 lg:w-40">
+          <label htmlFor="number" className="text-sm text-slate-500">
             Número
           </label>
           <Input
@@ -75,13 +88,14 @@ export function AccountAddressView({ data }: AccountAddressViewProps) {
             defaultValue={data?.number}
             error={errors.number?.message}
             {...registeredFields.number}
+            maxLength={20}
           />
         </div>
       </div>
 
       <div className="flex flex-1 flex-col gap-1 lg:flex-row">
         <div className="grid flex-1 gap-2">
-          <label htmlFor="district" className="text-slate-500">
+          <label htmlFor="district" className="text-sm text-slate-500">
             Bairro
           </label>
           <Input
@@ -90,11 +104,11 @@ export function AccountAddressView({ data }: AccountAddressViewProps) {
             defaultValue={data?.district}
             error={errors.district?.message}
             {...registeredFields.district}
-            disabled={isProcessing}
+            disabled={isProcessing || isCepSearching}
           />
         </div>
         <div className="grid flex-1 gap-2">
-          <label htmlFor="complement" className="text-slate-500">
+          <label htmlFor="complement" className="text-sm text-slate-500">
             Complemento
           </label>
           <Input
@@ -103,20 +117,20 @@ export function AccountAddressView({ data }: AccountAddressViewProps) {
             defaultValue={data?.complement}
             error={errors.complement?.message}
             {...registeredFields.complement}
-            disabled={isProcessing}
+            disabled={isProcessing || isCepSearching}
           />
         </div>
       </div>
 
       <div className="flex flex-1 flex-col gap-1 lg:flex-row">
         <div className="grid flex-1 gap-2">
-          <label htmlFor="state" className="text-slate-500">
+          <label htmlFor="state" className="text-sm text-slate-500">
             Estado
           </label>
           <Select
             onValueChange={handleBrazilianStateChange}
             value={selectedState}
-            disabled={isProcessing}
+            disabled={isProcessing || isCepSearching}
             {...registeredFields.state}
           >
             <SelectTrigger className="mb-5 w-full py-6">
@@ -138,7 +152,7 @@ export function AccountAddressView({ data }: AccountAddressViewProps) {
         </div>
 
         <div className="grid flex-1 gap-2">
-          <label htmlFor="city" className="text-slate-500">
+          <label htmlFor="city" className="text-sm text-slate-500">
             Cidade
           </label>
           <Input
@@ -147,11 +161,11 @@ export function AccountAddressView({ data }: AccountAddressViewProps) {
             defaultValue={data?.city}
             error={errors.city?.message}
             {...registeredFields.city}
-            disabled={isProcessing}
+            disabled={isProcessing || isCepSearching}
           />
         </div>
         <div className="grid flex-1 gap-2">
-          <label htmlFor="country" className="text-slate-500">
+          <label htmlFor="country" className="text-sm text-slate-500">
             País
           </label>
           <Input
@@ -166,7 +180,7 @@ export function AccountAddressView({ data }: AccountAddressViewProps) {
       </div>
 
       <div className="flex justify-end">
-        <Button size="lg" disabled={!isValid || isProcessing}>
+        <Button size="lg" disabled={!isValid || isProcessing || isCepSearching}>
           Salvar
           {isProcessing && (
             <LoaderCircle className="ml-2 h-4 w-4 animate-spin" />

@@ -1,5 +1,6 @@
 'use client';
 
+import { BRAZILIAN_STATES } from '@/lib/common-constants';
 import { AccountAddressUpdateResponse } from '@/service/base/types';
 import { IntegrationFieldError } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -14,11 +15,13 @@ import {
 } from './account-address.types';
 
 export function useAccountAddressModel({
+  data,
   action,
-  data
+  cepAction
 }: UseAccountAddresModelProps) {
   const [selectedState, setSelectedState] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
+  const [isCepSearching, setIsCepSearching] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<
     IntegrationFieldError[] | undefined
   >();
@@ -27,7 +30,9 @@ export function useAccountAddressModel({
     register,
     handleSubmit,
     setValue,
+    getValues,
     setError,
+    setFocus,
     trigger,
     formState: { errors, isValid }
   } = useForm<AccountAddressFormData>({
@@ -111,6 +116,49 @@ export function useAccountAddressModel({
     [setValue, trigger]
   );
 
+  const loadAddressByCep = useCallback(
+    async (cep: string) => {
+      try {
+        if (cep.length === 9) {
+          setIsCepSearching(true);
+          const formattedCep = cep.replace(/[^0-9]/g, '');
+          const response = await cepAction(formattedCep);
+
+          if (!response.ok) {
+            toast('Problema ao buscar cep. Informe o endereço manualmente', {
+              type: 'error',
+              position: 'bottom-center',
+              closeOnClick: true
+            });
+            return;
+          }
+
+          if (response.ok) {
+            if (response.data?.street === getValues('address')) {
+              return;
+            }
+
+            const state = BRAZILIAN_STATES.find(
+              (state) => state.key === response.data?.state
+            );
+
+            setValue('address', response.data?.street || '');
+            setValue('city', response.data?.city || '');
+            setValue('state', response.data?.state || '');
+            setValue('district', response.data?.neighborhood || '');
+            setValue('number', '');
+            setValue('country', 'Brasil');
+            handleBrazilianStateChange(state?.value || '');
+            setFocus('number');
+          }
+        }
+      } finally {
+        setIsCepSearching(false);
+      }
+    },
+    [cepAction, getValues, handleBrazilianStateChange, setFocus, setValue]
+  );
+
   useEffect(() => {
     if (fieldErrors) {
       fieldErrors.forEach((error) => {
@@ -132,8 +180,10 @@ export function useAccountAddressModel({
     isValid,
     registeredFields,
     isProcessing,
+    isCepSearching,
     selectedState,
     handleFormSubmit,
-    handleBrazilianStateChange
+    handleBrazilianStateChange,
+    loadAddressByCep
   };
 }
