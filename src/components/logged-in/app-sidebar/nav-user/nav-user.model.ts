@@ -1,9 +1,8 @@
 import { useSidebar } from '@/components/ui/sidebar';
-import { useAppSession } from '@/providers/session-provider';
+import { UseNavUserViewModelProps } from './nav-user.types';
 
-export function useNavUserModel() {
+export function useNavUserModel({ user }: UseNavUserViewModelProps) {
   const { isMobile } = useSidebar();
-  const { user } = useAppSession();
 
   const getInitials = (name: string | undefined) => {
     if (!name) {

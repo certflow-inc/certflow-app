@@ -1,3 +1,5 @@
+'use client';
+
 import { DATA } from '../app-sidebar.constants';
 import { useNavMainModel } from './nav-main.model';
 import { NavMainVeiw } from './nav-main.view';

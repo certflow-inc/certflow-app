@@ -1,6 +1,6 @@
-'use client';
 import * as React from 'react';
 
+import { getMeDataAction } from '@/actions/me.action';
 import {
   Sidebar,
   SidebarContent,
@@ -13,10 +13,12 @@ import { NavHeader } from './nav-header';
 import { NavMain } from './nav-main';
 import { NavUser } from './nav-user';
 
-export function AppSidebar({
+export async function AppSidebar({
   className,
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
+  const me = await getMeDataAction();
+
   return (
     <Sidebar
       collapsible="icon"
@@ -32,7 +34,7 @@ export function AppSidebar({
       </SidebarContent>
 
       <SidebarFooter>
-        <NavUser />
+        <NavUser me={me} />
       </SidebarFooter>
 
       <SidebarRail />
