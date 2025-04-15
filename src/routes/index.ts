@@ -7,7 +7,12 @@ type PublicRoutes =
   | 'FORGOT_PASSWORD'
   | 'CHANGE_PASSWORD';
 
-type PrivateRoutes = 'ACCOUNT' | 'DASHBOARD' | 'ABOUT' | 'USERS';
+type PrivateRoutes =
+  | 'ACCOUNT'
+  | 'DASHBOARD'
+  | 'ABOUT'
+  | 'USERS'
+  | 'USERS_CREATE';
 
 type Routes = PublicRoutes | PrivateRoutes;
 
@@ -24,7 +29,8 @@ export const ROUTES: Record<Routes, string> = {
   ACCOUNT: '/account',
   DASHBOARD: '/dashboard',
   ABOUT: '/about',
-  USERS: '/users'
+  USERS: '/users',
+  USERS_CREATE: '/users/create'
 };
 
 export const PUBLIC_ROUTES = [
@@ -40,5 +46,6 @@ export const PRIVATE_ROUTES = [
   ROUTES.ACCOUNT,
   ROUTES.DASHBOARD,
   ROUTES.ABOUT,
-  ROUTES.USERS
+  ROUTES.USERS,
+  ROUTES.USERS_CREATE
 ];

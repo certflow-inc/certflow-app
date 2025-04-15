@@ -1,15 +1,15 @@
 import { Button, LoggedIn } from '@/components';
 import Link from 'next/link';
 
-export default function UsersListPage() {
+export default function UserCreatePage() {
   return (
     <LoggedIn.Container
       breadcrumb={[{ label: 'Configurações' }, { label: 'Usuários' }]}
     >
-      <div>Users List</div>
+      <div>Users Create</div>
 
       <Button asChild size="sm">
-        <Link href="/users/create">Novo Usuário</Link>
+        <Link href="/users">Voltar</Link>
       </Button>
     </LoggedIn.Container>
   );
