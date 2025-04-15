@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { UsersListCards } from '../user-list-cards';
 import { UsersListTable } from '../user-list-table';
 
+// TODO receber a lista de usuários como props
 export function UsersListView() {
   return (
     <div className="flex flex-col gap-6 p-2">
@@ -26,6 +27,7 @@ export function UsersListView() {
       </div>
 
       <section className="flex flex-col rounded-md bg-blue-100 p-1 min-[1130px]:bg-white min-[1130px]:p-4">
+        {/* // TODO passar a lista de usuários como props */}
         <UsersListCards />
         <UsersListTable />
       </section>

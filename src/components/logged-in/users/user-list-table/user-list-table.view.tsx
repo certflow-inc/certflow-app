@@ -10,7 +10,17 @@ import {
 } from '@/components/ui/table';
 import { Pencil, Trash2 } from 'lucide-react';
 
+// TODO receber a lista de usuários como props
 export function UsersListTableView() {
+  const usersMocked = Array.from({ length: 10 }).map((_, index) => ({
+    id: String(index),
+    name: `User ${index}`,
+    email: `user${index}@example.com`,
+    mobilePhone: `(11) 99999-9999`,
+    role: index === 0 ? 'Owner' : 'Admin',
+    status: 'Active'
+  }));
+
   return (
     <Table className="hidden min-[1130px]:block">
       <TableCaption>Usuários vinculados a sua conta</TableCaption>
@@ -31,54 +41,38 @@ export function UsersListTableView() {
       </TableHeader>
 
       <TableBody>
-        <TableRow key={1}>
-          <TableCell className="w-full truncate py-4 font-medium overflow-ellipsis">
-            Ricardo Almendro Ruiz
-          </TableCell>
-          <TableCell className="max-w-[350px] truncate overflow-ellipsis">
-            ricardo.almendro.ruiz@gmail.com.br
-          </TableCell>
-          <TableCell className="max-w-[150px] truncate overflow-ellipsis">
-            (19) 99941-2206
-          </TableCell>
-          <TableCell className="max-w-[100px] truncate overflow-ellipsis">
-            Owner
-          </TableCell>
-          <TableCell className="max-w-[100px] truncate overflow-ellipsis">
-            Ativo
-          </TableCell>
-          <TableCell className="w-[80px] px-0 text-right">
-            <Button className="p-2" size="icon" variant="ghost">
-              <Pencil size={16} />
-            </Button>
-          </TableCell>
-        </TableRow>
-
-        <TableRow key={2}>
-          <TableCell className="w-full truncate py-4 font-medium overflow-ellipsis">
-            Cinthya Hayane de Carvalho
-          </TableCell>
-          <TableCell className="max-w-[350px] truncate overflow-ellipsis">
-            ccarvalho@gmail.com
-          </TableCell>
-          <TableCell className="max-w-[150px] truncate overflow-ellipsis">
-            (19) 99941-2206
-          </TableCell>
-          <TableCell className="max-w-[100px] truncate overflow-ellipsis">
-            Manager
-          </TableCell>
-          <TableCell className="max-w-[100px] truncate overflow-ellipsis">
-            Inativo
-          </TableCell>
-          <TableCell className="w-[80px] px-0 text-right">
-            <Button className="p-0" size="icon" variant="ghost">
-              <Pencil size={16} />
-            </Button>
-            <Button className="p-0" size="icon" variant="ghost">
-              <Trash2 size={16} />
-            </Button>
-          </TableCell>
-        </TableRow>
+        {usersMocked.map((user) => (
+          <TableRow key={user.id}>
+            <TableCell className="w-full truncate py-4 font-medium overflow-ellipsis">
+              {user.name}
+            </TableCell>
+            <TableCell className="max-w-[350px] truncate overflow-ellipsis">
+              {user.email}
+            </TableCell>
+            <TableCell className="max-w-[150px] truncate overflow-ellipsis">
+              {user.mobilePhone}
+            </TableCell>
+            <TableCell className="max-w-[100px] truncate overflow-ellipsis">
+              {user.role}
+            </TableCell>
+            <TableCell className="max-w-[100px] truncate overflow-ellipsis">
+              {user.status}
+            </TableCell>
+            <TableCell className="w-[80px] px-0 text-right">
+              <Button className="p-2" size="icon" variant="ghost">
+                <Pencil size={16} />
+              </Button>
+              <Button
+                data-isowner={user.role === 'Owner'}
+                className="p-0 data-[isowner=true]:hidden"
+                size="icon"
+                variant="ghost"
+              >
+                <Trash2 size={16} />
+              </Button>
+            </TableCell>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   );
