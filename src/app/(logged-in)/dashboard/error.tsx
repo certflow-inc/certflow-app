@@ -8,13 +8,11 @@ export default function DashboardErrorPage() {
     <LoggedIn.Container
       breadcrumb={[{ label: 'Geral' }, { label: 'Dashboard' }]}
     >
-      <div className="flex-1 rounded-xl bg-blue-100 p-2">
-        <ServerError message="Erro ao carregar o Dashboard.">
-          <Button onClick={() => window.location.reload()} size="lg">
-            Tentar novamente
-          </Button>
-        </ServerError>
-      </div>
+      <ServerError message="Erro ao carregar o Dashboard.">
+        <Button onClick={() => window.location.reload()} size="lg">
+          Tentar novamente
+        </Button>
+      </ServerError>
     </LoggedIn.Container>
   );
 }

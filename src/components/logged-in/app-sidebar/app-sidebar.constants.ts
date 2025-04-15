@@ -42,7 +42,7 @@ export const DATA = {
         },
         {
           title: 'Usuários',
-          url: '#',
+          url: ROUTES.USERS,
           icon: Users
         },
         {

@@ -8,17 +8,15 @@ export default function AccountErrorPage() {
     <LoggedIn.Container
       breadcrumb={[{ label: 'Configurações' }, { label: 'Conta' }]}
     >
-      <div className="flex-1 rounded-xl bg-blue-100 p-2">
-        <ServerError message="Erro ao carregar a Conta.">
-          <Button
-            onClick={() => window.location.reload()}
-            size="lg"
-            variant="outline"
-          >
-            Tentar novamente
-          </Button>
-        </ServerError>
-      </div>
+      <ServerError message="Erro ao carregar a Conta.">
+        <Button
+          onClick={() => window.location.reload()}
+          size="lg"
+          variant="outline"
+        >
+          Tentar novamente
+        </Button>
+      </ServerError>
     </LoggedIn.Container>
   );
 }

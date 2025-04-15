@@ -23,7 +23,9 @@ export async function ContainerView({
         </div>
       </header>
 
-      <div className="flex flex-1 flex-col gap-4 bg-white p-4">{children}</div>
+      <div className="flex flex-1 flex-col gap-4 bg-white p-4">
+        <div className="flex-1 rounded-xl bg-blue-100 p-2">{children}</div>
+      </div>
     </SidebarInset>
   );
 }
