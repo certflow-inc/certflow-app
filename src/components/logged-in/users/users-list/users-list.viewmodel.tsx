@@ -1,6 +1,13 @@
+import { notFound } from 'next/navigation';
+import { getUserList } from './users-list.actions';
 import { UsersListView } from './users-list.view';
 
-export function UsersListViewModel() {
-  // TODO chamar a action para pegar a lista de usuários e passar para a view
-  return <UsersListView />;
+export async function UsersListViewModel() {
+  const users = await getUserList();
+
+  if (!users) {
+    return notFound();
+  }
+
+  return <UsersListView data={users} />;
 }

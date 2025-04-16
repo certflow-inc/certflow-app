@@ -8,7 +8,7 @@ export default function AccountNotFoundPage() {
       breadcrumb={[{ label: 'Configurações' }, { label: 'Conta' }]}
     >
       <NoData
-        message="Não foi possível identificar os daddos da sua conta."
+        message="Não foi possível listar os usuários da sua conta."
         description="Entre em contato com o suporte para maiores informações."
       >
         <Button

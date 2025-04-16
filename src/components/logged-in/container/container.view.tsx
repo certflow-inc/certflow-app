@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { Breadcrumb } from './breadcrumb';
 import { ContainerViewProps } from './container.types';
 
-export async function ContainerView({
+export function ContainerView({
   children,
   breadcrumb,
   className,

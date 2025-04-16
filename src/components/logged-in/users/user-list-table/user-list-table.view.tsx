@@ -1,4 +1,7 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
+import { format, INPUT_MASKED_FORMATS } from '@/components/ui/input-masked';
 import {
   Table,
   TableBody,
@@ -8,19 +11,11 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table';
+import { Role } from '@/service/base/domain/me';
 import { Pencil, Trash2 } from 'lucide-react';
+import { UserListTableViewProps } from './user-list-table.types';
 
-// TODO receber a lista de usuários como props
-export function UsersListTableView() {
-  const usersMocked = Array.from({ length: 10 }).map((_, index) => ({
-    id: String(index),
-    name: `User ${index}`,
-    email: `user${index}@example.com`,
-    mobilePhone: `(11) 99999-9999`,
-    role: index === 0 ? 'Owner' : 'Admin',
-    status: 'Active'
-  }));
-
+export function UsersListTableView({ data }: UserListTableViewProps) {
   return (
     <Table className="hidden min-[1130px]:block">
       <TableCaption>Usuários vinculados a sua conta</TableCaption>
@@ -41,8 +36,8 @@ export function UsersListTableView() {
       </TableHeader>
 
       <TableBody>
-        {usersMocked.map((user) => (
-          <TableRow key={user.id}>
+        {data.map((user) => (
+          <TableRow key={user.userId}>
             <TableCell className="w-full truncate py-4 font-medium overflow-ellipsis">
               {user.name}
             </TableCell>
@@ -50,7 +45,7 @@ export function UsersListTableView() {
               {user.email}
             </TableCell>
             <TableCell className="max-w-[150px] truncate overflow-ellipsis">
-              {user.mobilePhone}
+              {format(user.mobilePhone, INPUT_MASKED_FORMATS.phone)}
             </TableCell>
             <TableCell className="max-w-[100px] truncate overflow-ellipsis">
               {user.role}
@@ -63,7 +58,7 @@ export function UsersListTableView() {
                 <Pencil size={16} />
               </Button>
               <Button
-                data-isowner={user.role === 'Owner'}
+                data-isowner={user.role === Role.Owner}
                 className="p-0 data-[isowner=true]:hidden"
                 size="icon"
                 variant="ghost"

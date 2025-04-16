@@ -15,7 +15,8 @@ const PRIVATE_ENDPOINTS = [
   '/sign-out',
   '/me',
   '/account',
-  '/address'
+  '/address',
+  '/users'
 ];
 
 const interceptor = new BatchInterceptor({

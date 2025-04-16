@@ -5,8 +5,10 @@ export default function AccountLoadingPage() {
     <LoggedIn.Container
       breadcrumb={[{ label: 'Configurações' }, { label: 'Conta' }]}
     >
-      <div className="h-12 w-2/3 animate-pulse rounded-lg bg-blue-50" />
-      <div className="h-1/3 w-full animate-pulse rounded-lg bg-blue-50" />
+      <div className="flex h-full flex-col gap-4">
+        <div className="h-12 w-2/3 animate-pulse rounded-lg bg-blue-50" />
+        <div className="h-1/3 w-full animate-pulse rounded-lg bg-blue-50" />
+      </div>
     </LoggedIn.Container>
   );
 }

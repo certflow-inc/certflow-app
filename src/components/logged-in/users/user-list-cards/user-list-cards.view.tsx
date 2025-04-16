@@ -1,20 +1,12 @@
 import { UserCard } from '../user-list-card';
+import { UserListCardsViewProps } from './user-list-card.types';
 
 // TODO receber a lista de usuários como props
-export function UsersListCardsView() {
-  const usersMocked = Array.from({ length: 10 }).map((_, index) => ({
-    id: String(index),
-    name: `User ${index}`,
-    email: `user${index}@example.com`,
-    mobilePhone: `(11) 99999-9999`,
-    role: index === 0 ? 'Owner' : 'Admin',
-    status: 'Active'
-  }));
-
+export function UsersListCardsView({ data }: UserListCardsViewProps) {
   return (
     <div className="flex flex-col gap-8 min-[1130px]:hidden">
-      {usersMocked.map((user) => (
-        <UserCard key={user.id} data={user} />
+      {data.map((user) => (
+        <UserCard key={user.userId} data={user} />
       ))}
     </div>
   );
