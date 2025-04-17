@@ -22,9 +22,9 @@ export function UserFormView({ model }: UserFormViewProps) {
       <form
         noValidate
         onSubmit={handleFormSubmit}
-        className="flex flex-col gap-6 rounded-md bg-white p-6"
+        className="flex flex-col gap-1 rounded-md bg-white p-6"
       >
-        <div className="flex flex-col gap-4 lg:flex-row">
+        <div className="flex flex-col gap-2 lg:flex-row">
           <div className="flex flex-1">
             <div className="grid flex-1 gap-2">
               <label htmlFor="status" className="text-slate-500">
@@ -56,7 +56,7 @@ export function UserFormView({ model }: UserFormViewProps) {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 lg:flex-row">
+        <div className="flex flex-col gap-2 lg:flex-row">
           <div className="flex flex-1">
             <div className="grid flex-1 gap-2">
               <label htmlFor="status" className="text-slate-500">

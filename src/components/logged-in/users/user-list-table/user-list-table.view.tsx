@@ -26,17 +26,17 @@ export function UsersListTableView({
 
       <TableHeader>
         <TableRow>
-          <TableHead className="w-full max-w-[250px] text-slate-500 2xl:w-1/2">
+          <TableHead className="w-1/2 max-w-[250px] text-slate-500">
             Nome
           </TableHead>
-          <TableHead className="max-w-[200px] text-slate-500 2xl:w-1/2">
+          <TableHead className="w-1/2 max-w-[250px] text-slate-500">
             Email
           </TableHead>
-          <TableHead className="max-w-[150px] text-slate-500">
+          <TableHead className="max-w-[300px] text-slate-500">
             Celular
           </TableHead>
-          <TableHead className="max-w-[100px] text-slate-500">Tipo</TableHead>
-          <TableHead className="max-w-[100px] text-slate-500">Status</TableHead>
+          <TableHead className="max-w-[150px] text-slate-500">Tipo</TableHead>
+          <TableHead className="max-w-[150px] text-slate-500">Status</TableHead>
           <TableHead className="max-w-[80px] text-right text-slate-500">
             Ações
           </TableHead>
@@ -50,19 +50,19 @@ export function UsersListTableView({
 
           return (
             <TableRow key={user.userId}>
-              <TableCell className="w-full max-w-[250px] truncate py-4 font-medium overflow-ellipsis 2xl:w-1/2">
+              <TableCell className="w-1/2 max-w-[250px] truncate py-4 text-base overflow-ellipsis md:text-lg">
                 {user.name}
               </TableCell>
-              <TableCell className="max-w-[200px] truncate overflow-ellipsis 2xl:w-1/2">
+              <TableCell className="w-1/2 max-w-[250px] truncate text-base overflow-ellipsis md:text-lg">
                 {user.email}
               </TableCell>
-              <TableCell className="max-w-[150px] truncate overflow-ellipsis">
+              <TableCell className="max-w-[300px] truncate text-base overflow-ellipsis md:text-lg">
                 {format(user.mobilePhone, INPUT_MASKED_FORMATS.phone)}
               </TableCell>
-              <TableCell className="max-w-[100px] truncate overflow-ellipsis">
+              <TableCell className="max-w-[150px] truncate text-base overflow-ellipsis md:text-lg">
                 {user.translatedRole}
               </TableCell>
-              <TableCell className="max-w-[100px] truncate overflow-ellipsis">
+              <TableCell className="max-w-[150px] truncate text-base overflow-ellipsis md:text-lg">
                 {user.translatedStatus}
               </TableCell>
               <TableCell className="w-[80px] px-0 text-right">
