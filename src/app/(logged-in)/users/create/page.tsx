@@ -1,16 +1,13 @@
-import { Button, LoggedIn } from '@/components';
-import Link from 'next/link';
+import { LoggedIn } from '@/components';
+import { UserForm } from '@/components/logged-in/users';
+import { createUser } from '@/components/logged-in/users/users-actions';
 
 export default function UserCreatePage() {
   return (
     <LoggedIn.Container
       breadcrumb={[{ label: 'Configurações' }, { label: 'Usuários' }]}
     >
-      <div>Users Create</div>
-
-      <Button asChild size="sm">
-        <Link href="/users">Voltar</Link>
-      </Button>
+      <UserForm action={createUser} />
     </LoggedIn.Container>
   );
 }

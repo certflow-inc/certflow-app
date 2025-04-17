@@ -153,3 +153,20 @@ export type AccountAddressUpdateResponse =
   | '\"country\" is required'
   | '\"country\" length must be at least 3 characters long'
   | '\"country\" length must be less than or equal to 32 characters long';
+
+export type CreateUserResponse =
+  | API_OK
+  | API_SERVER_ERROR
+  | '\"taxId\" is required'
+  | '\"taxId\" contains an invalid value'
+  | '\"name\" is required'
+  | '\"name\" length must be at least 3 characters long'
+  | '\"name\" length must be less than or equal to 128 characters long'
+  | '\"mobilePhone\" is required'
+  | '\"mobilePhone\" contains an invalid value'
+  | '\"email\" is required'
+  | '\"email\" must be a valid email'
+  | '\"email\" length must be less than or equal to 254 characters long'
+  | '\"role\" is required'
+  | '\"role\" must be one of [manager, user]'
+  | 'User already registered';
