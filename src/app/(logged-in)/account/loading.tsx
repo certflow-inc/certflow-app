@@ -1,4 +1,5 @@
 import { LoggedIn } from '@/components';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function AccountLoadingPage() {
   return (
@@ -6,8 +7,8 @@ export default function AccountLoadingPage() {
       breadcrumb={[{ label: 'Configurações' }, { label: 'Conta' }]}
     >
       <div className="flex h-full flex-col gap-4">
-        <div className="h-12 w-2/3 animate-pulse rounded-lg bg-blue-50" />
-        <div className="h-1/3 w-full animate-pulse rounded-lg bg-blue-50" />
+        <Skeleton className="h-12 w-2/3" />
+        <Skeleton className="h-1/3 w-full" />
       </div>
     </LoggedIn.Container>
   );
