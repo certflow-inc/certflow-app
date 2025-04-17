@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components';
 import { format, INPUT_MASKED_FORMATS } from '@/components/ui/input-masked';
 import {
   Table,
@@ -12,13 +12,17 @@ import {
   TableRow
 } from '@/components/ui/table';
 import { Role } from '@/service/base/domain/me';
-import { Pencil, Trash2 } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 import { UserListTableViewProps } from './user-list-table.types';
 
-export function UsersListTableView({ data }: UserListTableViewProps) {
+export function UsersListTableView({
+  data,
+  currentUser,
+  onDeleteUser
+}: UserListTableViewProps) {
   return (
     <Table className="hidden min-[1130px]:block">
-      <TableCaption>Usuários vinculados a sua conta</TableCaption>
+      <TableCaption>Usuários vinculados a conta</TableCaption>
 
       <TableHeader>
         <TableRow>
@@ -36,38 +40,41 @@ export function UsersListTableView({ data }: UserListTableViewProps) {
       </TableHeader>
 
       <TableBody>
-        {data.map((user) => (
-          <TableRow key={user.userId}>
-            <TableCell className="w-full truncate py-4 font-medium overflow-ellipsis">
-              {user.name}
-            </TableCell>
-            <TableCell className="max-w-[350px] truncate overflow-ellipsis">
-              {user.email}
-            </TableCell>
-            <TableCell className="max-w-[150px] truncate overflow-ellipsis">
-              {format(user.mobilePhone, INPUT_MASKED_FORMATS.phone)}
-            </TableCell>
-            <TableCell className="max-w-[100px] truncate overflow-ellipsis">
-              {user.role}
-            </TableCell>
-            <TableCell className="max-w-[100px] truncate overflow-ellipsis">
-              {user.status}
-            </TableCell>
-            <TableCell className="w-[80px] px-0 text-right">
-              <Button className="p-2" size="icon" variant="ghost">
-                <Pencil size={16} />
-              </Button>
-              <Button
-                data-isowner={user.role === Role.Owner}
-                className="p-0 data-[isowner=true]:hidden"
-                size="icon"
-                variant="ghost"
-              >
-                <Trash2 size={16} />
-              </Button>
-            </TableCell>
-          </TableRow>
-        ))}
+        {data.map((user) => {
+          const isOwnerCurrentUser = currentUser.role === Role.Owner.toString();
+          const isOwnerUserInDisplay = user.role === Role.Owner.toString();
+
+          return (
+            <TableRow key={user.userId}>
+              <TableCell className="w-full truncate py-4 font-medium overflow-ellipsis">
+                {user.name}
+              </TableCell>
+              <TableCell className="max-w-[350px] truncate overflow-ellipsis">
+                {user.email}
+              </TableCell>
+              <TableCell className="max-w-[150px] truncate overflow-ellipsis">
+                {format(user.mobilePhone, INPUT_MASKED_FORMATS.phone)}
+              </TableCell>
+              <TableCell className="max-w-[100px] truncate overflow-ellipsis">
+                {user.translatedRole}
+              </TableCell>
+              <TableCell className="max-w-[100px] truncate overflow-ellipsis">
+                {user.translatedStatus}
+              </TableCell>
+              <TableCell className="w-[80px] px-0 text-right">
+                <Button
+                  data-isowner={!isOwnerUserInDisplay && isOwnerCurrentUser}
+                  className="hidden justify-end p-0 data-[isowner=true]:flex"
+                  size="icon"
+                  variant="ghost"
+                  onClick={() => onDeleteUser(user)}
+                >
+                  <Trash2 size={16} />
+                </Button>
+              </TableCell>
+            </TableRow>
+          );
+        })}
       </TableBody>
     </Table>
   );

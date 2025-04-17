@@ -15,7 +15,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <ServerError message="Erro ao carregar os usuários.">
+    <ServerError message="Ocorreu um erro inesperado.">
       <Button
         onClick={() => window.location.reload()}
         size="lg"

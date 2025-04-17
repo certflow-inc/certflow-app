@@ -3,11 +3,16 @@
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { format, INPUT_MASKED_FORMATS } from '@/components/ui/input-masked';
 import { Role } from '@/service/base/domain/me';
-import { Pencil, Trash2 } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 import { UserCardViewProps } from './user-card-view.types';
 
-export function UserCardView({ data }: UserCardViewProps) {
-  const isOwner = data.role === Role.Owner;
+export function UserCardView({
+  data,
+  currentUser,
+  onDeleteUser
+}: UserCardViewProps) {
+  const isOwnerCurrentUser = currentUser.role === Role.Owner.toString();
+  const isOwnerUserInDisplay = data.role === Role.Owner.toString();
 
   return (
     <Card className="border-0">
@@ -28,29 +33,26 @@ export function UserCardView({ data }: UserCardViewProps) {
         </div>
         <div className="flex flex-col gap-2">
           <p className="text-sm text-slate-500">Tipo</p>
-          <p className="truncate text-base overflow-ellipsis">{data.role}</p>
+          <p className="truncate text-base overflow-ellipsis">
+            {data.translatedRole}
+          </p>
         </div>
         <div className="flex flex-col gap-2">
           <p className="text-sm text-slate-500">Status</p>
-          <p className="truncate text-base overflow-ellipsis">{data.status}</p>
+          <p className="truncate text-base overflow-ellipsis">
+            {data.translatedStatus}
+          </p>
         </div>
       </CardContent>
 
-      <CardFooter className="flex justify-center gap-8 border-t border-slate-200">
+      <CardFooter
+        data-visible={!isOwnerUserInDisplay}
+        className='hidden justify-center gap-8 border-t border-slate-200 data-[visible="true"]:flex'
+      >
         <button
-          onClick={() => {
-            console.log(`editar o id ${data.userId}`);
-          }}
-        >
-          <Pencil />
-        </button>
-
-        <button
-          data-isowner={isOwner}
-          className='data-[isowner="true"]:hidden'
-          onClick={() => {
-            console.log(`remover o id ${data.userId}`);
-          }}
+          data-visible={isOwnerCurrentUser}
+          className='hidden data-[visible="true"]:block'
+          onClick={() => onDeleteUser(data)}
         >
           <Trash2 />
         </button>

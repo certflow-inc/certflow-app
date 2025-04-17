@@ -3,6 +3,7 @@ export { Button } from './ui/button';
 export { Input } from './ui/input';
 
 // commons
+export { AlertDialog } from './commons/alert-dialog';
 export { EnvironmentIndicator } from './commons/environment-indicator';
 export { NoData } from './commons/fallbacks';
 
