@@ -47,8 +47,8 @@ export const CREATE_USER_FLOW: Record<CreateUserResponse, IntegrationFlow> = {
     field: 'taxId'
   },
   '"taxId" contains an invalid value': {
-    title: 'O campo CPF/CNPJ precisa de no mínimo 3 caracteres',
-    description: 'O campo CPF/CNPJ precisa de no mínimo 3 caracteres',
+    title: 'CPF inválido',
+    description: 'CPF inválido',
     field: 'taxId'
   },
   '"mobilePhone" is required': {
@@ -57,8 +57,8 @@ export const CREATE_USER_FLOW: Record<CreateUserResponse, IntegrationFlow> = {
     field: 'mobilePhone'
   },
   '"mobilePhone" contains an invalid value': {
-    title: 'O campo celular precisa de no mínimo 3 caracteres',
-    description: 'O campo celular precisa de no mínimo 3 caracteres',
+    title: 'Celular inválid',
+    description: 'Celular está inválido',
     field: 'mobilePhone'
   },
   '"role" is required': {
@@ -67,13 +67,23 @@ export const CREATE_USER_FLOW: Record<CreateUserResponse, IntegrationFlow> = {
     toast: true
   },
   '"role" must be one of [manager, user]': {
-    title: 'O campo role precisa de no mínimo 3 caracteres',
-    description: 'O campo role precisa de no mínimo 3 caracteres',
+    title: 'Role inválido',
+    description: 'Role inválido',
+    toast: true
+  },
+  '"picture" is not allowed': {
+    title: 'Imagem nao permitida',
+    description: 'Imagem nao permitida',
+    toast: true
+  },
+  '"status" is not allowed': {
+    title: 'Status nao permitido',
+    description: 'Status nao permitido',
     toast: true
   },
   'User already registered': {
-    title: 'Ops!!! Ocorreu um erro ao criar o usuário!',
-    description: 'Ops!!! Ocorreu um erro ao criar o usuário!',
+    title: 'Já existe um usuário cadastrado com o email informado',
+    description: 'Já existe um usuário cadastrado com o email informado',
     toast: true
   }
 };

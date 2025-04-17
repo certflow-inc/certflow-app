@@ -32,6 +32,20 @@ export async function getAddress(): Promise<ApiResponse<Address>> {
       }
     });
 
+    if (!response.ok) {
+      if (
+        [StatusCodes.NOT_FOUND, StatusCodes.INTERNAL_SERVER_ERROR].includes(
+          response.status
+        )
+      ) {
+        throw new Error();
+      }
+
+      if (StatusCodes.FORBIDDEN === response.status) {
+        throw new UnAuthenticatedException('UnAuthenticatedException');
+      }
+    }
+
     if (response.ok) {
       return {
         ok: true,
@@ -76,13 +90,18 @@ export async function updateAddress(
       }
     });
 
-    if (
-      !response.ok &&
-      [StatusCodes.NOT_FOUND, StatusCodes.INTERNAL_SERVER_ERROR].includes(
-        response.status
-      )
-    ) {
-      throw new Error();
+    if (!response.ok) {
+      if (
+        [StatusCodes.NOT_FOUND, StatusCodes.INTERNAL_SERVER_ERROR].includes(
+          response.status
+        )
+      ) {
+        throw new Error();
+      }
+
+      if (StatusCodes.FORBIDDEN === response.status) {
+        throw new UnAuthenticatedException('UnAuthenticatedException');
+      }
     }
 
     if (response.ok) {

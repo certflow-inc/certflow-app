@@ -3,6 +3,7 @@
 import { UnAuthenticatedException } from '@/exceptions/UnAuthenticatedException';
 import { httpRequest } from '@/lib/fetch';
 import { ROUTES } from '@/routes';
+import { StatusCodes } from 'http-status-codes';
 import { redirect } from 'next/navigation';
 import { API_COMMON_RESPONSE_ERROR } from '../constants';
 import { Me } from '../domain/me';
@@ -18,6 +19,20 @@ export async function getMe(): Promise<ApiResponse<Me>> {
         tags: [FETCH_TAGS.TAG_GET_ME]
       }
     });
+
+    if (!response.ok) {
+      if (
+        [StatusCodes.NOT_FOUND, StatusCodes.INTERNAL_SERVER_ERROR].includes(
+          response.status
+        )
+      ) {
+        throw new Error();
+      }
+
+      if (StatusCodes.FORBIDDEN === response.status) {
+        throw new UnAuthenticatedException('UnAuthenticatedException');
+      }
+    }
 
     if (response.ok) {
       return {

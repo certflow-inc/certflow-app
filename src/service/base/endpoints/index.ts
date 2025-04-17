@@ -10,4 +10,4 @@ export { refresh } from './refresh.service';
 export { signin } from './signin.service';
 export { signout } from './signout.service';
 export { signup } from './signup.service';
-export { getUsers } from './user.service';
+export { createUser, getUsers } from './user.service';

@@ -1,3 +1,5 @@
+import { redirectFromClient } from '@/actions/navigation';
+import { ROUTES } from '@/routes';
 import { CreateUserResponse } from '@/service/base/types';
 import { IntegrationFieldError } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -18,6 +20,7 @@ export function useUserFormModel({ data, action }: UserFormModelProps) {
     register,
     handleSubmit,
     setError,
+    reset,
     formState: { errors, isValid }
   } = useForm<UserFormData>({
     mode: 'onChange',
@@ -40,10 +43,14 @@ export function useUserFormModel({ data, action }: UserFormModelProps) {
     setIsProcessing(false);
 
     if (response.ok) {
+      reset();
       toast(CREATE_USER_FLOW.Ok.title, {
         type: 'success',
         position: 'bottom-center',
-        closeOnClick: true
+        closeOnClick: true,
+        onClose: () => {
+          redirectFromClient(ROUTES.USERS);
+        }
       });
       return;
     }

@@ -3,12 +3,23 @@
 import { UnAuthenticatedException } from '@/exceptions/UnAuthenticatedException';
 import { httpRequest } from '@/lib/fetch';
 import { ROUTES } from '@/routes';
+import { StatusCodes } from 'http-status-codes';
 import { redirect } from 'next/navigation';
 import { API_COMMON_RESPONSE_ERROR } from '../constants';
 import { Me } from '../domain/me';
-import { ApiError, ApiResponse } from '../types';
+import { User } from '../domain/user';
+import { ApiResponse } from '../types';
 import { FETCH_CACHE_TIME, FETCH_TAGS } from './endpoints.constants';
 
+/**
+ * Fetches a list of users from the server.
+ *
+ * @returns {Promise<ApiResponse<Me[]>>} A promise that resolves to an ApiResponse
+ * containing the list of users if successful, or an error if the request fails.
+ *
+ * @throws Will redirect to the signout route if an UnAuthenticatedException occurs.
+ * Will throw a generic server error if any other error occurs during the request.
+ */
 export async function getUsers(): Promise<ApiResponse<Me[]>> {
   try {
     const response = await httpRequest(`${process.env.API_URL}/users`, {
@@ -18,6 +29,20 @@ export async function getUsers(): Promise<ApiResponse<Me[]>> {
       }
     });
 
+    if (!response.ok) {
+      if (
+        [StatusCodes.NOT_FOUND, StatusCodes.INTERNAL_SERVER_ERROR].includes(
+          response.status
+        )
+      ) {
+        throw new Error();
+      }
+
+      if (StatusCodes.FORBIDDEN === response.status) {
+        throw new UnAuthenticatedException('UnAuthenticatedException');
+      }
+    }
+
     if (response.ok) {
       return {
         ok: true,
@@ -25,8 +50,65 @@ export async function getUsers(): Promise<ApiResponse<Me[]>> {
       };
     }
 
-    const dataError: ApiError = await response.json();
+    return {
+      ok: false,
+      dataError: await response.json()
+    };
+  } catch (_error) {
+    if (_error instanceof UnAuthenticatedException) {
+      redirect(ROUTES.SIGNOUT);
+    }
 
+    throw new Error(API_COMMON_RESPONSE_ERROR.API_SERVER_ERROR);
+  }
+}
+
+/**
+ * Creates a new user on the server.
+ *
+ * @param {User} user - The user data to be sent in the request.
+ * @returns {Promise<ApiResponse<void>>} A promise that resolves to an ApiResponse
+ * indicating the success or failure of the user creation operation.
+ *
+ * @throws Will redirect to the signout route if an UnAuthenticatedException occurs.
+ * Will throw a generic server error if any other error occurs during the request.
+ */
+
+export async function createUser(
+  user: Omit<User, 'userId' | 'status'>
+): Promise<ApiResponse<void>> {
+  try {
+    const body = buildCreateUserPayload(user);
+
+    const response = await fetch(`${process.env.API_URL}/users`, {
+      method: 'POST',
+      body,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      if (
+        [StatusCodes.NOT_FOUND, StatusCodes.INTERNAL_SERVER_ERROR].includes(
+          response.status
+        )
+      ) {
+        throw new Error();
+      }
+
+      if (StatusCodes.FORBIDDEN === response.status) {
+        throw new UnAuthenticatedException('UnAuthenticatedException');
+      }
+    }
+
+    if (response.ok) {
+      return {
+        ok: true
+      };
+    }
+
+    const dataError = await response.json();
     return {
       ok: false,
       dataError
@@ -38,4 +120,24 @@ export async function getUsers(): Promise<ApiResponse<Me[]>> {
 
     throw new Error(API_COMMON_RESPONSE_ERROR.API_SERVER_ERROR);
   }
+}
+
+/**
+ * Constructs a JSON string payload for creating a new user.
+ *
+ * @param {Omit<User, 'userId' | 'status'>} user - The user data, excluding 'userId' and 'status', to be formatted into a JSON string.
+ * @returns {string} A JSON string representation of the user data with formatted taxId and mobilePhone fields.
+ */
+
+function buildCreateUserPayload(user: Omit<User, 'userId' | 'status'>): string {
+  const { taxId, name, mobilePhone, email, picture, role } = user;
+
+  return JSON.stringify({
+    name,
+    email,
+    taxId: taxId.replaceAll('.', '').replaceAll('-', ''),
+    mobilePhone: `+55${mobilePhone.replace(/\D/g, '')}`,
+    ...(picture ? { picture } : {}),
+    role
+  });
 }

@@ -169,4 +169,6 @@ export type CreateUserResponse =
   | '\"email\" length must be less than or equal to 254 characters long'
   | '\"role\" is required'
   | '\"role\" must be one of [manager, user]'
+  | '\"picture\" is not allowed'
+  | '\"status\" is not allowed'
   | 'User already registered';
