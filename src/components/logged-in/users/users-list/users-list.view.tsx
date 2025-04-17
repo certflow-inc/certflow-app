@@ -22,7 +22,7 @@ export function UsersListView({ data, currentUser }: UserListViewModelProps) {
 
   return (
     <>
-      <div className="flex flex-col gap-6 p-2">
+      <div className="flex flex-col gap-6">
         <div className="flex items-center justify-between gap-2 px-2">
           <h1 className="truncate text-xl font-semibold overflow-ellipsis text-slate-500 min-[1130px]:text-left min-[1130px]:text-2xl">
             Usuários vinculados a conta
@@ -41,7 +41,7 @@ export function UsersListView({ data, currentUser }: UserListViewModelProps) {
           </Button>
         </div>
 
-        <section className="flex flex-col rounded-md bg-blue-100 p-1 min-[1130px]:bg-white min-[1130px]:p-4">
+        <section className="flex flex-col rounded-md bg-blue-100 p-1 min-[1130px]:bg-white min-[1130px]:p-1">
           <UsersListCards
             data={data}
             currentUser={currentUser}
@@ -49,8 +49,8 @@ export function UsersListView({ data, currentUser }: UserListViewModelProps) {
           />
           <UsersListTable
             data={data}
-            currentUser={currentUser}
             onDeleteUser={handleDeleteUser}
+            currentUser={currentUser}
           />
         </section>
       </div>

@@ -26,8 +26,12 @@ export function UsersListTableView({
 
       <TableHeader>
         <TableRow>
-          <TableHead className="w-full text-slate-500">Nome</TableHead>
-          <TableHead className="max-w-[350px] text-slate-500">Email</TableHead>
+          <TableHead className="w-full max-w-[250px] text-slate-500 2xl:w-1/2">
+            Nome
+          </TableHead>
+          <TableHead className="max-w-[200px] text-slate-500 2xl:w-1/2">
+            Email
+          </TableHead>
           <TableHead className="max-w-[150px] text-slate-500">
             Celular
           </TableHead>
@@ -46,10 +50,10 @@ export function UsersListTableView({
 
           return (
             <TableRow key={user.userId}>
-              <TableCell className="w-full truncate py-4 font-medium overflow-ellipsis">
+              <TableCell className="w-full max-w-[250px] truncate py-4 font-medium overflow-ellipsis 2xl:w-1/2">
                 {user.name}
               </TableCell>
-              <TableCell className="max-w-[350px] truncate overflow-ellipsis">
+              <TableCell className="max-w-[200px] truncate overflow-ellipsis 2xl:w-1/2">
                 {user.email}
               </TableCell>
               <TableCell className="max-w-[150px] truncate overflow-ellipsis">
