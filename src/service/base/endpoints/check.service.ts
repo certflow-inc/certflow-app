@@ -1,7 +1,6 @@
 import { UnAuthenticatedException } from '@/exceptions/UnAuthenticatedException';
 import { httpRequest } from '@/lib/fetch';
 import { ROUTES } from '@/routes';
-import { StatusCodes } from 'http-status-codes';
 import { redirect } from 'next/navigation';
 import { API_COMMON_RESPONSE_ERROR } from '../constants';
 import { ApiError } from '../types';
@@ -20,19 +19,19 @@ export async function check(request: CheckRequest) {
       }
     );
 
-    if (!response.ok) {
-      if (
-        [StatusCodes.NOT_FOUND, StatusCodes.INTERNAL_SERVER_ERROR].includes(
-          response.status
-        )
-      ) {
-        throw new Error();
-      }
+    // if (!response.ok) {
+    //   if (
+    //     [StatusCodes.NOT_FOUND, StatusCodes.INTERNAL_SERVER_ERROR].includes(
+    //       response.status
+    //     )
+    //   ) {
+    //     throw new Error();
+    //   }
 
-      if (StatusCodes.FORBIDDEN === response.status) {
-        throw new UnAuthenticatedException('UnAuthenticatedException');
-      }
-    }
+    //   if (StatusCodes.FORBIDDEN === response.status) {
+    //     throw new UnAuthenticatedException('UnAuthenticatedException');
+    //   }
+    // }
 
     if (response.ok) {
       return {
