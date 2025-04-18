@@ -13,7 +13,7 @@ export function HeaderLogoView({ className, ...props }: HeaderLogoViewProps) {
       alt="CertFlow Logo"
       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       className={cn(
-        'h-auto w-full max-w-[200px] md:max-w-[300px] lg:max-w-[400px]',
+        'h-auto w-full max-w-[200px] md:max-w-[250px] lg:max-w-[300px]',
         className
       )}
       {...props}

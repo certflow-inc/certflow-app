@@ -32,7 +32,7 @@ export function AccountModuleView({ data }: AccountModuleViewProps) {
         <TableBody>
           {modules.map(({ key, value }) => (
             <TableRow key={key}>
-              <TableCell className="py-4 font-medium">
+              <TableCell className="py-4 font-medium md:text-lg">
                 {key
                   .split(' ')
                   .map(

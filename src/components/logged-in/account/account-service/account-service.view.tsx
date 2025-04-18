@@ -36,10 +36,12 @@ export function AccountServiceView({ data }: AccountServiceViewProps) {
         <TableBody>
           {services.map(({ key, value }) => (
             <TableRow key={key}>
-              <TableCell className="py-4 font-medium">
+              <TableCell className="py-4 font-medium md:text-lg">
                 {SERVICE_MAP[key] ?? key}
               </TableCell>
-              <TableCell className="text-right">{value as string}</TableCell>
+              <TableCell className="text-right md:text-lg">
+                {value as string}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
