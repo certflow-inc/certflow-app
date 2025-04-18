@@ -12,7 +12,7 @@ export default function AccountErrorPage() {
         <Button
           onClick={() => window.location.reload()}
           size="lg"
-          variant="outline"
+          variant="default"
         >
           Tentar novamente
         </Button>

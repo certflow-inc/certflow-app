@@ -9,11 +9,7 @@ export default function AccountErrorPage() {
       breadcrumb={[{ label: 'Configurações' }, { label: 'Conta' }]}
     >
       <ServerError message="Erro ao carregar a Conta.">
-        <Button
-          onClick={() => window.location.reload()}
-          size="lg"
-          variant="outline"
-        >
+        <Button onClick={() => window.location.reload()} size="lg">
           Tentar novamente
         </Button>
       </ServerError>

@@ -11,11 +11,7 @@ export default function AccountNotFoundPage() {
         message="Não foi possível identificar os daddos da sua conta."
         description="Entre em contato com o suporte para maiores informações."
       >
-        <Button
-          size="lg"
-          variant="outline"
-          onClick={() => window.location.reload()}
-        >
+        <Button size="lg" onClick={() => window.location.reload()}>
           Tentar novamente
         </Button>
       </NoData>

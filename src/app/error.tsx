@@ -15,14 +15,12 @@ export default function Error({
   }, [error]);
 
   return (
-    <ServerError message="Ocorreu um erro inesperado.">
-      <Button
-        onClick={() => window.location.reload()}
-        size="lg"
-        variant="outline"
-      >
-        Tentar novamente
-      </Button>
-    </ServerError>
+    <div className="flex h-screen flex-col items-center justify-center">
+      <ServerError message="Ocorreu um erro inesperado." showLogo>
+        <Button onClick={() => window.location.reload()} size="lg">
+          Tentar novamente
+        </Button>
+      </ServerError>
+    </div>
   );
 }

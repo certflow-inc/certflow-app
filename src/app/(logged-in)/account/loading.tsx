@@ -8,7 +8,7 @@ export default function AccountLoadingPage() {
     >
       <div className="flex h-full flex-col gap-4">
         <Skeleton className="h-12 w-2/3" />
-        <Skeleton className="h-1/3 w-full" />
+        <Skeleton className="h-full w-full" />
       </div>
     </LoggedIn.Container>
   );
