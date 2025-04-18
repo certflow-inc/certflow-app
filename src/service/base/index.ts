@@ -4,6 +4,7 @@ import {
   changePassword,
   check,
   createUser,
+  deleteUser,
   getAccount,
   getAddress,
   getMe,
@@ -33,5 +34,6 @@ export const CertFlowServices = {
   getAddress,
   updateAddress,
   getUsers,
-  createUser
+  createUser,
+  deleteUser
 };

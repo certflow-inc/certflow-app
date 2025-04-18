@@ -2,23 +2,56 @@
 
 import { AlertDialog, Button } from '@/components';
 import { User } from '@/service/base/domain/user';
+import { DeleteUserResponse } from '@/service/base/types';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
+import { toast } from 'react-toastify';
 import { UsersListCards } from '../user-list-cards';
 import { UsersListTable } from '../user-list-table';
+import { DELETE_USER_FLOW } from './user-list.constants';
 import { UserListViewModelProps } from './user-list.types';
 
-export function UsersListView({ data, currentUser }: UserListViewModelProps) {
+export function UsersListView({
+  data,
+  currentUser,
+  removeAction
+}: UserListViewModelProps) {
   const [userToDelete, setUserToDelete] = useState<User | null>(null);
+  const [isProcess, setIsProcess] = useState(false);
 
   const handleDeleteUser = (user: User) => {
     setUserToDelete(user);
   };
 
-  const handleConfirmDelete = () => {
-    setUserToDelete(null);
-  };
+  const handleConfirmDeleteUser = useCallback(async () => {
+    if (userToDelete?.userId) {
+      setIsProcess(true);
+      const response = await removeAction(userToDelete.userId);
+
+      if (response.ok) {
+        toast(DELETE_USER_FLOW.Ok.title.replace('@user', userToDelete.name), {
+          type: 'success',
+          position: 'bottom-center',
+          closeOnClick: true
+        });
+      }
+
+      if (!response.ok && response.dataError) {
+        const feedbackError =
+          DELETE_USER_FLOW[response.dataError?.error as DeleteUserResponse];
+
+        toast(feedbackError.title, {
+          type: 'error',
+          position: 'bottom-center',
+          closeOnClick: true
+        });
+      }
+
+      setUserToDelete(null);
+      setIsProcess(false);
+    }
+  }, [removeAction, userToDelete?.name, userToDelete?.userId]);
 
   return (
     <>
@@ -59,10 +92,11 @@ export function UsersListView({ data, currentUser }: UserListViewModelProps) {
         open={!!userToDelete}
         title="Confirma a exclusão do usuário?"
         description={userToDelete?.name}
-        onConfirm={handleConfirmDelete}
+        onConfirm={handleConfirmDeleteUser}
         confirmButtonLabel="Sim"
         onCancel={() => setUserToDelete(null)}
         cancelButtonLabel="Não"
+        isProcess={isProcess}
       />
     </>
   );

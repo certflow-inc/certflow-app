@@ -111,6 +111,58 @@ export async function createUser(
 }
 
 /**
+ * Deletes a user from the server by userId.
+ *
+ * @param {string} userId - The ID of the user to be deleted.
+ * @returns {Promise<ApiResponse<void>>} A promise that resolves to an ApiResponse
+ * indicating the success or failure of the delete operation.
+ *
+ * @throws Will redirect to the signout route if an UnAuthenticatedException occurs.
+ * Will throw a generic server error if any other error occurs during the request.
+ */
+
+export async function deleteUser(userId: string): Promise<ApiResponse<void>> {
+  try {
+    const response = await httpRequest(
+      `${process.env.API_URL}/users/${userId}`,
+      {
+        method: 'DELETE'
+      }
+    );
+
+    if (!response.ok) {
+      if (
+        [StatusCodes.NOT_FOUND, StatusCodes.INTERNAL_SERVER_ERROR].includes(
+          response.status
+        )
+      ) {
+        throw new Error();
+      }
+
+      if (StatusCodes.FORBIDDEN === response.status) {
+        throw new UnAuthenticatedException('UnAuthenticatedException');
+      }
+    }
+    if (response.ok) {
+      return {
+        ok: true
+      };
+    }
+    const dataError = await response.json();
+    return {
+      ok: false,
+      dataError
+    };
+  } catch (_error) {
+    if (_error instanceof UnAuthenticatedException) {
+      redirect(ROUTES.SIGNOUT);
+    }
+
+    throw new Error(API_COMMON_RESPONSE_ERROR.API_SERVER_ERROR);
+  }
+}
+
+/**
  * Constructs a JSON string payload for creating a new user.
  *
  * @param {Omit<User, 'userId' | 'status'>} user - The user data, excluding 'userId' and 'status', to be formatted into a JSON string.

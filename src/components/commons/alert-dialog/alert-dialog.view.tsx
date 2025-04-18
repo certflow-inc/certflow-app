@@ -10,6 +10,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle
 } from '@/components/ui/alert-dialog';
+import { LoaderCircle } from 'lucide-react';
 import { AlertDialogViewProps } from './alert-dialog.types';
 
 export function AlertDialogView({
@@ -19,6 +20,7 @@ export function AlertDialogView({
   description,
   onCancel,
   cancelButtonLabel,
+  isProcess = false,
   ...props
 }: AlertDialogViewProps) {
   return (
@@ -38,11 +40,17 @@ export function AlertDialogView({
             data-visible={!!onCancel && !!cancelButtonLabel}
             className="hidden data-[visible=true]:block"
             onClick={onCancel}
+            disabled={isProcess}
           >
             {cancelButtonLabel}
           </AlertDialogCancel>
-          <AlertDialogAction onClick={onConfirm}>
-            {confirmButtonLabel}
+          <AlertDialogAction onClick={onConfirm} disabled={isProcess}>
+            <div className="flex items-center gap-2">
+              {confirmButtonLabel}
+              {isProcess && (
+                <LoaderCircle className="ml-2 h-4 w-4 animate-spin" />
+              )}
+            </div>
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

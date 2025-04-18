@@ -7,4 +7,5 @@ export type AlertDialogViewProps = AlertDialogProps & {
   description?: string;
   onCancel?: () => void;
   cancelButtonLabel?: string;
+  isProcess?: boolean;
 };

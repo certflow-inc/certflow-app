@@ -111,13 +111,13 @@ export type ChangePasswordResponse =
 
 export type CheckResponse =
   | API_OK
+  | API_SERVER_ERROR
   | '\"flow\" is required'
   | '\"flow\" must be one of [verification, recovery]'
   | '\"token\" is required'
   | '\"token\" contains an invalid value'
   | 'Link is invalid'
-  | 'Link is expired'
-  | API_SERVER_ERROR;
+  | 'Link is expired';
 
 export type AccountUpdateResponse =
   | API_OK
@@ -172,3 +172,10 @@ export type CreateUserResponse =
   | '\"picture\" is not allowed'
   | '\"status\" is not allowed'
   | 'User already registered';
+
+export type DeleteUserResponse =
+  | API_OK
+  | API_SERVER_ERROR
+  | '\"userId\" is required'
+  | '\"userId\" contains an invalid value'
+  | 'You cannot delete yourself';

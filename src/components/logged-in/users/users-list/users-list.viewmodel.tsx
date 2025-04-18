@@ -1,15 +1,21 @@
 import { getMeDataAction } from '@/actions/me.action';
 import { notFound } from 'next/navigation';
-import { getUserListAction } from './users-list.actions';
+import { deleteUserAction, getUserListAction } from './users-list.actions';
 import { UsersListView } from './users-list.view';
 
 export async function UsersListViewModel() {
-  const users = await getUserListAction();
   const me = await getMeDataAction();
+  const users = await getUserListAction();
 
-  if (!users || !me) {
+  if (!me || !users) {
     return notFound();
   }
 
-  return <UsersListView data={users} currentUser={me} />;
+  return (
+    <UsersListView
+      data={users}
+      currentUser={me}
+      removeAction={deleteUserAction}
+    />
+  );
 }
