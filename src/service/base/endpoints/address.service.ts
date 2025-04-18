@@ -1,4 +1,4 @@
-'server only';
+import 'server-only';
 
 import { UnAuthenticatedException } from '@/exceptions/UnAuthenticatedException';
 import { httpRequest } from '@/lib/fetch';

@@ -1,4 +1,4 @@
-'use server';
+import 'server-only';
 
 import { StatusCodes } from 'http-status-codes';
 import { Cep } from '../domain/cep';

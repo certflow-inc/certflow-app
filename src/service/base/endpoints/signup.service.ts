@@ -1,4 +1,4 @@
-'server only';
+import 'server-only';
 
 import { httpRequest } from '@/lib/fetch';
 import { API_COMMON_RESPONSE_ERROR } from '@/service/base/constants';
