@@ -8,6 +8,10 @@ export type UserListViewModelProps = {
   removeAction: typeof deleteUserAction;
 };
 
+export type UseListModelProps = {
+  removeAction: typeof deleteUserAction;
+};
+
 export type UserListItemObject = User & {
   translatedStatus: string;
   translatedRole: string;
