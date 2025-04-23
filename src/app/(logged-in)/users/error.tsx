@@ -6,7 +6,7 @@ import { ServerError } from '@/components/commons/fallbacks';
 export default function AccountErrorPage() {
   return (
     <LoggedIn.Container
-      breadcrumb={[{ label: 'Configurações' }, { label: 'Conta' }]}
+      breadcrumb={[{ label: 'Configurações' }, { label: 'Usuários' }]}
     >
       <ServerError message="Erro ao carregar os usuários.">
         <Button
