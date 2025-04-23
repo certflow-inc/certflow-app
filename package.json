@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "dev:https": "next dev --experimental-https",
     "dev:staging": "env-cmd -f .env.staging next dev --turbopack",
     "dev:production": "env-cmd -f .env.production next dev --turbopack",
     "build": "next build",
