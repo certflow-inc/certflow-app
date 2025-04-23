@@ -1,16 +1,20 @@
 'use client';
 
+import { useProgress } from '@bprogress/react';
 import { useCallback, useEffect } from 'react';
 import { signout } from './signout.actions';
 
 export function SignoutView() {
+  const { start } = useProgress();
+
   const logout = useCallback(async () => {
     await signout();
   }, []);
 
   useEffect(() => {
+    start();
     logout();
-  }, [logout]);
+  }, [logout, start]);
 
   return (
     <div className="flex-1">

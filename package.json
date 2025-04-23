@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "dev:staging": "env-cmd -f .env.staging next dev --turbopack",
+    "dev:production": "env-cmd -f .env.production next dev --turbopack",
     "build": "next build",
     "build:local": "npm run lint:fix && next build",
     "start": "next start",
@@ -69,6 +71,7 @@
     "@types/react-dom": "^19",
     "commitizen": "^4.3.1",
     "cypress": "^14.2.0",
+    "env-cmd": "^10.1.0",
     "eslint": "^9",
     "eslint-config-next": "15.2.2",
     "eslint-config-prettier": "^10.1.1",

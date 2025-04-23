@@ -2,6 +2,7 @@ import { createSession } from '@/lib/session';
 import { ROUTES } from '@/routes';
 import { SigninResponse } from '@/service/base/types';
 import { IntegrationFieldError } from '@/types';
+import { useProgress } from '@bprogress/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -15,6 +16,7 @@ export function useFormModel({
   action,
   onSigninSubmit
 }: UseSigninFormModelProps) {
+  const { start, stop } = useProgress();
   const rotuer = useRouter();
   const [isProcessing, setIsProcessing] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<
@@ -42,8 +44,8 @@ export function useFormModel({
     setFieldErrors(undefined);
 
     setIsProcessing(true);
+    start();
     const response = await action(email, password);
-    setIsProcessing(false);
 
     if (response.ok && response.data?.token) {
       await createSession(response.data.token, response.data.refreshToken);
@@ -51,6 +53,8 @@ export function useFormModel({
       return;
     }
 
+    stop();
+    setIsProcessing(false);
     const feedbackError =
       SIGNIN_FLOW[response.dataError?.error as SigninResponse];
 

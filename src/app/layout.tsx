@@ -1,4 +1,5 @@
 import '@/lib/http-interceptor';
+import { ProgressProvider } from '@/providers/progress-provider';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ToastContainer } from 'react-toastify';
@@ -23,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        {children}
+        <ProgressProvider>{children}</ProgressProvider>
         <ToastContainer />
       </body>
     </html>
