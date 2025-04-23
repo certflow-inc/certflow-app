@@ -22,7 +22,7 @@ export function UsersListTableView({
 }: UserListTableViewProps) {
   return (
     <Table className="hidden min-[1130px]:block">
-      <TableCaption>Usuários vinculados a conta</TableCaption>
+      <TableCaption>{data.length} usuários vinculados a conta</TableCaption>
 
       <TableHeader>
         <TableRow>

@@ -1,13 +1,22 @@
+import { Role } from '@/service/base/domain/me';
 import { User } from '@/service/base/domain/user';
 import { DeleteUserResponse } from '@/service/base/types';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { DELETE_USER_FLOW } from './user-list.constants';
 import { UseListModelProps } from './user-list.types';
 
-export function useUserListModel({ removeAction }: UseListModelProps) {
+export function useUserListModel({
+  data,
+  currentUser,
+  removeAction,
+  accountAction
+}: UseListModelProps) {
   const [userToDelete, setUserToDelete] = useState<User | null>(null);
   const [isProcess, setIsProcess] = useState(false);
+  const [maxUserAllowed, setMaxUserAllowed] = useState(0);
+  const [canAddMoreUsers, setCanAddMoreUsers] = useState(false);
+  const isOwnerCurrentUser = currentUser.role === Role.Owner.toString();
 
   const handleDeleteUser = (user: User) => {
     setUserToDelete(user);
@@ -46,9 +55,26 @@ export function useUserListModel({ removeAction }: UseListModelProps) {
     }
   }, [removeAction, userToDelete?.name, userToDelete?.userId]);
 
+  useEffect(() => {
+    const getMaxUserAllowed = async () => {
+      const response = await accountAction();
+
+      if (response.ok && response.data) {
+        const maxUserAllowed = response.data.services['users'];
+        setMaxUserAllowed(maxUserAllowed);
+        setCanAddMoreUsers(maxUserAllowed > 0 && data.length < maxUserAllowed);
+      }
+    };
+
+    getMaxUserAllowed();
+  }, [accountAction, data.length]);
+
   return {
-    userToDelete,
     isProcess,
+    userToDelete,
+    maxUserAllowed,
+    canAddMoreUsers,
+    isOwnerCurrentUser,
     handleDeleteUser,
     handleCancelDeleteUser,
     handleConfirmDeleteUser

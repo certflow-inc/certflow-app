@@ -11,29 +11,43 @@ import { UserListViewModelProps } from './user-list.types';
 export function UsersListView({
   data,
   currentUser,
-  removeAction
+  removeAction,
+  accountAction
 }: UserListViewModelProps) {
   const {
     isProcess,
     userToDelete,
+    maxUserAllowed,
+    canAddMoreUsers,
+    isOwnerCurrentUser,
     handleDeleteUser,
     handleCancelDeleteUser,
     handleConfirmDeleteUser
   } = useUserListModel({
-    removeAction
+    data,
+    currentUser,
+    removeAction,
+    accountAction
   });
 
   return (
     <>
       <section className="flex flex-col gap-6">
         <header className="flex items-center justify-between gap-2 px-2">
-          <h1 className="truncate text-xl font-semibold overflow-ellipsis text-slate-500 min-[1130px]:text-left min-[1130px]:text-2xl">
+          <h1 className="flex flex-col gap-2 truncate font-semibold overflow-ellipsis text-slate-500 min-[1130px]:text-left lg:text-2xl">
             Usuários vinculados a conta
+            <span
+              data-visible={isOwnerCurrentUser}
+              className="hidden text-xs data-[visible=true]:block"
+            >
+              máximo permitido na conta: {maxUserAllowed}
+            </span>
           </h1>
 
           <Button
             asChild
-            className="border-0 bg-transparent p-0 hover:bg-blue-200"
+            data-visible={canAddMoreUsers && isOwnerCurrentUser}
+            className="hidden border-0 bg-transparent p-0 hover:bg-blue-200 data-[visible=true]:flex"
             variant="outline"
             size="lg"
           >
