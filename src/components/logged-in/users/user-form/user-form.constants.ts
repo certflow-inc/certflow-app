@@ -81,6 +81,11 @@ export const CREATE_USER_FLOW: Record<CreateUserResponse, IntegrationFlow> = {
     description: 'Status nao permitido',
     toast: true
   },
+  'You have reached the limit of users': {
+    title: 'Limite de usuários atingido',
+    description: 'Limite de usuários atingido',
+    toast: true
+  },
   'User already registered': {
     title: 'Já existe um usuário cadastrado com o email informado',
     description: 'Já existe um usuário cadastrado com o email informado',

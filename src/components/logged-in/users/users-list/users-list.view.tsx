@@ -40,7 +40,12 @@ export function UsersListView({
               data-visible={isOwnerCurrentUser}
               className="hidden text-xs data-[visible=true]:block"
             >
-              máximo permitido na conta: {maxUserAllowed}
+              {!!maxUserAllowed && (
+                <span>Mamáximo permitido na conta: {maxUserAllowed}</span>
+              )}
+              {!maxUserAllowed && (
+                <span>Não é permitida a inclusão de mais usuários</span>
+              )}
             </span>
           </h1>
 

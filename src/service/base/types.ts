@@ -171,6 +171,7 @@ export type CreateUserResponse =
   | '\"role\" must be one of [manager, user]'
   | '\"picture\" is not allowed'
   | '\"status\" is not allowed'
+  | 'You have reached the limit of users'
   | 'User already registered';
 
 export type DeleteUserResponse =
