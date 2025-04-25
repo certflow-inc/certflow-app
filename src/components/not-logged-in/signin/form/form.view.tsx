@@ -64,7 +64,7 @@ export function SigninFormView({
           type="button"
           variant="outline"
           size="lg"
-          onClick={() => rotuer.push(ROUTES.SIGNUP)}
+          onClick={() => rotuer.push(ROUTES.SIGNUP.url)}
           disabled={isProcessing}
         >
           Cadastrar
@@ -72,7 +72,7 @@ export function SigninFormView({
 
         <Link
           id="forgot-password-link"
-          href={ROUTES.FORGOT_PASSWORD}
+          href={ROUTES.FORGOT_PASSWORD.url}
           aria-disabled={isProcessing}
           className="text-primary hover:text-primary-600 active:text-primary-700 text-center aria-[disabled=true]:pointer-events-none"
         >

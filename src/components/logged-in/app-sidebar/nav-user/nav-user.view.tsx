@@ -1,12 +1,11 @@
 'use client';
 
 import {
-  BadgeCheck,
-  Bell,
   ChevronsUpDown,
   CreditCard,
   LogOut,
-  Sparkles
+  NotebookPen,
+  SquareUser
 } from 'lucide-react';
 
 import { redirectFromClient } from '@/actions/navigation';
@@ -26,19 +25,23 @@ import {
   SidebarMenuItem
 } from '@/components/ui/sidebar';
 import { ROUTES } from '@/routes';
+import Link from 'next/link';
+import { useState } from 'react';
 import { NavUserViewProps } from './nav-user.types';
 
 export function NavUserView({ model }: NavUserViewProps) {
   const { user, isMobile, getInitials } = model;
+  const [open, setOpen] = useState(false);
 
   return (
     <SidebarMenu>
       <SidebarMenuItem>
-        <DropdownMenu>
+        <DropdownMenu open={open} onOpenChange={(state) => setOpen(state)}>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+              onClick={() => setOpen(!open)}
             >
               <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage src={user?.picture} alt={user?.name} />
@@ -76,28 +79,37 @@ export function NavUserView({ model }: NavUserViewProps) {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <Sparkles />
-                Upgrade to Pro
+                <Link href="#" className="flex w-full items-center gap-2">
+                  <NotebookPen />
+                  Mudar Plano
+                </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <BadgeCheck />
-                Conta
+              <DropdownMenuItem onClick={() => setOpen(false)}>
+                <Link
+                  href={ROUTES.ACCOUNT.url}
+                  className="flex w-full items-center gap-2"
+                >
+                  <SquareUser />
+                  Conta
+                </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <CreditCard />
-                Pagamentos
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Bell />
-                Notificações
+              <DropdownMenuItem onClick={() => setOpen(false)}>
+                <Link
+                  href={ROUTES.PAYMENTS.url}
+                  className="flex w-full items-center gap-2"
+                >
+                  <CreditCard />
+                  Pagamentos
+                </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem
-              onClick={() => redirectFromClient(ROUTES.SIGNOUT)}
+              className="cursor-pointer"
+              onClick={() => redirectFromClient(ROUTES.SIGNOUT.url)}
             >
               <LogOut />
               Sair

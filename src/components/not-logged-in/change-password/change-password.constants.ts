@@ -10,43 +10,43 @@ export const CHECK_RECOVERY_FLOW: Record<CheckResponse, IntegrationFlow> = {
   '"flow" is required': {
     title: 'Ops!!! Ocorreu um erro ao validar o link de redefinição de senha!',
     description: 'Clique no botão abaixo para solicitar outro link.',
-    destination: ROUTES.FORGOT_PASSWORD,
+    destination: ROUTES.FORGOT_PASSWORD.url,
     destinationLabel: 'Quero um novo link'
   },
   '"flow" must be one of [verification, recovery]': {
     title: 'Ops!!! Ocorreu um erro ao validar o link de redefinição de senha!',
     description: 'Clique no botão abaixo para solicitar outro link.',
-    destination: ROUTES.FORGOT_PASSWORD,
+    destination: ROUTES.FORGOT_PASSWORD.url,
     destinationLabel: 'Quero um novo link'
   },
   '"token" contains an invalid value': {
     title: 'Ops!!! Ocorreu um erro ao validar o link de redefinição de senha!',
     description: 'Clique no botão abaixo para solicitar outro link.',
-    destination: ROUTES.FORGOT_PASSWORD,
+    destination: ROUTES.FORGOT_PASSWORD.url,
     destinationLabel: 'Quero um novo link'
   },
   '"token" is required': {
     title: 'Ops!!! Ocorreu um erro ao validar o link de redefinição de senha!',
     description: 'Clique no botão abaixo para solicitar outro link.',
-    destination: ROUTES.FORGOT_PASSWORD,
+    destination: ROUTES.FORGOT_PASSWORD.url,
     destinationLabel: 'Quero um novo link'
   },
   'An error occurred while processing your request. Please, try again later': {
     title: 'Ops!!! Ocorreu um erro ao validar o link de redefinição de senha!',
     description: 'Clique no botão abaixo para tentar novamente.',
-    destination: ROUTES.CHANGE_PASSWORD,
+    destination: ROUTES.CHANGE_PASSWORD.url,
     destinationLabel: 'Tentar novamente'
   },
   'Link is expired': {
     title: 'Link expirado',
     description: 'Clique no botão abaixo para solicitar um novo link.',
-    destination: ROUTES.FORGOT_PASSWORD,
+    destination: ROUTES.FORGOT_PASSWORD.url,
     destinationLabel: 'Quero um novo link'
   },
   'Link is invalid': {
     title: 'Link inválido',
     description: 'Clique no botão abaixo para solicitar um novo link.',
-    destination: ROUTES.FORGOT_PASSWORD,
+    destination: ROUTES.FORGOT_PASSWORD.url,
     destinationLabel: 'Quero um novo link'
   }
 };
@@ -58,7 +58,7 @@ export const CHANGE_PASSWORD_FLOW: Record<
   Ok: {
     title: 'Senha alterada com sucesso!',
     description: 'Clique no botão abaixo para voltar a tela de login',
-    destination: ROUTES.SIGNIN,
+    destination: ROUTES.SIGNIN.url,
     destinationLabel: 'Voltar para login'
   },
   '\"password\" is required': {
@@ -109,13 +109,13 @@ export const CHANGE_PASSWORD_FLOW: Record<
   'Link is expired': {
     title: 'Link expirado',
     description: 'Clique no botão abaixo para solicitar um novo link.',
-    destination: ROUTES.FORGOT_PASSWORD,
+    destination: ROUTES.FORGOT_PASSWORD.url,
     destinationLabel: 'Quero um novo link'
   },
   'Link is invalid': {
     title: 'Link inválido',
     description: 'Clique no botão abaixo para solicitar um novo link.',
-    destination: ROUTES.FORGOT_PASSWORD,
+    destination: ROUTES.FORGOT_PASSWORD.url,
     destinationLabel: 'Quero um novo link'
   },
   'User is not active': {
@@ -126,7 +126,7 @@ export const CHANGE_PASSWORD_FLOW: Record<
   'An error occurred while processing your request. Please, try again later': {
     title: 'Ops!!! Ocorreu um erro ao realizar o cadastro!',
     description: 'Clique no botão abaixo para tentar novamente.',
-    destination: ROUTES.CHANGE_PASSWORD,
+    destination: ROUTES.CHANGE_PASSWORD.url,
     destinationLabel: 'Tentar novamente',
     toast: true
   }

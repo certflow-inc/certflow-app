@@ -16,6 +16,6 @@ export async function signout(): Promise<void> {
   } finally {
     revalidateAllQueries();
     destroySession();
-    redirect(ROUTES.SIGNIN);
+    redirect(ROUTES.SIGNIN.url);
   }
 }

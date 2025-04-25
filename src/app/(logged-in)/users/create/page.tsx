@@ -4,9 +4,7 @@ import { createUser } from '@/components/logged-in/users/users-actions';
 
 export default function UserCreatePage() {
   return (
-    <LoggedIn.Container
-      breadcrumb={[{ label: 'Configurações' }, { label: 'Usuários' }]}
-    >
+    <LoggedIn.Container>
       <UserForm action={createUser} />
     </LoggedIn.Container>
   );

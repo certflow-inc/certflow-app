@@ -23,9 +23,7 @@ export function BreadcrumbView({ data }: BreadcrumbViewProps) {
               )}
             </BreadcrumbItem>
 
-            {index < data.length - 1 && (
-              <BreadcrumbSeparator className="hidden md:block" />
-            )}
+            {index < data.length - 1 && <BreadcrumbSeparator />}
           </React.Fragment>
         ))}
       </BreadcrumbList>

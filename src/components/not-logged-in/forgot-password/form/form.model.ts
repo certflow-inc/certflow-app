@@ -39,7 +39,7 @@ export function useForgotPasswordFormModel({
   };
 
   const handleBackButtonClick = () => {
-    router.push(ROUTES.SIGNIN);
+    router.push(ROUTES.SIGNIN.url);
   };
 
   const handleForgotPasswordSubmit = handleSubmit(

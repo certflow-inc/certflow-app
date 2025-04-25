@@ -4,9 +4,7 @@ import { Button, LoggedIn, NoData } from '@/components';
 
 export default function AccountNotFoundPage() {
   return (
-    <LoggedIn.Container
-      breadcrumb={[{ label: 'Configurações' }, { label: 'Usuários' }]}
-    >
+    <LoggedIn.Container>
       <NoData
         message="Não foi possível listar os usuários da sua conta."
         description="Entre em contato com o suporte para maiores informações."

@@ -18,13 +18,13 @@ export async function middleware(request: NextRequest) {
     if (session) {
       if (isExpired(session.value)) {
         destroySession();
-        return NextResponse.redirect(new URL(ROUTES.SIGNIN, request.url));
+        return NextResponse.redirect(new URL(ROUTES.SIGNIN.url, request.url));
       }
       return NextResponse.next();
     }
 
     if (!session) {
-      return NextResponse.redirect(new URL(ROUTES.SIGNIN, request.url));
+      return NextResponse.redirect(new URL(ROUTES.SIGNIN.url, request.url));
     }
   }
 
@@ -35,7 +35,7 @@ export async function middleware(request: NextRequest) {
 
   if (isPublicRouteRequested) {
     return session
-      ? NextResponse.redirect(new URL(ROUTES.DASHBOARD, request.url))
+      ? NextResponse.redirect(new URL(ROUTES.DASHBOARD.url, request.url))
       : NextResponse.next();
   }
 }

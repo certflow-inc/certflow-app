@@ -9,7 +9,7 @@ export default function AccountNotFoundPage() {
   return (
     <NotLoggedIn.Container>
       <NoData message="Página não encontrada." showLogo>
-        <Button size="lg" onClick={() => router.push(ROUTES.DASHBOARD)}>
+        <Button size="lg" onClick={() => router.push(ROUTES.DASHBOARD.url)}>
           Voltar para o Dashboard
         </Button>
       </NoData>

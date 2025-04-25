@@ -15,7 +15,7 @@ export default function Error() {
       </p>
 
       <Button>
-        <Link href={ROUTES.SIGNIN}>Voltar para o login</Link>
+        <Link href={ROUTES.SIGNIN.url}>Voltar para o login</Link>
       </Button>
     </div>
   );

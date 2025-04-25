@@ -49,7 +49,7 @@ export function useFormModel({
 
     if (response.ok && response.data?.token) {
       await createSession(response.data.token, response.data.refreshToken);
-      rotuer.replace(ROUTES.DASHBOARD);
+      rotuer.replace(ROUTES.DASHBOARD.url);
       return;
     }
 

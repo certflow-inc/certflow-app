@@ -1,51 +1,8 @@
-type PublicRoutes =
-  | 'SIGNIN'
-  | 'SIGNUP'
-  | 'SIGNUP_ACTIVATION'
-  | 'SIGNOUT'
-  | 'ACTIVATION_REQUEST'
-  | 'FORGOT_PASSWORD'
-  | 'CHANGE_PASSWORD';
+export type {
+  PrivateRoutes,
+  PublicRoutes,
+  Route,
+  RouteKeys
+} from './routes.types';
 
-type PrivateRoutes =
-  | 'ACCOUNT'
-  | 'DASHBOARD'
-  | 'ABOUT'
-  | 'USERS'
-  | 'USERS_CREATE';
-
-type Routes = PublicRoutes | PrivateRoutes;
-
-export const ROUTES: Record<Routes, string> = {
-  // PUBLIC
-  SIGNIN: '/signin',
-  SIGNUP: '/signup',
-  SIGNUP_ACTIVATION: '/signup-activation',
-  SIGNOUT: '/signout',
-  ACTIVATION_REQUEST: '/activation-request',
-  FORGOT_PASSWORD: '/forgot-password',
-  CHANGE_PASSWORD: '/change-password',
-  // PRIVATE
-  ACCOUNT: '/account',
-  DASHBOARD: '/dashboard',
-  ABOUT: '/about',
-  USERS: '/users',
-  USERS_CREATE: '/users/create'
-};
-
-export const PUBLIC_ROUTES = [
-  ROUTES.SIGNIN,
-  ROUTES.SIGNUP,
-  ROUTES.SIGNUP_ACTIVATION,
-  ROUTES.ACTIVATION_REQUEST,
-  ROUTES.FORGOT_PASSWORD,
-  ROUTES.CHANGE_PASSWORD
-];
-
-export const PRIVATE_ROUTES = [
-  ROUTES.ACCOUNT,
-  ROUTES.DASHBOARD,
-  ROUTES.ABOUT,
-  ROUTES.USERS,
-  ROUTES.USERS_CREATE
-];
+export { PRIVATE_ROUTES, PUBLIC_ROUTES, ROUTES } from './routes.constants';

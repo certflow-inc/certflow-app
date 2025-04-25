@@ -47,7 +47,7 @@ export async function check(request: CheckRequest) {
     };
   } catch (_error) {
     if (_error instanceof UnAuthenticatedException) {
-      redirect(ROUTES.SIGNOUT);
+      redirect(ROUTES.SIGNOUT.url);
     }
 
     throw new Error(API_COMMON_RESPONSE_ERROR.API_SERVER_ERROR);

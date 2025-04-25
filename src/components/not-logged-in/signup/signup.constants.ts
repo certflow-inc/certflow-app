@@ -7,13 +7,13 @@ export const SIGNUP_FLOW: Record<SignupResponse, IntegrationFlow> = {
     title: 'Um email foi enviado para você!',
     description:
       'Verifique sua caixa de mensagens, encontre o email enviado e clique no link existente para ativar a sua conta.',
-    destination: ROUTES.SIGNIN,
+    destination: ROUTES.SIGNIN.url,
     destinationLabel: 'Voltar para login'
   },
   'An error occurred while processing your request. Please, try again later': {
     title: 'Ops!!! Ocorreu um erro ao realizar o cadastro!',
     description: 'Clique no botão abaixo para tentar novamente.',
-    destination: ROUTES.SIGNUP,
+    destination: ROUTES.SIGNUP.url,
     destinationLabel: 'Tentar novamente',
     toast: true
   },
@@ -21,7 +21,7 @@ export const SIGNUP_FLOW: Record<SignupResponse, IntegrationFlow> = {
     title: 'Conta já cadastrada',
     description:
       'Email, CPF ou CNPJ informado já cadastrado!. Caso seja você, clique no link de redefinição de senha para redefini-la.',
-    destination: ROUTES.SIGNIN,
+    destination: ROUTES.SIGNIN.url,
     destinationLabel: 'Voltar para login',
     toast: true
   },
@@ -29,7 +29,7 @@ export const SIGNUP_FLOW: Record<SignupResponse, IntegrationFlow> = {
     title: 'Conta já cadastrada',
     description:
       'Email, CPF ou CNPJ informado já cadastrado! Caso seja você, clique no link de redefinição de senha para redefini-la.',
-    destination: ROUTES.SIGNIN,
+    destination: ROUTES.SIGNIN.url,
     destinationLabel: 'Voltar para login',
     toast: true
   },

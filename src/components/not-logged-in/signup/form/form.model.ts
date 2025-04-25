@@ -63,7 +63,7 @@ export function useSignupFormModel({
   };
 
   const handleBackButtonClick = () => {
-    router.push(ROUTES.SIGNIN);
+    router.push(ROUTES.SIGNIN.url);
   };
 
   const handleTypePersonChange = (value: PersonType) => {

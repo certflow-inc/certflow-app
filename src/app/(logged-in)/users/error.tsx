@@ -5,9 +5,7 @@ import { ServerError } from '@/components/commons/fallbacks';
 
 export default function AccountErrorPage({ reset }: { reset: () => void }) {
   return (
-    <LoggedIn.Container
-      breadcrumb={[{ label: 'Configurações' }, { label: 'Usuários' }]}
-    >
+    <LoggedIn.Container>
       <ServerError message="Erro ao carregar os usuários.">
         <Button onClick={reset} size="lg" variant="default">
           Tentar novamente

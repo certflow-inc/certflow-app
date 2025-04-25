@@ -44,7 +44,7 @@ export async function getUsers(): Promise<ApiResponse<Me[]>> {
     };
   } catch (_error) {
     if (_error instanceof UnAuthenticatedException) {
-      redirect(ROUTES.SIGNOUT);
+      redirect(ROUTES.SIGNOUT.url);
     }
 
     throw new Error(API_COMMON_RESPONSE_ERROR.API_SERVER_ERROR);
@@ -103,7 +103,7 @@ export async function createUser(
     };
   } catch (_error) {
     if (_error instanceof UnAuthenticatedException) {
-      redirect(ROUTES.SIGNOUT);
+      redirect(ROUTES.SIGNOUT.url);
     }
 
     throw new Error(API_COMMON_RESPONSE_ERROR.API_SERVER_ERROR);
@@ -155,7 +155,7 @@ export async function deleteUser(userId: string): Promise<ApiResponse<void>> {
     };
   } catch (_error) {
     if (_error instanceof UnAuthenticatedException) {
-      redirect(ROUTES.SIGNOUT);
+      redirect(ROUTES.SIGNOUT.url);
     }
 
     throw new Error(API_COMMON_RESPONSE_ERROR.API_SERVER_ERROR);

@@ -1,7 +1,6 @@
 import { ROUTES } from '@/routes';
 import {
-  BookOpenCheck,
-  CircleDollarSign,
+  CreditCard,
   Dock,
   LayoutDashboard,
   LibraryBig,
@@ -20,12 +19,12 @@ export const DATA = {
       items: [
         {
           title: 'Dashboard',
-          url: ROUTES.DASHBOARD,
+          url: ROUTES.DASHBOARD.url,
           icon: LayoutDashboard
         },
         {
           title: 'Sobre',
-          url: ROUTES.ABOUT,
+          url: ROUTES.ABOUT.url,
           icon: LibraryBig
         }
       ]
@@ -37,23 +36,18 @@ export const DATA = {
       items: [
         {
           title: 'Conta',
-          url: ROUTES.ACCOUNT,
+          url: ROUTES.ACCOUNT.url,
           icon: SquareUser
         },
         {
           title: 'Usuários',
-          url: ROUTES.USERS,
+          url: ROUTES.USERS.url,
           icon: Users
         },
         {
-          title: 'Planos',
-          url: '#',
-          icon: BookOpenCheck
-        },
-        {
           title: 'Pagamentos',
-          url: '#',
-          icon: CircleDollarSign
+          url: ROUTES.PAYMENTS.url,
+          icon: CreditCard
         }
       ]
     }

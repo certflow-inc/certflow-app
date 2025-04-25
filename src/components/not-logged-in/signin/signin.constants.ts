@@ -10,7 +10,7 @@ export const SIGNIN_FLOW: Record<SigninResponse, IntegrationFlow> = {
   'An error occurred while processing your request. Please, try again later': {
     title: 'Ops!!! Ocorreu um erro ao realizar o login!',
     description: 'Clique no botão abaixo para tentar novamente.',
-    destination: ROUTES.SIGNIN,
+    destination: ROUTES.SIGNIN.url,
     destinationLabel: 'Tentar novamente',
     toast: true
   },

@@ -49,7 +49,7 @@ export function useUserFormModel({ data, action }: UserFormModelProps) {
         position: 'bottom-center',
         closeOnClick: true,
         onClose: () => {
-          redirectFromClient(ROUTES.USERS);
+          redirectFromClient(ROUTES.USERS.url);
         }
       });
       return;
