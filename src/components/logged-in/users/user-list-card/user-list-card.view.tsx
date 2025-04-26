@@ -17,32 +17,14 @@ export function UserCardView({
   return (
     <Card className="border-0">
       <CardContent className="flex flex-col gap-4">
-        <div className="flex flex-col gap-2">
-          <p className="text-sm text-slate-500">Nome</p>
-          <p className="truncate text-base overflow-ellipsis">{data.name}</p>
-        </div>
-        <div className="flex flex-col gap-2">
-          <p className="text-sm text-slate-500">E-mail</p>
-          <p className="truncate text-base overflow-ellipsis">{data.email}</p>
-        </div>
-        <div className="flex flex-col gap-2">
-          <p className="text-sm text-slate-500">Celular</p>
-          <p className="truncate text-base overflow-ellipsis">
-            {format(data.mobilePhone, INPUT_MASKED_FORMATS.phone)}
-          </p>
-        </div>
-        <div className="flex flex-col gap-2">
-          <p className="text-sm text-slate-500">Tipo</p>
-          <p className="truncate text-base overflow-ellipsis">
-            {data.translatedRole}
-          </p>
-        </div>
-        <div className="flex flex-col gap-2">
-          <p className="text-sm text-slate-500">Status</p>
-          <p className="truncate text-base overflow-ellipsis">
-            {data.translatedStatus}
-          </p>
-        </div>
+        <Cell label="Nome" value={data.name} />
+        <Cell label="E-mail" value={data.email} />
+        <Cell
+          label="Celular"
+          value={format(data.mobilePhone, INPUT_MASKED_FORMATS.phone)}
+        />
+        <Cell label="Tipo" value={data.translatedRole} />
+        <Cell label="Status" value={data.translatedStatus} />
       </CardContent>
 
       <CardFooter
@@ -58,5 +40,14 @@ export function UserCardView({
         </button>
       </CardFooter>
     </Card>
+  );
+}
+
+function Cell({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex flex-col gap-2">
+      <p className="text-sm text-slate-500">{label}</p>
+      <p className="line-clamp-1 text-base">{value}</p>
+    </div>
   );
 }
