@@ -5,34 +5,45 @@ import { PaymentListTable } from '../payment-list-table';
 // TODO remover quando integrar com a api
 const data: Payment[] = [
   {
+    paymentId: '67e6ed26a55f340b4957f4e9',
+    description: 'Pacote de boas vindas',
+    provider: 'Mercado Pago',
+    method: 'Crédito',
+    status: 'Pago',
+    amount: 0,
+    observation: 'Bônus concedido durante a criação da sua conta. Aproveite.',
+    createdAt: 1743187238990
+    // approvedAt: 1743187238991,
+  },
+  {
     paymentId: '1',
     description: 'Descrição 1',
     provider: 'Mercado Pago',
-    paymentMethod: 'Crédito',
+    method: 'Crédito',
     status: 'Aprovado',
-    value: 'R$ 1.000,00',
+    amount: 20.99,
     observation: 'Observação 1',
-    createdAt: '10/04/2025'
+    createdAt: 1743187238990
   },
   {
     paymentId: '2',
     description: 'Descrição 2',
     provider: 'Mercado Pago',
-    paymentMethod: 'Crédito',
+    method: 'Crédito',
     status: 'Aprovado',
-    value: 'R$ 1.000,00',
+    amount: 1000,
     observation: 'Observação 1',
-    createdAt: '10/04/2025'
+    createdAt: 1743187238990
   },
   {
     paymentId: '3',
     description: 'Descrição 3',
     provider: 'Mercado Pago',
-    paymentMethod: 'Crédito',
+    method: 'Crédito',
     status: 'Aprovado',
-    value: 'R$ 1.000,00',
+    amount: 150.99,
     observation: 'Observação 1',
-    createdAt: '10/04/2025'
+    createdAt: 1743187238990
   }
 ];
 
@@ -46,7 +57,7 @@ export function PaymentListView() {
       </header>
       <div className="flex flex-col rounded-md bg-blue-100 p-1 min-[1130px]:bg-white min-[1130px]:p-1">
         <PaymentListTable data={data} />
-        <PaymentListCards />
+        <PaymentListCards data={data} />
       </div>
     </section>
   );

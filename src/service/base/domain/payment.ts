@@ -2,9 +2,9 @@ export type Payment = {
   paymentId: string;
   description: string;
   provider: string;
-  paymentMethod: string;
+  method: string;
   status: string;
-  value: string;
+  amount: number;
   observation: string;
-  createdAt: string;
+  createdAt: number;
 };

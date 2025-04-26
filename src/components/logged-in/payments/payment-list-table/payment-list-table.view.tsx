@@ -3,10 +3,12 @@
 import {
   Table,
   TableBody,
+  TableCaption,
   TableHead,
   TableHeader,
   TableRow
 } from '@/components/ui/table';
+import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 import { PaymentListRowView } from './payment-list-row.view';
 import { PaymentListTableViewProps } from './payment-list-table.types';
@@ -16,6 +18,8 @@ export function PaymentListTableView({ data }: PaymentListTableViewProps) {
 
   return (
     <Table className="hidden min-[1130px]:block">
+      <TableCaption>Pagamentos realizados</TableCaption>
+
       <TableHeader>
         <TableRow>
           <TableHead className="w-1/4 max-w-[250px] text-slate-500">
@@ -30,14 +34,16 @@ export function PaymentListTableView({ data }: PaymentListTableViewProps) {
           <TableHead className="w-1/5 max-w-[150px] text-slate-500">
             Status
           </TableHead>
-          <TableHead className="w-1/5 max-w-[150px] pr-10 text-right text-slate-500">
+          <TableHead className="w-1/5 max-w-[150px] text-right text-slate-500">
             Valor
           </TableHead>
-          <TableHead className="max-w-[80px]" />
+          <TableHead className="w-1/5 max-w-[80px]">
+            <ChevronDown size={26} className="invisible" />
+          </TableHead>
         </TableRow>
       </TableHeader>
 
-      <TableBody style={{ all: 'unset' }}>
+      <TableBody>
         {data.map((payment) => (
           <PaymentListRowView
             key={payment.paymentId}

@@ -7,7 +7,7 @@ type InputMakedProps = InputProps & {
   format: Formats;
 };
 
-type Formats = 'phone' | 'cpf' | 'cnpj' | 'cep';
+type Formats = 'phone' | 'cpf' | 'cnpj' | 'cep' | 'currency';
 
 export { format };
 
@@ -29,6 +29,10 @@ export const INPUT_MASKED_FORMATS: Record<
   },
   cep: {
     mask: '_____-___',
+    replacement: { _: /\d/ }
+  },
+  currency: {
+    mask: 'R$ __.__,___',
     replacement: { _: /\d/ }
   }
 };
