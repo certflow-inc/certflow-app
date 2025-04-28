@@ -41,7 +41,7 @@ export function UsersListView({
               className="hidden text-xs data-[visible=true]:block"
             >
               {!!maxUserAllowed && (
-                <span>Mamáximo permitido na conta: {maxUserAllowed}</span>
+                <span>Máximo permitido na conta: {maxUserAllowed}</span>
               )}
               {!maxUserAllowed && (
                 <span>Não é permitida a inclusão de mais usuários</span>
