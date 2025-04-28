@@ -3,7 +3,7 @@
 import { TableCell, TableRow } from '@/components/ui/table';
 import { cn } from '@/lib/utils';
 import { ChevronDown } from 'lucide-react';
-import { PaymentListRowViewProps } from './payment-list-table.types';
+import { PaymentListRowViewProps } from './payment-list-row.types';
 
 export function PaymentListRowView({
   data,
@@ -37,10 +37,7 @@ export function PaymentListRowView({
         {data.status}
       </TableCell>
       <TableCell className="w-1/5 max-w-[150px] truncate text-right text-base overflow-ellipsis md:text-lg">
-        {Number(data.amount).toLocaleString('pt-BR', {
-          style: 'currency',
-          currency: 'BRL'
-        })}
+        {data.amount}
       </TableCell>
       <TableCell className="w-1/5 max-w-[80px] justify-end">
         <button
@@ -64,22 +61,18 @@ export function PaymentListRowView({
         'data-[expanded=true]:table-row data-[expanded=true]:bg-blue-50 data-[expanded=true]:py-2 data-[expanded=true]:shadow-md'
       )}
     >
-      <TableCell className="w-1/6 px-8 py-6">
+      <TableCell className="w-1/6 px-3 py-6">
         <div className="grid gap-4">
           <div className="text-slate-500">Criado em</div>
-          <span>{new Date(data.createdAt).toLocaleDateString('pt-BR')}</span>
+          <span>{data.createdAt}</span>
         </div>
       </TableCell>
-      <TableCell>
+      <TableCell colSpan={5}>
         <div className="grid gap-4">
           <div className="text-slate-500">Observação</div>
           <p className="text-wrap">{data.observation}</p>
         </div>
       </TableCell>
-      <TableCell></TableCell>
-      <TableCell></TableCell>
-      <TableCell></TableCell>
-      <TableCell></TableCell>
     </TableRow>
   ];
 }

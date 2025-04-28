@@ -11,17 +11,8 @@ export function PaymentListCardView({ data }: PaymentListCardViewProps) {
         <Cell label="Provedor" value={data.provider} />
         <Cell label="Meio de pagamento" value={data.method} />
         <Cell label="Status" value={data.status} />
-        <Cell
-          label="Valor"
-          value={Number(data.amount).toLocaleString('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-          })}
-        />
-        <Cell
-          label="Criado em"
-          value={new Date(data.createdAt).toLocaleDateString('pt-BR')}
-        />
+        <Cell label="Valor" value={data.amount} />
+        <Cell label="Criado em" value={data.createdAt} />
         <Cell label="Observação" value={data.observation} />
       </CardContent>
     </Card>

@@ -1,5 +1,5 @@
-import { Payment } from '@/service/base/domain/payment';
+import { PaymentData } from '../payments.types';
 
 export type PaymentListCardsViewProps = {
-  data: Payment[];
+  data: PaymentData[];
 };

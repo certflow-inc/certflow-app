@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/table';
 import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
-import { PaymentListRowView } from './payment-list-row.view';
+import { PaymentListRowView } from '../payment-list-row/payment-list-row.view';
 import { PaymentListTableViewProps } from './payment-list-table.types';
 
 export function PaymentListTableView({ data }: PaymentListTableViewProps) {

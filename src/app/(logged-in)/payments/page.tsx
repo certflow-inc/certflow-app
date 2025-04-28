@@ -1,5 +1,5 @@
 import { LoggedIn } from '@/components';
-import { PaymentList } from '@/components/logged-in/payments/payment-list';
+import { PaymentList } from '@/components/logged-in/payments';
 
 export default function PaymentsPage() {
   return (

@@ -12,6 +12,8 @@ type API_OK = 'Ok';
 export type API_COMMON_ERRORS = 'API_SERVER_ERROR';
 export type API_SERVER_ERROR =
   'An error occurred while processing your request. Please, try again later';
+export type API_UNAUTHORIZED_ERROR = 'Invalid token';
+export type API_FORBIDDEN_ERROR = 'You are not allowed to access this resource';
 
 export type SigninResponse =
   | API_OK
@@ -180,3 +182,9 @@ export type DeleteUserResponse =
   | '\"userId\" is required'
   | '\"userId\" contains an invalid value'
   | 'You cannot delete yourself';
+
+export type PaymentResponse =
+  | API_OK
+  | API_UNAUTHORIZED_ERROR
+  | API_FORBIDDEN_ERROR
+  | API_SERVER_ERROR;
