@@ -16,6 +16,7 @@ export const UserListConstants = {
   Status
 };
 
+import { ROUTES } from '@/routes';
 import { DeleteUserResponse } from '@/service/base/types';
 import { IntegrationFlow } from '@/types';
 
@@ -23,6 +24,16 @@ export const DELETE_USER_FLOW: Record<DeleteUserResponse, IntegrationFlow> = {
   Ok: {
     title: 'Usuário @user excluído com sucesso!',
     description: 'Usuário excluído com sucesso!'
+  },
+  'Invalid token': {
+    title: 'Token inválido ou inexistente',
+    description: 'Token inválido ou inexistente',
+    redirect: ROUTES.SIGNOUT.url
+  },
+  'You are not allowed to access this resource': {
+    title: 'Acesso negado',
+    description: 'Acesso negado',
+    redirect: ROUTES.DASHBOARD.url
   },
   'An error occurred while processing your request. Please, try again later': {
     title: 'Ops!!! Ocorreu um erro ao remover o usuário!',

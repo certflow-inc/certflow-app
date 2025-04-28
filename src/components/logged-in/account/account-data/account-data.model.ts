@@ -1,3 +1,4 @@
+import { redirectFromClient } from '@/actions/navigation';
 import { AccountUpdateResponse } from '@/service/base/types';
 import { IntegrationFieldError } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -50,6 +51,11 @@ export function useAccountDataModel({ data, action }: UseAccountModelProps) {
 
     const feedbackError =
       ACCOUNT_DATA_FLOW[response.dataError?.error as AccountUpdateResponse];
+
+    if (feedbackError.redirect) {
+      redirectFromClient(feedbackError.redirect);
+      return;
+    }
 
     if (feedbackError.toast) {
       toast(feedbackError.title, {

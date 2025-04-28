@@ -1,3 +1,4 @@
+import { ROUTES } from '@/routes';
 import { AccountAddressUpdateResponse } from '@/service/base/types';
 import { IntegrationFlow } from '@/types';
 
@@ -8,6 +9,16 @@ export const ACCOUNT_ADDRESS_FLOW: Record<
   Ok: {
     title: 'Dados do endereço da conta atualizados com sucesso!',
     description: 'Seus dados foram atualizados com sucesso.'
+  },
+  'Invalid token': {
+    title: 'Token inválido ou inexistente',
+    description: 'Token inválido ou inexistente',
+    redirect: ROUTES.SIGNOUT.url
+  },
+  'You are not allowed to access this resource': {
+    title: 'Acesso negado',
+    description: 'Acesso negado',
+    redirect: ROUTES.DASHBOARD.url
   },
   'An error occurred while processing your request. Please, try again later': {
     title: 'Ops!!! Ocorreu um erro ao atualizar os dados da conta!',

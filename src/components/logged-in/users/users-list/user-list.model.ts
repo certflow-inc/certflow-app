@@ -1,3 +1,4 @@
+import { redirectFromClient } from '@/actions/navigation';
 import { Role } from '@/service/base/domain/me';
 import { User } from '@/service/base/domain/user';
 import { DeleteUserResponse } from '@/service/base/types';
@@ -43,11 +44,18 @@ export function useUserListModel({
         const feedbackError =
           DELETE_USER_FLOW[response.dataError?.error as DeleteUserResponse];
 
-        toast(feedbackError.title, {
-          type: 'error',
-          position: 'bottom-center',
-          closeOnClick: true
-        });
+        if (feedbackError.redirect) {
+          redirectFromClient(feedbackError.redirect);
+          return;
+        }
+
+        if (feedbackError.toast) {
+          toast(feedbackError.title, {
+            type: 'error',
+            position: 'bottom-center',
+            closeOnClick: true
+          });
+        }
       }
 
       setUserToDelete(null);

@@ -1,3 +1,4 @@
+import { ROUTES } from '@/routes';
 import { CreateUserResponse } from '@/service/base/types';
 import { IntegrationFlow } from '@/types';
 
@@ -5,6 +6,16 @@ export const CREATE_USER_FLOW: Record<CreateUserResponse, IntegrationFlow> = {
   Ok: {
     title: 'Usuário criado com sucesso!',
     description: 'Usuário criado com sucesso!'
+  },
+  'Invalid token': {
+    title: 'Token inválido ou inexistente',
+    description: 'Token inválido ou inexistente',
+    redirect: ROUTES.SIGNOUT.url
+  },
+  'You are not allowed to access this resource': {
+    title: 'Acesso negado',
+    description: 'Acesso negado',
+    redirect: ROUTES.DASHBOARD.url
   },
   'An error occurred while processing your request. Please, try again later': {
     title: 'Ops!!! Ocorreu um erro ao criar o usuário!',

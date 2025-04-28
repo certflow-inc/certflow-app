@@ -1,6 +1,7 @@
 import 'server-only';
 
-import { UnAuthenticatedException } from '@/exceptions/UnAuthenticatedException';
+import { ForbiddenException } from '@/exceptions/ForbiddenException';
+import { UnAuthorizedException } from '@/exceptions/UnAuthorizedException';
 import { httpRequest } from '@/lib/fetch';
 import { ROUTES } from '@/routes';
 import { StatusCodes } from 'http-status-codes';
@@ -23,6 +24,7 @@ import { FETCH_CACHE_TIME, FETCH_TAGS } from './endpoints.constants';
 export async function getUsers(): Promise<ApiResponse<Me[]>> {
   try {
     const response = await httpRequest(`${process.env.API_URL}/users`, {
+      cache: 'force-cache',
       next: {
         revalidate: FETCH_CACHE_TIME.TWO_MINUTES,
         tags: [FETCH_TAGS.TAG_GET_USERS]
@@ -36,17 +38,25 @@ export async function getUsers(): Promise<ApiResponse<Me[]>> {
       };
     }
 
-    const dataError: ApiError = await response.json();
+    if (StatusCodes.UNAUTHORIZED === response.status) {
+      throw new UnAuthorizedException('UnAuthenticatedException');
+    }
+    if (StatusCodes.FORBIDDEN === response.status) {
+      throw new ForbiddenException('UnAuthenticatedException');
+    }
 
+    const dataError: ApiError = await response.json();
     return {
       ok: false,
       dataError
     };
   } catch (_error) {
-    if (_error instanceof UnAuthenticatedException) {
+    if (_error instanceof UnAuthorizedException) {
       redirect(ROUTES.SIGNOUT.url);
     }
-
+    if (_error instanceof ForbiddenException) {
+      redirect(ROUTES.DASHBOARD.url);
+    }
     throw new Error(API_COMMON_RESPONSE_ERROR.API_SERVER_ERROR);
   }
 }
@@ -76,24 +86,18 @@ export async function createUser(
       }
     });
 
-    if (!response.ok) {
-      if (
-        [StatusCodes.NOT_FOUND, StatusCodes.INTERNAL_SERVER_ERROR].includes(
-          response.status
-        )
-      ) {
-        throw new Error();
-      }
-
-      if (StatusCodes.FORBIDDEN === response.status) {
-        throw new UnAuthenticatedException('UnAuthenticatedException');
-      }
-    }
-
     if (response.ok) {
       return {
         ok: true
       };
+    }
+
+    if (
+      [StatusCodes.NOT_FOUND, StatusCodes.INTERNAL_SERVER_ERROR].includes(
+        response.status
+      )
+    ) {
+      throw new Error();
     }
 
     const dataError = await response.json();
@@ -102,10 +106,6 @@ export async function createUser(
       dataError
     };
   } catch (_error) {
-    if (_error instanceof UnAuthenticatedException) {
-      redirect(ROUTES.SIGNOUT.url);
-    }
-
     throw new Error(API_COMMON_RESPONSE_ERROR.API_SERVER_ERROR);
   }
 }
@@ -140,7 +140,7 @@ export async function deleteUser(userId: string): Promise<ApiResponse<void>> {
       }
 
       if (StatusCodes.FORBIDDEN === response.status) {
-        throw new UnAuthenticatedException('UnAuthenticatedException');
+        throw new UnAuthorizedException('UnAuthenticatedException');
       }
     }
     if (response.ok) {
@@ -154,7 +154,7 @@ export async function deleteUser(userId: string): Promise<ApiResponse<void>> {
       dataError
     };
   } catch (_error) {
-    if (_error instanceof UnAuthenticatedException) {
+    if (_error instanceof UnAuthorizedException) {
       redirect(ROUTES.SIGNOUT.url);
     }
 

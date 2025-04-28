@@ -1,4 +1,4 @@
-import { UnAuthenticatedException } from '@/exceptions/UnAuthenticatedException';
+import { UnAuthorizedException } from '@/exceptions/UnAuthorizedException';
 import { httpRequest } from '@/lib/fetch';
 import { ROUTES } from '@/routes';
 import { redirect } from 'next/navigation';
@@ -19,20 +19,6 @@ export async function check(request: CheckRequest) {
       }
     );
 
-    // if (!response.ok) {
-    //   if (
-    //     [StatusCodes.NOT_FOUND, StatusCodes.INTERNAL_SERVER_ERROR].includes(
-    //       response.status
-    //     )
-    //   ) {
-    //     throw new Error();
-    //   }
-
-    //   if (StatusCodes.FORBIDDEN === response.status) {
-    //     throw new UnAuthenticatedException('UnAuthenticatedException');
-    //   }
-    // }
-
     if (response.ok) {
       return {
         ok: true
@@ -46,7 +32,7 @@ export async function check(request: CheckRequest) {
       dataError
     };
   } catch (_error) {
-    if (_error instanceof UnAuthenticatedException) {
+    if (_error instanceof UnAuthorizedException) {
       redirect(ROUTES.SIGNOUT.url);
     }
 

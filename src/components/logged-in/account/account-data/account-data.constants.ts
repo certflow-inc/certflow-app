@@ -1,3 +1,4 @@
+import { ROUTES } from '@/routes';
 import { AccountUpdateResponse } from '@/service/base/types';
 import { IntegrationFlow } from '@/types';
 
@@ -6,6 +7,16 @@ export const ACCOUNT_DATA_FLOW: Record<AccountUpdateResponse, IntegrationFlow> =
     Ok: {
       title: 'Dados da conta atualizados com sucesso!',
       description: 'Seus dados foram atualizados com sucesso.'
+    },
+    'Invalid token': {
+      title: 'Token inválido ou inexistente',
+      description: 'Token inválido ou inexistente',
+      redirect: ROUTES.SIGNOUT.url
+    },
+    'You are not allowed to access this resource': {
+      title: 'Acesso negado',
+      description: 'Acesso negado',
+      redirect: ROUTES.DASHBOARD.url
     },
     '"fantasy" is not allowed to be empty': {
       title: 'Nome fantasia é obrigatório',

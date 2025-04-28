@@ -5,7 +5,7 @@ import { ClientRequestInterceptor } from '@mswjs/interceptors/ClientRequest';
 import { XMLHttpRequestInterceptor } from '@mswjs/interceptors/XMLHttpRequest';
 import { FetchInterceptor } from '@mswjs/interceptors/fetch';
 
-import { UnAuthenticatedException } from '@/exceptions/UnAuthenticatedException';
+import { UnAuthorizedException } from '@/exceptions/UnAuthorizedException';
 import { isExpired } from './jwt';
 import { getUserAgent } from './server-utils';
 import { getToken } from './session';
@@ -43,7 +43,7 @@ interceptor.on('request', async ({ request, controller }) => {
     const token = await getToken();
 
     if (!token || isExpired(token)) {
-      controller.errorWith(new UnAuthenticatedException('Expired Token'));
+      controller.errorWith(new UnAuthorizedException('Expired Token'));
     } else {
       request.headers.set('Authorization', `Bearer ${token}`);
     }

@@ -123,13 +123,17 @@ export type CheckResponse =
 
 export type AccountUpdateResponse =
   | API_OK
+  | API_UNAUTHORIZED_ERROR
+  | API_FORBIDDEN_ERROR
+  | API_SERVER_ERROR
   | '\"fantasy\" is not allowed to be empty'
   | '\"fantasy\" length must be at least 3 characters long'
-  | '\"fantasy\" length must be less than or equal to 128 characters long'
-  | API_SERVER_ERROR;
+  | '\"fantasy\" length must be less than or equal to 128 characters long';
 
 export type AccountAddressUpdateResponse =
   | API_OK
+  | API_UNAUTHORIZED_ERROR
+  | API_FORBIDDEN_ERROR
   | API_SERVER_ERROR
   | '\"address\" is required'
   | '\"address\" length must be at least 3 characters long'
@@ -158,6 +162,8 @@ export type AccountAddressUpdateResponse =
 
 export type CreateUserResponse =
   | API_OK
+  | API_UNAUTHORIZED_ERROR
+  | API_FORBIDDEN_ERROR
   | API_SERVER_ERROR
   | '\"taxId\" is required'
   | '\"taxId\" contains an invalid value'
@@ -178,6 +184,8 @@ export type CreateUserResponse =
 
 export type DeleteUserResponse =
   | API_OK
+  | API_UNAUTHORIZED_ERROR
+  | API_FORBIDDEN_ERROR
   | API_SERVER_ERROR
   | '\"userId\" is required'
   | '\"userId\" contains an invalid value'

@@ -6,6 +6,7 @@ export type IntegrationFlow = {
   flow?: boolean;
   toast?: boolean;
   field?: string;
+  redirect?: string;
 };
 
 export type IntegrationFieldError = {

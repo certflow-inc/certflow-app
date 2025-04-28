@@ -1,5 +1,6 @@
 'use client';
 
+import { redirectFromClient } from '@/actions/navigation';
 import { BRAZILIAN_STATES } from '@/lib/common-constants';
 import { AccountAddressUpdateResponse } from '@/service/base/types';
 import { IntegrationFieldError } from '@/types';
@@ -85,6 +86,11 @@ export function useAccountAddressModel({
         ACCOUNT_ADDRESS_FLOW[
           response.dataError?.error as AccountAddressUpdateResponse
         ];
+
+      if (feedbackError.redirect) {
+        redirectFromClient(feedbackError.redirect);
+        return;
+      }
 
       if (feedbackError.toast) {
         toast(feedbackError.title, {

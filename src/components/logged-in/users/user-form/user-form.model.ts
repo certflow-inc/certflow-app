@@ -58,6 +58,11 @@ export function useUserFormModel({ data, action }: UserFormModelProps) {
     const feedbackError =
       CREATE_USER_FLOW[response.dataError?.error as CreateUserResponse];
 
+    if (feedbackError.redirect) {
+      redirectFromClient(feedbackError.redirect);
+      return;
+    }
+
     if (feedbackError.toast) {
       toast(feedbackError.title, {
         type: 'error',
