@@ -1,5 +1,6 @@
 import '@/lib/http-interceptor';
 import { ProgressProvider } from '@/providers/progress-provider';
+import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ToastContainer } from 'react-toastify';
 import './globals.css';
@@ -13,16 +14,19 @@ const inter = Inter({
   subsets: ['latin']
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
-  title: 'CertFlow',
+  title: {
+    template: '%s | CertFlow',
+    default: 'CertFlow'
+  },
   description:
     'Emissão de certificados on-line para sua empresa ou instituição. Não quebre mais a cabeça para emitir certificados, conte com a gente!!!',
   icons: {
     icon: [{ url: '/favicon-196.png', sizes: '196x196', type: 'image/png' }],
     apple: [{ url: '/apple-icon-180.png' }]
   },
-  appleTouchIcon: '/apple-icon-180.png',
+  // appleTouchIcon: '/apple-icon-180.png',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',

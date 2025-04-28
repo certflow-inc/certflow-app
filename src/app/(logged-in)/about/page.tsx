@@ -1,4 +1,9 @@
 import { LoggedIn } from '@/components';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Sobre'
+};
 
 export default async function AboutPage() {
   return (

@@ -3,9 +3,14 @@ import { checkRecovery } from '@/components/not-logged-in/change-password/change
 import { CHECK_RECOVERY_FLOW } from '@/components/not-logged-in/change-password/change-password.constants';
 import { CheckResponse } from '@/service/base/types';
 import { IntegrationFlow } from '@/types';
+import { Metadata } from 'next';
 
 type ChangePasswordPageProps = {
   params: Promise<{ token: string }>;
+};
+
+export const metadata: Metadata = {
+  title: 'Trocar senha confirmação'
 };
 
 export default async function ChangePasswordPage({
