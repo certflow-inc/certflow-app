@@ -1,8 +1,9 @@
 'use client';
 
-import { TableCell, TableRow } from '@/components/ui/table';
+import { TableCell, TableRow, TableRowExpanded } from '@/components/ui/table';
 import { cn } from '@/lib/utils';
 import { ChevronDown } from 'lucide-react';
+import { AnimatePresence } from 'motion/react';
 import { PaymentListRowViewProps } from './payment-list-row.types';
 
 export function PaymentListRowView({
@@ -53,26 +54,30 @@ export function PaymentListRowView({
       </TableCell>
     </TableRow>,
 
-    <TableRow
-      key={`${data.paymentId}-expandable`}
-      data-expanded={isMeExpanded}
-      className={cn(
-        'hidden transition-colors duration-700 ease-linear',
-        'data-[expanded=true]:table-row data-[expanded=true]:bg-blue-50 data-[expanded=true]:py-2 data-[expanded=true]:shadow-md'
+    <AnimatePresence key={`${data.paymentId}-expandable`}>
+      {isMeExpanded && (
+        <TableRowExpanded
+          key={`${data.paymentId}-expandable`}
+          data-expanded={isMeExpanded}
+          className={cn(
+            'transition-colors duration-700 ease-linear',
+            'data-[expanded=true]:bg-blue-50 data-[expanded=true]:py-2 data-[expanded=true]:shadow-md'
+          )}
+        >
+          <TableCell className="w-1/6 px-3 py-6">
+            <div className="grid gap-4">
+              <div className="text-slate-500">Criado em</div>
+              <span>{data.createdAt}</span>
+            </div>
+          </TableCell>
+          <TableCell colSpan={5}>
+            <div className="grid gap-4">
+              <div className="text-slate-500">Observação</div>
+              <p className="text-wrap">{data.observation}</p>
+            </div>
+          </TableCell>
+        </TableRowExpanded>
       )}
-    >
-      <TableCell className="w-1/6 px-3 py-6">
-        <div className="grid gap-4">
-          <div className="text-slate-500">Criado em</div>
-          <span>{data.createdAt}</span>
-        </div>
-      </TableCell>
-      <TableCell colSpan={5}>
-        <div className="grid gap-4">
-          <div className="text-slate-500">Observação</div>
-          <p className="text-wrap">{data.observation}</p>
-        </div>
-      </TableCell>
-    </TableRow>
+    </AnimatePresence>
   ];
 }

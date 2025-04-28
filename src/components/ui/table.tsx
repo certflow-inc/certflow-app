@@ -3,6 +3,7 @@
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';
+import { HTMLMotionProps, motion } from 'motion/react';
 
 function Table({ className, ...props }: React.ComponentProps<'table'>) {
   return (
@@ -65,6 +66,28 @@ function TableRow({ className, ...props }: React.ComponentProps<'tr'>) {
   );
 }
 
+function TableRowExpanded({ className, ...props }: HTMLMotionProps<'tr'>) {
+  return (
+    <motion.tr
+      data-slot="table-row-expanded"
+      key="content"
+      initial="collapsed"
+      animate="open"
+      exit="collapsed"
+      transition={{ duration: 0.2 }}
+      variants={{
+        open: { scaleY: 1 },
+        collapsed: { scaleY: 0 }
+      }}
+      className={cn(
+        'hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors',
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
 function TableHead({ className, ...props }: React.ComponentProps<'th'>) {
   return (
     <th
@@ -106,11 +129,12 @@ function TableCaption({
 
 export {
   Table,
-  TableHeader,
   TableBody,
+  TableCaption,
+  TableCell,
   TableFooter,
   TableHead,
+  TableHeader,
   TableRow,
-  TableCell,
-  TableCaption
+  TableRowExpanded
 };
