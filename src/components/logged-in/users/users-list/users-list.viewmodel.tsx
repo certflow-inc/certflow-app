@@ -5,12 +5,13 @@ import { deleteUserAction, getUserListAction } from './users-list.actions';
 import { UsersListView } from './users-list.view';
 
 export async function UsersListViewModel() {
-  const [me, users] = await Promise.all([
+  const [me, account, users] = await Promise.all([
     getMeDataAction(),
+    getAccount(),
     getUserListAction()
   ]);
 
-  if (!me || !users) {
+  if (!me || !account.data || !users) {
     return notFound();
   }
 
@@ -18,8 +19,8 @@ export async function UsersListViewModel() {
     <UsersListView
       data={users}
       currentUser={me}
+      account={account.data}
       removeAction={deleteUserAction}
-      accountAction={getAccount}
     />
   );
 }

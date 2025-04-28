@@ -12,7 +12,7 @@ export function UsersListView({
   data,
   currentUser,
   removeAction,
-  accountAction
+  account
 }: UserListViewModelProps) {
   const {
     isProcess,
@@ -26,8 +26,8 @@ export function UsersListView({
   } = useUserListModel({
     data,
     currentUser,
-    removeAction,
-    accountAction
+    account,
+    removeAction
   });
 
   return (
