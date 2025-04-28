@@ -4,7 +4,7 @@ import { PaymentListViewProps } from './payment-list.types';
 
 export function PaymentListView({ data }: PaymentListViewProps) {
   return (
-    <section className="flex flex-col gap-6">
+    <section className="flex flex-col gap-6 py-4">
       <header className="flex items-center justify-between gap-2 px-2">
         <h1 className="flex flex-col gap-2 truncate font-semibold overflow-ellipsis text-slate-500 min-[1130px]:text-left lg:text-2xl">
           Pagamentos realizados

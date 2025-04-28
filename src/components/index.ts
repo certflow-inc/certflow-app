@@ -38,6 +38,7 @@ import {
   Account,
   AppSidebar,
   Container as LoggedContainer,
+  PaymentList,
   UsersList
 } from './logged-in';
 
@@ -45,5 +46,6 @@ export const LoggedIn = {
   Account,
   AppSidebar,
   Container: LoggedContainer,
-  UsersList
+  UsersList,
+  PaymentList
 };
