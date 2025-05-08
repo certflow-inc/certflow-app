@@ -12,6 +12,7 @@ export type PrivateRoutes =
   | 'DASHBOARD'
   | 'ABOUT'
   | 'PAYMENTS'
+  | 'PLANS'
   | 'USERS'
   | 'USERS_CREATE';
 

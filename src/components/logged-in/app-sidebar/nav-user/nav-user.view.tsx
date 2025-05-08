@@ -78,10 +78,13 @@ export function NavUserView({ model }: NavUserViewProps) {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <Link href="#" className="flex w-full items-center gap-2">
+              <DropdownMenuItem onClick={() => setOpen(false)}>
+                <Link
+                  href={ROUTES.PLANS.url}
+                  className="flex w-full items-center gap-2"
+                >
                   <NotebookPen />
-                  Mudar Plano
+                  Planos e pacotes
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
