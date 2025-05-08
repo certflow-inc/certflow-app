@@ -26,12 +26,10 @@ import {
 } from '@/components/ui/sidebar';
 import { ROUTES } from '@/routes';
 import Link from 'next/link';
-import { useState } from 'react';
 import { NavUserViewProps } from './nav-user.types';
 
 export function NavUserView({ model }: NavUserViewProps) {
-  const { user, isMobile, getInitials } = model;
-  const [open, setOpen] = useState(false);
+  const { user, isMobile, open, getInitials, onItemClick, setOpen } = model;
 
   return (
     <SidebarMenu>
@@ -78,7 +76,7 @@ export function NavUserView({ model }: NavUserViewProps) {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem onClick={() => setOpen(false)}>
+              <DropdownMenuItem onClick={onItemClick}>
                 <Link
                   href={ROUTES.PLANS.url}
                   className="flex w-full items-center gap-2"
@@ -90,7 +88,7 @@ export function NavUserView({ model }: NavUserViewProps) {
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem onClick={() => setOpen(false)}>
+              <DropdownMenuItem onClick={onItemClick}>
                 <Link
                   href={ROUTES.ACCOUNT.url}
                   className="flex w-full items-center gap-2"
@@ -99,7 +97,7 @@ export function NavUserView({ model }: NavUserViewProps) {
                   Conta
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setOpen(false)}>
+              <DropdownMenuItem onClick={onItemClick}>
                 <Link
                   href={ROUTES.PAYMENTS.url}
                   className="flex w-full items-center gap-2"

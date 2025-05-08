@@ -1,8 +1,10 @@
 import { useSidebar } from '@/components/ui/sidebar';
+import { useState } from 'react';
 import { UseNavUserViewModelProps } from './nav-user.types';
 
 export function useNavUserModel({ user }: UseNavUserViewModelProps) {
-  const { isMobile } = useSidebar();
+  const [open, setOpen] = useState(false);
+  const { setOpenMobile, isMobile } = useSidebar();
 
   const getInitials = (name: string | undefined) => {
     if (!name) {
@@ -15,9 +17,19 @@ export function useNavUserModel({ user }: UseNavUserViewModelProps) {
       : `${splitName[0][0]}${splitName[splitName.length - 1][0]}`;
   };
 
+  const onItemClick = () => {
+    setOpen(false);
+    if (isMobile) {
+      setOpenMobile(false);
+    }
+  };
+
   return {
     isMobile,
     user,
-    getInitials
+    open,
+    setOpen,
+    getInitials,
+    onItemClick
   };
 }
