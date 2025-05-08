@@ -8,6 +8,7 @@ export const BREADCRUMBS: Record<PrivateRoutes, Breadcrumb[]> = {
   ACCOUNT: [{ label: 'Configurações' }, { label: 'Conta' }],
   USERS: [{ label: 'Configurações' }, { label: 'Usuários' }],
   PAYMENTS: [{ label: 'Configurações' }, { label: 'Pagamentos' }],
+  PLANS: [{ label: 'Planos' }],
   USERS_CREATE: [
     { label: 'Configurações' },
     { label: 'Usuário' },
