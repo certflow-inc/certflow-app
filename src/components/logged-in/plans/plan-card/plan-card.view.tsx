@@ -16,6 +16,7 @@ export function PlanCardView({
   currentAmount,
   discountPercentage,
   isBestSeller,
+  type: _type,
   items: services,
   onSelect
 }: PlanCardViewProps) {
@@ -32,14 +33,10 @@ export function PlanCardView({
     >
       <PlanCardDistackBannerView isBestSeller={isBestSeller} />
 
-      {/* content */}
       <div className="flex flex-1 flex-col gap-5 rounded-b-lg px-8 py-1">
-        {/* main */}
         <div className="flex w-full flex-col gap-6">
-          {/* title */}
           <h2 className="mt-1 text-2xl font-semibold">{title}</h2>
 
-          {/* prices */}
           <div className="flex flex-col gap-10">
             <PlanCardDiscountPriceView
               value={originalAmount}

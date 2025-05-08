@@ -9,6 +9,7 @@ import {
   getAddress,
   getMe,
   getPayments,
+  getPlans,
   getUsers,
   passwordRecovery,
   refresh,
@@ -37,5 +38,6 @@ export const CertFlowServices = {
   getUsers,
   createUser,
   deleteUser,
-  getPayments
+  getPayments,
+  getPlans
 };

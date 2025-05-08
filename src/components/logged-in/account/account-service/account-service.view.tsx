@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table';
-import { SERVICE_MAP } from './account-service.constants';
+import { SERVICE_MAP } from '@/dictionary/service.dict';
 import { AccountServiceViewProps } from './account-service.types';
 
 export function AccountServiceView({ data }: AccountServiceViewProps) {
