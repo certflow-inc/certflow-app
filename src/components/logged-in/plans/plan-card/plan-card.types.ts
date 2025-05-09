@@ -15,7 +15,6 @@ export type PlanCardViewProps = {
   currentAmount: number;
   discountPercentage: number;
   items: PlanCardItem[];
-  onSelect: (id: string) => void;
   type?: 'combo' | 'single' | 'starter' | 'promotion' | 'special';
   isBestSeller?: boolean;
 };

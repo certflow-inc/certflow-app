@@ -1,5 +1,3 @@
-'use client';
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PlanCard } from '../plan-card';
 import { PlanCardsViewProps } from './plan-cards.types';
@@ -12,10 +10,6 @@ export function PlanCardsView({ plans }: PlanCardsViewProps) {
   const singlePlans = plans
     .filter((plan) => plan.type === 'single')
     .sort((item) => (item.isBestSeller ? -1 : 1));
-
-  const handleSelectPlan = (id: string) => {
-    console.log(id);
-  };
 
   return (
     <section className="flex flex-col items-center gap-6 py-4">
@@ -36,7 +30,7 @@ export function PlanCardsView({ plans }: PlanCardsViewProps) {
           <ul className="mx-auto grid max-w-[1650px] grid-cols-1 gap-10 min-[1000px]:grid-cols-2 min-[1400px]:grid-cols-3 min-[1650px]:grid-cols-3">
             {comboPlans.map((plan) => (
               <li key={plan.id} className="flex justify-center">
-                <PlanCard {...plan} onSelect={handleSelectPlan} />
+                <PlanCard {...plan} />
               </li>
             ))}
           </ul>
@@ -46,7 +40,7 @@ export function PlanCardsView({ plans }: PlanCardsViewProps) {
           <ul className="mx-auto grid max-w-[1650px] grid-cols-1 gap-10 min-[1000px]:grid-cols-2 min-[1400px]:grid-cols-3 min-[1650px]:grid-cols-3">
             {singlePlans.map((plan) => (
               <li key={plan.id} className="flex justify-center">
-                <PlanCard {...plan} onSelect={handleSelectPlan} />
+                <PlanCard {...plan} />
               </li>
             ))}
           </ul>

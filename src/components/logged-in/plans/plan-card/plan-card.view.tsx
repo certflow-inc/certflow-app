@@ -2,6 +2,8 @@
 
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { ROUTES } from '@/routes';
+import { useRouter } from 'next/navigation';
 import { PlanCardDiscountPriceView } from './plan-card-discount-price.view';
 import { PlanCardDistackBannerView } from './plan-card-distack-banner.view';
 import { PlanCardEffectivePriceView } from './plan-card-effective-price.view';
@@ -17,9 +19,10 @@ export function PlanCardView({
   discountPercentage,
   isBestSeller,
   type: _type,
-  items: services,
-  onSelect
+  items: services
 }: PlanCardViewProps) {
+  const router = useRouter();
+
   return (
     <article
       data-isbestseller={isBestSeller}
@@ -59,7 +62,7 @@ export function PlanCardView({
             )}
             variant={isBestSeller ? 'default' : 'outline'}
             size="lg"
-            onClick={() => onSelect(id)}
+            onClick={() => router.push(`${ROUTES.CHECKOUT.url}?plan=${id}`)}
           >
             Escolher Plano
           </Button>

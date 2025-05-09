@@ -31,6 +31,10 @@ export const ROUTES: Record<RouteKeys, Route> = {
     url: '/plans',
     breadcrumbs: [{ label: 'Planos' }]
   },
+  CHECKOUT: {
+    url: '/checkout',
+    breadcrumbs: [{ label: 'Checkout' }]
+  },
   USERS: {
     url: '/users',
     breadcrumbs: [{ label: 'Configurações' }, { label: 'Usuários' }]

@@ -13,6 +13,7 @@ export type PrivateRoutes =
   | 'ABOUT'
   | 'PAYMENTS'
   | 'PLANS'
+  | 'CHECKOUT'
   | 'USERS'
   | 'USERS_CREATE';
 
