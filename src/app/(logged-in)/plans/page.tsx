@@ -1,6 +1,5 @@
 import { getPlansAction } from '@/actions/plans.action';
 import { LoggedIn } from '@/components';
-import { PlanCards } from '@/components/logged-in/plans';
 import { notFound } from 'next/navigation';
 
 export default async function PlansPage() {
@@ -13,7 +12,7 @@ export default async function PlansPage() {
   return (
     <LoggedIn.Container>
       <div className="flex h-full flex-1 flex-col gap-4 p-2">
-        <PlanCards plans={plans} />
+        <LoggedIn.Plans plans={plans} />
       </div>
     </LoggedIn.Container>
   );

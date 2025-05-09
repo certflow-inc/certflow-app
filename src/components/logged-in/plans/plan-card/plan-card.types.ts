@@ -1,23 +1,10 @@
-export type PlanCardItem = {
-  quantity: number;
-  description: string;
-};
+import { Plan, PlanItem } from '@/types';
 
 export type PlanCardItemsViewProps = {
-  items: PlanCardItem[];
+  items: PlanItem[];
 };
 
-export type PlanCardViewProps = {
-  id: string;
-  title: string;
-  currency: 'R$' | 'CertX';
-  originalAmount: number;
-  currentAmount: number;
-  discountPercentage: number;
-  items: PlanCardItem[];
-  type?: 'combo' | 'single' | 'starter' | 'promotion' | 'special';
-  isBestSeller?: boolean;
-};
+export type PlanCardViewProps = Plan;
 
 export type PlanCardDistackBannerProps = {
   isBestSeller?: boolean;

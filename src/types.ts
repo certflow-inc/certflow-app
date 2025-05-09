@@ -13,3 +13,20 @@ export type IntegrationFieldError = {
   field: string;
   message: string;
 };
+
+export type PlanItem = {
+  quantity: number;
+  description: string;
+};
+
+export type Plan = {
+  id: string;
+  title: string;
+  currency: 'R$' | 'CertX';
+  originalAmount: number;
+  currentAmount: number;
+  discountPercentage: number;
+  items: PlanItem[];
+  type?: 'combo' | 'single' | 'starter' | 'promotion' | 'special';
+  isBestSeller?: boolean;
+};

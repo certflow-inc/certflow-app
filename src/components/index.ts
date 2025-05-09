@@ -37,8 +37,10 @@ export const NotLoggedIn = {
 import {
   Account,
   AppSidebar,
+  Checkout,
   Container as LoggedContainer,
   PaymentList,
+  PlanCards as Plans,
   UsersList
 } from './logged-in';
 
@@ -46,6 +48,8 @@ export const LoggedIn = {
   Account,
   AppSidebar,
   Container: LoggedContainer,
+  Checkout,
   UsersList,
-  PaymentList
+  PaymentList,
+  Plans
 };

@@ -1,10 +1,10 @@
 'use server';
 
-import { PlanCardViewProps } from '@/components/logged-in/plans/plan-card/plan-card.types';
 import { SERVICE_MAP } from '@/dictionary/service.dict';
 import { CertFlowServices } from '@/service';
+import { Plan } from '@/types';
 
-type GetPlansActionResult = Omit<PlanCardViewProps, 'onSelect'>;
+type GetPlansActionResult = Plan;
 
 export async function getPlansAction(): Promise<GetPlansActionResult[]> {
   const response = await CertFlowServices.getPlans();
