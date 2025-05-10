@@ -8,8 +8,8 @@ export function formatCurrency({
   const formattedValue = Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
-    currencyDisplay: 'code'
+    currencyDisplay: 'symbol'
   }).format(value);
 
-  return removeSymbol ? formattedValue.replaceAll('BRL', '') : formattedValue;
+  return removeSymbol ? formattedValue.replaceAll('R$', '') : formattedValue;
 }

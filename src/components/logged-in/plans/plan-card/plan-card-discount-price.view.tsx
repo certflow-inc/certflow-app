@@ -1,3 +1,4 @@
+import { CURRENCIES } from '@/constants';
 import { formatCurrency } from '@/utils/number-format.utils';
 import { PlanCardDiscountPriceViewProps } from './plan-card.types';
 
@@ -6,7 +7,7 @@ export function PlanCardDiscountPriceView({
   currency,
   discountPercentage
 }: PlanCardDiscountPriceViewProps) {
-  const isCertX = currency === 'CertX';
+  const isCertX = currency === CURRENCIES.credit;
   const hasDiscount = discountPercentage > 0;
 
   return (

@@ -19,10 +19,12 @@ export type PlanItem = {
   description: string;
 };
 
+export type CURRENCY = 'R$' | 'C$' | '';
+
 export type Plan = {
   id: string;
   title: string;
-  currency: 'R$' | 'CertX';
+  currency: CURRENCY;
   originalAmount: number;
   currentAmount: number;
   discountPercentage: number;

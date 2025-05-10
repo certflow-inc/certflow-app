@@ -1,3 +1,5 @@
+import { Plan } from '@/types';
+
 export type CheckoutSummaryViewProps = {
-  planId: string;
+  plan: Plan;
 };

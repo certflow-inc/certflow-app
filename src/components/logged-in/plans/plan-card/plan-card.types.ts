@@ -1,4 +1,4 @@
-import { Plan, PlanItem } from '@/types';
+import { CURRENCY, Plan, PlanItem } from '@/types';
 
 export type PlanCardItemsViewProps = {
   items: PlanItem[];
@@ -12,12 +12,12 @@ export type PlanCardDistackBannerProps = {
 
 export type PlanCardEffectivePriceProps = {
   value: number;
-  currency: 'R$' | 'CertX';
+  currency: CURRENCY;
   hasDiscount?: boolean;
 };
 
 export type PlanCardDiscountPriceViewProps = {
   value: number;
-  currency: 'R$' | 'CertX';
+  currency: CURRENCY;
   discountPercentage: number;
 };

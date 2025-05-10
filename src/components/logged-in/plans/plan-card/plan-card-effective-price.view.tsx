@@ -1,3 +1,4 @@
+import { CURRENCIES } from '@/constants';
 import { formatCurrency } from '@/utils/number-format.utils';
 import { PlanCardEffectivePriceProps } from './plan-card.types';
 
@@ -6,7 +7,7 @@ export function PlanCardEffectivePriceView({
   currency,
   hasDiscount = false
 }: PlanCardEffectivePriceProps) {
-  const isCertX = currency === 'CertX';
+  const isCertX = currency === CURRENCIES.credit;
 
   return (
     <div
