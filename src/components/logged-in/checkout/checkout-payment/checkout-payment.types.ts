@@ -1,4 +1,5 @@
 import { Account } from '@/service/base/domain/account';
+import { Me } from '@/service/base/domain/me';
 import { Plan } from '@/types';
 
 export type CheckoutPaymentViewProps = {
@@ -12,6 +13,6 @@ export type CheckoutPaymentCreditsViewProps = {
 };
 
 export type CheckoutPaymentCurrencyViewProps = {
-  account: Account;
+  me: Me;
   plan: Plan;
 };

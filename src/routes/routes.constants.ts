@@ -33,7 +33,7 @@ export const ROUTES: Record<RouteKeys, Route> = {
   },
   CHECKOUT: {
     url: '/checkout',
-    breadcrumbs: [{ label: 'Checkout' }]
+    breadcrumbs: [{ label: 'Planos', goToBack: true }, { label: 'Checkout' }]
   },
   USERS: {
     url: '/users',

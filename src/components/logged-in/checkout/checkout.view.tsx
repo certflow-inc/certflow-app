@@ -18,7 +18,7 @@ export async function CheckoutView({ planId }: CheckoutViewProps) {
   }
 
   return (
-    <div className="flex h-full flex-col-reverse gap-4 min-[1000px]:flex-row">
+    <div className="flex h-full flex-col-reverse gap-4 min-[1200px]:flex-row">
       <div className="flex flex-3/5 flex-col gap-4">
         <CheckoutAddress account={accountData} address={addressData} />
 
@@ -27,7 +27,7 @@ export async function CheckoutView({ planId }: CheckoutViewProps) {
         </div>
       </div>
 
-      <div className="flex-0 min-[1000px]:flex-2/5">
+      <div className="flex-0 min-[1200px]:flex-2/5">
         <CheckoutSummary plan={plan} />
       </div>
     </div>

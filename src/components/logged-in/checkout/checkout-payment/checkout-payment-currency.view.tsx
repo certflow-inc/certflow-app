@@ -1,12 +1,49 @@
+'use client';
+import { Payment, config } from '@/lib/mercado-pago';
+import { useEffect } from 'react';
 import { CheckoutPaymentCurrencyViewProps } from './checkout-payment.types';
 
+declare global {
+  interface Window {
+    paymentBrickController: {
+      unmount: () => void;
+    };
+  }
+}
+
 export function CheckoutPaymentCurrencyView({
-  account,
+  me,
   plan
 }: CheckoutPaymentCurrencyViewProps) {
-  console.log('🚀 ~ plan:', plan);
-  console.log('🚀 ~ account:', account);
+  // Payment initialization
+  const initialization = {
+    amount: plan.currentAmount,
+    payer: {
+      email: me.email,
+      identification: {
+        type: `${me.taxId.length > 11 ? 'CNPJ' : 'CPF'}`,
+        number: me.taxId
+      }
+    }
+  };
 
-  // TODO: Utilizar a lib do mercado pago para mostrar os meios de pagamento
-  return <div>CheckoutPaymentCurrencyView</div>;
+  // Unmount paymentBrickController
+  useEffect(() => {
+    return () => {
+      if (window.paymentBrickController) {
+        console.log('desmontando mercado pago');
+        window.paymentBrickController.unmount();
+      }
+    };
+  }, []);
+
+  return (
+    <Payment
+      initialization={initialization}
+      customization={config.customization}
+      onSubmit={config.onSubmit}
+      onReady={config.onReady}
+      onError={config.onError}
+    />
+  );
 }

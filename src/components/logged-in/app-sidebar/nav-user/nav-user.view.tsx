@@ -78,7 +78,7 @@ export function NavUserView({ model }: NavUserViewProps) {
             <DropdownMenuGroup>
               <DropdownMenuItem onClick={onItemClick}>
                 <Link
-                  href={ROUTES.PLANS.url}
+                  href={`${ROUTES.PLANS.url}?tab=combo`}
                   className="flex w-full items-center gap-2"
                 >
                   <NotebookPen />

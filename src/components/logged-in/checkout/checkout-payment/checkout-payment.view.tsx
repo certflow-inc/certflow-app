@@ -1,5 +1,7 @@
+import { getMeDataAction } from '@/actions/me.action';
 import { CURRENCIES } from '@/constants';
 import { CircleDollarSign } from 'lucide-react';
+import { notFound } from 'next/navigation';
 import { CheckoutPaymentCreditsView } from './checkout-payment-credits.view';
 import { CheckoutPaymentCurrencyView } from './checkout-payment-currency.view';
 import { CheckoutPaymentViewProps } from './checkout-payment.types';
@@ -9,8 +11,14 @@ export async function CheckoutPaymentView({
   plan
 }: CheckoutPaymentViewProps) {
   const isCreditsPlan = plan?.currency === CURRENCIES.credit;
+  const me = await getMeDataAction();
+
+  if (!me) {
+    return notFound();
+  }
 
   const props = {
+    me,
     account,
     plan
   };

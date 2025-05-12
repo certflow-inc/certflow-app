@@ -22,6 +22,7 @@ export type RouteKeys = PublicRoutes | PrivateRoutes;
 type BreadcrumbItem = {
   label: string;
   url?: string;
+  goToBack?: boolean;
 };
 
 export type Route = {

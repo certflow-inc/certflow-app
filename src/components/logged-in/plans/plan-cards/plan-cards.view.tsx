@@ -1,8 +1,16 @@
+'use client';
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ROUTES } from '@/routes';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { PlanCard } from '../plan-card';
 import { PlanCardsViewProps } from './plan-cards.types';
 
 export function PlanCardsView({ plans }: PlanCardsViewProps) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const openedTab = searchParams.get('tab') ?? 'combo';
+
   const comboPlans = plans
     .filter((plan) => plan.type === 'combo')
     .sort((item) => (item.isBestSeller ? -1 : 1));
@@ -20,10 +28,24 @@ export function PlanCardsView({ plans }: PlanCardsViewProps) {
         </h1>
       </header>
 
-      <Tabs defaultValue="combo" className="flex w-full items-center gap-10">
+      <Tabs
+        defaultValue={openedTab}
+        className="flex w-full items-center gap-10"
+      >
         <TabsList>
-          <TabsTrigger value="combo">Combos</TabsTrigger>
-          <TabsTrigger value="single">Pacotes</TabsTrigger>
+          <TabsTrigger
+            value="combo"
+            onClick={() => router.replace(`${ROUTES.PLANS.url}?tab=combo`)}
+          >
+            Combos
+          </TabsTrigger>
+
+          <TabsTrigger
+            value="single"
+            onClick={() => router.replace(`${ROUTES.PLANS.url}?tab=single`)}
+          >
+            Pacotes
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="combo">
