@@ -1,3 +1,9 @@
+import { createPaymentAction } from '@/components/logged-in/checkout/checkout-payment/checkout-payment.actions';
+import {
+  PaymentMethod,
+  PaymentProvider,
+  PaymentTaxType
+} from '@/service/base/domain/payment';
 import {
   IAdditionalCardFormData,
   IPaymentBrickCustomization,
@@ -8,7 +14,9 @@ import { IBrickError } from '@mercadopago/sdk-react/esm/bricks/util/types/common
 const customization: IPaymentBrickCustomization = {
   paymentMethods: {
     bankTransfer: 'all',
-    creditCard: 'all'
+    creditCard: 'all',
+    minInstallments: 1,
+    maxInstallments: 1
   },
   visual: {
     hideFormTitle: true,
@@ -24,29 +32,23 @@ const onSubmit = async (
   formData: IPaymentFormData,
   _selectedPaymentMethod: IAdditionalCardFormData | null | undefined
 ) => {
-  // callback called when clicking the submit data button
-  return new Promise((resolve, reject) => {
-    console.log('🚀 ~ onSubmit ~ formData:', formData);
+  // console.log('🚀 ~ onSubmit ~ formData:', formData);
 
-    fetch('/process_payment', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
-    })
-      .then((response) => response.json())
-      .then((_response) => {
-        // receive payment result
-        console.log('🚀 ~ onSubmit ~ _response:', _response);
-        resolve('');
-      })
-      .catch((_error) => {
-        // handle error response when trying to create payment
-        console.log('🚀 ~ onSubmit ~ _error:', _error);
-        reject();
-      });
-  });
+  const { payment_method_id, token, issuer_id, payer } = formData.formData;
+
+  const payload = {
+    planId: '',
+    payment: {
+      method: payment_method_id as PaymentMethod,
+      provider: 'mercadopago' as PaymentProvider
+    },
+    token,
+    issuerId: Number(issuer_id),
+    taxType: payer.identification.type as PaymentTaxType,
+    taxId: payer.identification.number
+  };
+
+  await createPaymentAction(payload);
 };
 
 const onError = async (error: IBrickError) => {

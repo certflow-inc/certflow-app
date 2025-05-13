@@ -3,6 +3,7 @@ import {
   activate,
   changePassword,
   check,
+  createPayment,
   createUser,
   deleteUser,
   getAccount,
@@ -39,5 +40,6 @@ export const CertFlowServices = {
   createUser,
   deleteUser,
   getPayments,
+  createPayment,
   getPlans
 };

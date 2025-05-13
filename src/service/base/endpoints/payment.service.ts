@@ -6,7 +6,11 @@ import { StatusCodes } from 'http-status-codes';
 import { redirect } from 'next/navigation';
 import 'server-only';
 import { API_COMMON_RESPONSE_ERROR } from '../constants';
-import { Payment } from '../domain/payment';
+import {
+  Payment,
+  PaymentCreateRequest,
+  PaymentCreateResponse
+} from '../domain/payment';
 import { ApiError, ApiResponse } from '../types';
 
 /**
@@ -21,6 +25,48 @@ import { ApiError, ApiResponse } from '../types';
 export async function getPayments(): Promise<ApiResponse<Payment[]>> {
   try {
     const response = await httpRequest(`${process.env.API_URL}/payments`);
+
+    if (response.ok) {
+      return {
+        ok: true,
+        data: await response.json()
+      };
+    }
+
+    if (StatusCodes.UNAUTHORIZED === response.status) {
+      throw new UnAuthorizedException('UnAuthenticatedException');
+    }
+    if (StatusCodes.FORBIDDEN === response.status) {
+      throw new ForbiddenException('ForbiddenException');
+    }
+
+    const dataError: ApiError = await response.json();
+    return {
+      ok: false,
+      dataError
+    };
+  } catch (_error) {
+    if (_error instanceof UnAuthorizedException) {
+      redirect(ROUTES.SIGNOUT.url);
+    }
+    if (_error instanceof ForbiddenException) {
+      redirect(ROUTES.DASHBOARD.url);
+    }
+    throw new Error(API_COMMON_RESPONSE_ERROR.API_SERVER_ERROR);
+  }
+}
+
+export async function createPayment(
+  payload: PaymentCreateRequest
+): Promise<ApiResponse<PaymentCreateResponse>> {
+  try {
+    const response = await httpRequest(`${process.env.API_URL}/payments`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
 
     if (response.ok) {
       return {

@@ -6,7 +6,7 @@ export { changePassword } from './change-password.service';
 export { check } from './check.service';
 export { getMe } from './me.service';
 export { passwordRecovery } from './password-recovery.service';
-export { getPayments } from './payment.service';
+export { createPayment, getPayments } from './payment.service';
 export { getPlans } from './plan.service';
 export { refresh } from './refresh.service';
 export { signin } from './signin.service';

@@ -1,4 +1,4 @@
 import { config } from './config';
-import { Payment } from './init';
+import { Payment, StatusScreen } from './init';
 
-export { config, Payment };
+export { config, Payment, StatusScreen };

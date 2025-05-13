@@ -196,3 +196,35 @@ export type PaymentResponse =
   | API_UNAUTHORIZED_ERROR
   | API_FORBIDDEN_ERROR
   | API_SERVER_ERROR;
+
+export type PaymentCreateResponseMessages =
+  | API_OK
+  | API_UNAUTHORIZED_ERROR
+  | API_FORBIDDEN_ERROR
+  | API_SERVER_ERROR
+  | '\"planId\" is required'
+  | '\"planId\" contains an invalid value'
+  | '\"payment\" is required'
+  | 'Your payment could not be processed. Detail received #######'
+  | '\"payment.provider\" is required'
+  | '\"payment.provider\" must be one of [certflow, mercadopago]'
+  | '\"payment.method\" is required'
+  | '\"payment.method\" must be [exchange]'
+  | '\"payment.method\" must be one of [pix, amex, cabal, elo, hipercard, master, visa]'
+  | '\"payment.token\" is required'
+  | '\"payment.issuerId\" is required'
+  | '\"payment.issuerId\" must be a number'
+  | '\"payment.issuerId\" must be an integer'
+  | '\"payment.taxType\" is required'
+  | '\"payment.taxType\" must be one of [CPF, CNPJ]'
+  | '\"payment.taxId\" is required'
+  | '\"payment.taxId\" contains an invalid value'
+  | 'Plan not found'
+  | 'Account not found'
+  | 'User not found'
+  | 'Provider not available'
+  | 'Invalid currency \"####\" for this payment'
+  | 'Plan amount must be integer'
+  | 'You do not have enough credits to make this payment'
+  | 'Payment method #### not supported'
+  | 'Failed to process your payment. Reason: #####';

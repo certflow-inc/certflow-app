@@ -2,8 +2,8 @@ import { getMeDataAction } from '@/actions/me.action';
 import { CURRENCIES } from '@/constants';
 import { CircleDollarSign } from 'lucide-react';
 import { notFound } from 'next/navigation';
-import { CheckoutPaymentCreditsView } from './checkout-payment-credits.view';
-import { CheckoutPaymentCurrencyView } from './checkout-payment-currency.view';
+import { CheckoutPaymentCredits } from './checkout-payment-credits';
+import { CheckoutPaymentCurrency } from './checkout-payment-currency';
 import { CheckoutPaymentViewProps } from './checkout-payment.types';
 
 export async function CheckoutPaymentView({
@@ -31,9 +31,9 @@ export async function CheckoutPaymentView({
       </div>
 
       {isCreditsPlan ? (
-        <CheckoutPaymentCreditsView {...props} />
+        <CheckoutPaymentCredits {...props} />
       ) : (
-        <CheckoutPaymentCurrencyView {...props} />
+        <CheckoutPaymentCurrency {...props} />
       )}
     </div>
   );
