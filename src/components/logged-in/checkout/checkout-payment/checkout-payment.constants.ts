@@ -25,6 +25,11 @@ export const CHECKOUT_PAYMENT_CURRENCY_FLOW: Record<
     description: 'Ops!!! Ocorreu um erro ao realizar o pagamento!',
     toast: true
   },
+  'Not mapped error': {
+    title: 'Erro: @###@',
+    description: 'Ops!!! Ocorreu um erro ao realizar o pagamento!',
+    toast: true
+  },
   '"planId" is required': {
     title: 'O plano informado é inválido',
     description: 'O plano informado é inválido',

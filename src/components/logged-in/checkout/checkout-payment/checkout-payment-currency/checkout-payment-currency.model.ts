@@ -101,17 +101,21 @@ export function useCheckoutPaymentCurrencyModel({
       }
     };
 
+    console.log('🚀 ~ payload:', payload);
     const response = await createPaymentAction(payload);
+    console.log('🚀 ~ response:', response);
 
     if (response.ok) {
       setPaymentId(response.data?.transactionId);
       return;
     }
 
-    const feedbackError =
-      CHECKOUT_PAYMENT_CURRENCY_FLOW[
-        response.dataError?.error as PaymentCreateResponseMessages
-      ];
+    const feedbackError = CHECKOUT_PAYMENT_CURRENCY_FLOW[
+      response.dataError?.error as PaymentCreateResponseMessages
+    ] ?? {
+      ...CHECKOUT_PAYMENT_CURRENCY_FLOW['Not mapped error'],
+      title: response.dataError?.error
+    };
 
     if (feedbackError.redirect) {
       redirectFromClient(feedbackError.redirect);

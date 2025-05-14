@@ -14,6 +14,7 @@ export type API_SERVER_ERROR =
   'An error occurred while processing your request. Please, try again later';
 export type API_UNAUTHORIZED_ERROR = 'Invalid token';
 export type API_FORBIDDEN_ERROR = 'You are not allowed to access this resource';
+export type NOT_MAPPED_ERROR = 'Not mapped error';
 
 export type SigninResponse =
   | API_OK
@@ -202,6 +203,7 @@ export type PaymentCreateResponseMessages =
   | API_UNAUTHORIZED_ERROR
   | API_FORBIDDEN_ERROR
   | API_SERVER_ERROR
+  | NOT_MAPPED_ERROR
   | '\"planId\" is required'
   | '\"planId\" contains an invalid value'
   | '\"payment\" is required'
