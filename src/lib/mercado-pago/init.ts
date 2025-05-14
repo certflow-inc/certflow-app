@@ -1,6 +1,6 @@
 import { initMercadoPago, Payment, StatusScreen } from '@mercadopago/sdk-react';
 
-initMercadoPago('TEST-b822b25e-3646-4312-a9da-88ab55ae82e3', {
+initMercadoPago(process.env.NEXT_PUBLIC_MP_SECRET_KEY!, {
   locale: 'pt-BR'
 });
 

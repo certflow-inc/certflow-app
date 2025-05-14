@@ -10,7 +10,6 @@ import {
   IPaymentBrickCustomization,
   IPaymentFormData
 } from '@mercadopago/sdk-react/esm/bricks/payment/type';
-import { IBrickError } from '@mercadopago/sdk-react/esm/bricks/util/types/common';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -101,9 +100,7 @@ export function useCheckoutPaymentCurrencyModel({
       }
     };
 
-    console.log('🚀 ~ payload:', payload);
     const response = await createPaymentAction(payload);
-    console.log('🚀 ~ response:', response);
 
     if (response.ok) {
       setPaymentId(response.data?.transactionId);
@@ -139,17 +136,21 @@ export function useCheckoutPaymentCurrencyModel({
     }
   };
 
-  const onError = async (error: IBrickError) => {
-    console.log('🚀 ~ onError ~ error:', error);
-  };
+  // const onError = async (error: IBrickError) => {
+  //   console.log('🚀 ~ onError ~ error:', error);
+  // };
 
-  const onReady = async () => {
-    console.log('🚀 ~ onReady ~ onReady');
-  };
+  // const onReady = async () => {
+  //   console.log('🚀 ~ onReady ~ onReady');
+  // };
 
-  const onStatusReady = async () => {
-    console.log('🚀 ~ onReadyStatusReady ~ onReady');
-  };
+  // const onStatusError = async (error: IBrickError) => {
+  //   console.log('🚀 ~ onStatusError ~ error:', error);
+  // };
+
+  // const onStatusReady = async () => {
+  //   console.log('🚀 ~ onReadyStatusReady ~ onReady');
+  // };
 
   // Unmount components
   useEffect(() => () => unMountAll(), [unMountAll]);
@@ -159,9 +160,10 @@ export function useCheckoutPaymentCurrencyModel({
     router,
     initialization,
     customization,
-    onSubmit,
-    onError,
-    onReady,
-    onStatusReady
+    onSubmit
+    // onError,
+    // onReady,
+    // onStatusError,
+    // onStatusReady
   };
 }
