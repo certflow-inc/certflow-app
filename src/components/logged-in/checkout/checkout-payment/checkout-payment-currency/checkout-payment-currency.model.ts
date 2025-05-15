@@ -34,18 +34,22 @@ export function useCheckoutPaymentCurrencyModel({
 }: UseCheckoutPaymentCurrencyModelProps) {
   const router = useRouter();
   const [paymentId, setPaymentId] = useState<string | undefined>(undefined);
+  const isCNPJ = me.taxId.length > 11;
 
   const initialization = {
     amount: plan.currentAmount,
     payer: {
       email: me.email,
       identification: {
-        type: `${me.taxId.length > 11 ? 'CNPJ' : 'CPF'}`,
+        type: `${isCNPJ ? 'CNPJ' : 'CPF'}`,
         number: me.taxId
       }
     }
   };
-  console.log('🚀 ~ Inicializando o Mercado Pago com:', initialization);
+  console.log(
+    '🚀 ~ [Mercado Pago] Inicializando o Mercado Pago com:',
+    initialization
+  );
 
   const customization: IPaymentBrickCustomization = {
     paymentMethods: {
@@ -62,7 +66,10 @@ export function useCheckoutPaymentCurrencyModel({
       }
     }
   };
-  console.log('🚀 ~ Customizando o Mercado Pago com:', customization);
+  console.log(
+    '🚀 ~ [Mercado Pago] Customizando o Mercado Pago com:',
+    customization
+  );
 
   const invalidatePaymentBrickController = useCallback(() => {
     if (window.paymentBrickController) {
@@ -85,6 +92,10 @@ export function useCheckoutPaymentCurrencyModel({
     _selectedPaymentMethod: IAdditionalCardFormData | null | undefined
   ) => {
     const { formData: data } = formData;
+    console.log(
+      '🚀 ~ [Mercado Pago] Dados Recebidos do componente do Mercado Pago:',
+      data
+    );
     const isPIX = data.payment_method_id === 'pix';
 
     const payload = {
@@ -101,7 +112,15 @@ export function useCheckoutPaymentCurrencyModel({
       }
     };
 
+    console.log(
+      '🚀 ~ [Mercado Pago] Enviando payload para criação do pagamento:',
+      payload
+    );
     const response = await createPaymentAction(payload);
+    console.log(
+      '🚀 ~ [Mercado Pago] Recebendo a resposta da criação do pagamento:',
+      response
+    );
 
     if (response.ok) {
       setPaymentId(response.data?.transactionId);
