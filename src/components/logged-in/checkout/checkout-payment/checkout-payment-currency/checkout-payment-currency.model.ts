@@ -45,12 +45,12 @@ export function useCheckoutPaymentCurrencyModel({
       }
     }
   };
+  console.log('🚀 ~ Inicializando o Mercado Pago com:', initialization);
 
   const customization: IPaymentBrickCustomization = {
     paymentMethods: {
       bankTransfer: 'all',
       creditCard: 'all',
-      atm: 'all',
       maxInstallments: 1
     },
     visual: {
@@ -62,6 +62,7 @@ export function useCheckoutPaymentCurrencyModel({
       }
     }
   };
+  console.log('🚀 ~ Customizando o Mercado Pago com:', customization);
 
   const invalidatePaymentBrickController = useCallback(() => {
     if (window.paymentBrickController) {
