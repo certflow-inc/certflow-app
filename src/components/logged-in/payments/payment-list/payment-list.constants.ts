@@ -17,6 +17,7 @@ export type PaymentType =
   | 'elo'
   | 'cabal'
   | 'exchange';
+
 export const PaymentTypeDictionary: Record<PaymentType, string> = {
   none: 'Não se aplica',
   credit: 'Crédito',

@@ -13,11 +13,14 @@ import { useState } from 'react';
 import { PaymentListRowView } from '../payment-list-row/payment-list-row.view';
 import { PaymentListTableViewProps } from './payment-list-table.types';
 
-export function PaymentListTableView({ data }: PaymentListTableViewProps) {
+export function PaymentListTableView({
+  data,
+  onPaymentClick
+}: PaymentListTableViewProps) {
   const [expandedId, setIsExpandedId] = useState<string | null>(null);
 
   return (
-    <Table className="hidden min-[1130px]:block">
+    <Table key="payments-table" className="hidden min-[1130px]:block">
       <TableCaption>Pagamentos realizados</TableCaption>
 
       <TableHeader>
@@ -51,6 +54,7 @@ export function PaymentListTableView({ data }: PaymentListTableViewProps) {
             expandedId={expandedId}
             onExpandRow={setIsExpandedId}
             isExpandOnRowClick
+            onPaymentClick={onPaymentClick}
           />
         ))}
       </TableBody>

@@ -10,9 +10,13 @@ export function PaymentListRowView({
   data,
   expandedId,
   onExpandRow,
-  isExpandOnRowClick
+  isExpandOnRowClick,
+  onPaymentClick
 }: PaymentListRowViewProps) {
   const isMeExpanded = expandedId === data.paymentId;
+  const isPix = data.method === 'PIX';
+  const isPending = data.status === 'Pendente';
+
   return [
     <TableRow
       key={data.paymentId}
@@ -64,16 +68,36 @@ export function PaymentListRowView({
             'data-[expanded=true]:bg-blue-50 data-[expanded=true]:py-2 data-[expanded=true]:shadow-md'
           )}
         >
-          <TableCell className="w-1/6 px-3 py-6">
-            <div className="grid gap-4">
-              <div className="text-slate-500">Criado em</div>
-              <span>{data.createdAt}</span>
-            </div>
-          </TableCell>
-          <TableCell colSpan={5}>
-            <div className="grid gap-4">
-              <div className="text-slate-500">Observação</div>
-              <p className="text-wrap">{data.observation}</p>
+          <TableCell colSpan={6} className="px-3 py-6">
+            <div className="flex gap-10">
+              <div
+                data-visible={!!data.createdAt}
+                className="hidden gap-4 data-[visible=true]:grid"
+              >
+                <div className="text-slate-500">Criado em</div>
+                <span>{data.createdAt}</span>
+              </div>
+
+              <div
+                data-visible={!!data.observation}
+                className="hidden gap-4 data-[visible=true]:grid"
+              >
+                <div className="text-slate-500">Observação</div>
+                <p className="text-wrap">{data.observation}</p>
+              </div>
+
+              <div
+                data-visible={isPix && isPending}
+                className="hidden gap-4 data-[visible=true]:grid"
+              >
+                <div className="text-slate-500">Pagar</div>
+                <button
+                  className="text-primary-500 w-full text-left font-bold hover:underline"
+                  onClick={() => onPaymentClick(data.transactionId)}
+                >
+                  clique aqui para gerar o QR Code
+                </button>
+              </div>
             </div>
           </TableCell>
         </TableRowExpanded>
