@@ -230,3 +230,9 @@ export type PaymentCreateResponseMessages =
   | 'You do not have enough credits to make this payment'
   | 'Payment method #### not supported'
   | 'Failed to process your payment. Reason: #####';
+
+export type EventListResponse =
+  | API_OK
+  | API_SERVER_ERROR
+  | API_UNAUTHORIZED_ERROR
+  | API_FORBIDDEN_ERROR;

@@ -17,7 +17,8 @@ const PRIVATE_ENDPOINTS = [
   '/account',
   '/address',
   '/users',
-  '/payments'
+  '/payments',
+  '/events'
 ];
 
 const interceptor = new BatchInterceptor({
