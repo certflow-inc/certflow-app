@@ -25,7 +25,15 @@ export const ROUTES: Record<RouteKeys, Route> = {
   },
   EVENTS: {
     url: '/events',
-    breadcrumbs: [{ label: 'Eventos' }, { label: 'Listagem' }]
+    breadcrumbs: [{ label: 'Eventos' }, { label: 'Meus Eventos' }]
+  },
+  EVENTS_CREATE: {
+    url: '/events/create',
+    breadcrumbs: [
+      { label: 'Eventos' },
+      { label: 'Meus Eventos' },
+      { label: 'Novo' }
+    ]
   },
   PAYMENTS: {
     url: '/payments',

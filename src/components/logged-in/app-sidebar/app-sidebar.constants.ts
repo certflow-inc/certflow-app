@@ -37,7 +37,7 @@ export const DATA = {
       icon: CalendarDays,
       items: [
         {
-          title: 'Listagem',
+          title: 'Meus Eventos',
           url: ROUTES.EVENTS.url,
           icon: ScrollText
         }
