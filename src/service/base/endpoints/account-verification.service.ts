@@ -8,7 +8,7 @@ import { ApiError } from '../types';
 export async function accountVerification(email: string) {
   try {
     const response = await httpRequest(
-      `${process.env.API_URL}/account-verification/${email}`,
+      `${process.env.API_AUTH_URL}/account-verification/${email}`,
       {
         method: 'POST'
       }

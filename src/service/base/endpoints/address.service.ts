@@ -12,7 +12,7 @@ import { ApiError, ApiResponse } from '../types';
 import { FETCH_TAGS } from './endpoints.constants';
 
 const RESOURCE = 'address';
-const RESOURCE_PATH = `${process.env.API_URL}/${RESOURCE}`;
+const RESOURCE_PATH = `${process.env.API_AUTH_URL}/${RESOURCE}`;
 
 /**
  * Fetches the account address from the server.

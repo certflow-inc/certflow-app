@@ -13,7 +13,7 @@ import { FETCH_TAGS } from './endpoints.constants';
 
 export async function getMe(): Promise<ApiResponse<Me>> {
   try {
-    const response = await httpRequest(`${process.env.API_URL}/me`, {
+    const response = await httpRequest(`${process.env.API_AUTH_URL}/me`, {
       method: 'GET',
       cache: 'force-cache',
       next: {

@@ -11,7 +11,7 @@ export async function signin(
   password: string
 ): Promise<ApiResponse<Auth>> {
   try {
-    const response = await httpRequest(`${process.env.API_URL}/sign-in`, {
+    const response = await httpRequest(`${process.env.API_AUTH_URL}/sign-in`, {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: {

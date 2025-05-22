@@ -24,7 +24,7 @@ import { ApiError, ApiResponse } from '../types';
  */
 export async function getPayments(): Promise<ApiResponse<Payment[]>> {
   try {
-    const response = await httpRequest(`${process.env.API_URL}/payments`);
+    const response = await httpRequest(`${process.env.API_AUTH_URL}/payments`);
 
     if (response.ok) {
       return {
@@ -60,7 +60,7 @@ export async function createPayment(
   payload: PaymentCreateRequest
 ): Promise<ApiResponse<PaymentCreateResponse>> {
   try {
-    const response = await httpRequest(`${process.env.API_URL}/payments`, {
+    const response = await httpRequest(`${process.env.API_AUTH_URL}/payments`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -19,7 +19,7 @@ import { StatusCodes } from 'http-status-codes';
 
 export async function signup(register: Register): Promise<ApiResponse<void>> {
   try {
-    const response = await httpRequest(`${process.env.API_URL}/sign-up`, {
+    const response = await httpRequest(`${process.env.API_AUTH_URL}/sign-up`, {
       method: 'POST',
       body: buildPayload(register),
       headers: {

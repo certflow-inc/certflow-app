@@ -10,7 +10,7 @@ export async function signout(
   refreshToken: string
 ): Promise<ApiResponse<Auth>> {
   try {
-    const response = await httpRequest(`${process.env.API_URL}/sign-out`, {
+    const response = await httpRequest(`${process.env.API_AUTH_URL}/sign-out`, {
       method: 'POST',
       headers: {
         'refresh-token': refreshToken

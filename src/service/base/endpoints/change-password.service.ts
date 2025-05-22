@@ -12,7 +12,7 @@ export async function changePassword(
 ): Promise<ApiResponse<void>> {
   try {
     const response = await httpRequest(
-      `${process.env.API_URL}/change-password/${token}`,
+      `${process.env.API_AUTH_URL}/change-password/${token}`,
       {
         method: 'POST',
         body: JSON.stringify(data),

@@ -10,7 +10,7 @@ export async function passwordRecovery(
 ): Promise<ApiResponse<void>> {
   try {
     const response = await httpRequest(
-      `${process.env.API_URL}/password-recovery/${email}`,
+      `${process.env.API_AUTH_URL}/password-recovery/${email}`,
       {
         method: 'POST',
         body: JSON.stringify({ email }),

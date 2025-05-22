@@ -18,7 +18,7 @@ import { StatusCodes } from 'http-status-codes';
 export async function activate(token: string): Promise<ApiResponse<void>> {
   try {
     const response = await httpRequest(
-      `${process.env.API_URL}/activate/${token}`,
+      `${process.env.API_AUTH_URL}/activate/${token}`,
       {
         method: 'POST'
       }

@@ -13,7 +13,7 @@ type CheckRequest = {
 export async function check(request: CheckRequest) {
   try {
     const response = await httpRequest(
-      `${process.env.API_URL}/check/${request.flow}/${request.token}`,
+      `${process.env.API_AUTH_URL}/check/${request.flow}/${request.token}`,
       {
         method: 'GET'
       }

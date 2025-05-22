@@ -23,7 +23,7 @@ import { FETCH_TAGS } from './endpoints.constants';
 
 export async function getAccount(): Promise<ApiResponse<Account>> {
   try {
-    const response = await httpRequest(`${process.env.API_URL}/account`, {
+    const response = await httpRequest(`${process.env.API_AUTH_URL}/account`, {
       method: 'GET',
       cache: 'force-cache',
       next: {
@@ -75,7 +75,7 @@ export async function updateAccount(
   fantasy: string
 ): Promise<ApiResponse<void>> {
   try {
-    const response = await httpRequest(`${process.env.API_URL}/account`, {
+    const response = await httpRequest(`${process.env.API_AUTH_URL}/account`, {
       method: 'PUT',
       body: JSON.stringify({ fantasy }),
       headers: {

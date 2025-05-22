@@ -12,7 +12,7 @@ import { FETCH_TAGS } from './endpoints.constants';
 
 export async function getPlans(): Promise<ApiResponse<Plan[]>> {
   try {
-    const response = await fetch(`${process.env.API_URL}/plans`, {
+    const response = await fetch(`${process.env.API_AUTH_URL}/plans`, {
       method: 'GET',
       cache: 'force-cache',
       next: {

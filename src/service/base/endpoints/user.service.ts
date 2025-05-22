@@ -23,7 +23,7 @@ import { FETCH_CACHE_TIME, FETCH_TAGS } from './endpoints.constants';
  */
 export async function getUsers(): Promise<ApiResponse<Me[]>> {
   try {
-    const response = await httpRequest(`${process.env.API_URL}/users`, {
+    const response = await httpRequest(`${process.env.API_AUTH_URL}/users`, {
       cache: 'force-cache',
       next: {
         revalidate: FETCH_CACHE_TIME.TWO_MINUTES,
@@ -78,7 +78,7 @@ export async function createUser(
   try {
     const body = buildCreateUserPayload(user);
 
-    const response = await fetch(`${process.env.API_URL}/users`, {
+    const response = await fetch(`${process.env.API_AUTH_URL}/users`, {
       method: 'POST',
       body,
       headers: {
@@ -124,7 +124,7 @@ export async function createUser(
 export async function deleteUser(userId: string): Promise<ApiResponse<void>> {
   try {
     const response = await httpRequest(
-      `${process.env.API_URL}/users/${userId}`,
+      `${process.env.API_AUTH_URL}/users/${userId}`,
       {
         method: 'DELETE'
       }
