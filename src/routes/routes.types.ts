@@ -11,6 +11,7 @@ export type PrivateRoutes =
   | 'ACCOUNT'
   | 'DASHBOARD'
   | 'ABOUT'
+  | 'EVENTS'
   | 'PAYMENTS'
   | 'PLANS'
   | 'CHECKOUT'

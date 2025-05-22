@@ -1,9 +1,11 @@
 import { ROUTES } from '@/routes';
 import {
+  CalendarDays,
   CreditCard,
   Dock,
   LayoutDashboard,
   LibraryBig,
+  ScrollText,
   Settings,
   SquareUser,
   Users
@@ -26,6 +28,18 @@ export const DATA = {
           title: 'Sobre',
           url: ROUTES.ABOUT.url,
           icon: LibraryBig
+        }
+      ]
+    },
+    {
+      title: 'Eventos',
+      url: '#',
+      icon: CalendarDays,
+      items: [
+        {
+          title: 'Listagem',
+          url: ROUTES.EVENTS.url,
+          icon: ScrollText
         }
       ]
     },
