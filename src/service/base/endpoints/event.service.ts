@@ -21,7 +21,7 @@ import { ApiError, ApiResponse } from '../types';
  */
 export async function getEvents(): Promise<ApiResponse<Event[]>> {
   try {
-    const response = await httpRequest(`${process.env.API_URL}/events`);
+    const response = await httpRequest(`${process.env.API_CORE_URL}/events`);
 
     if (response.ok) {
       return {
@@ -51,4 +51,49 @@ export async function getEvents(): Promise<ApiResponse<Event[]>> {
     }
     throw new Error(API_COMMON_RESPONSE_ERROR.API_SERVER_ERROR);
   }
+}
+
+/**
+ * Mock function to simulate fetching a list of events.
+ *
+ * @returns {Promise<ApiResponse<Event[]>>} A promise that resolves to an ApiResponse
+ * containing a mock list of events.
+ */
+// This function is used for testing or development purposes and does not
+// interact with the actual server.
+// It simulates a delay of 2 seconds before returning the mock data.
+export async function getEventsMock(): Promise<ApiResponse<Event[]>> {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+
+  return {
+    ok: true,
+    data: [
+      {
+        eventId: '1',
+        name: 'Workshop sobre como vender mais utilizando as redes sociais',
+        startDate: 1746068400000,
+        endDate: 1746846000000,
+        createdAt: 1746068400000,
+        updatedAt: 1746068400000,
+        hours: 8,
+        format: 'closed',
+        type: 'opened',
+        status: 'active',
+        locked: false
+      },
+      {
+        eventId: '2',
+        name: 'Workshop sobre como atingir seu público-alvo',
+        startDate: 1746068400000,
+        endDate: 1746846000000,
+        createdAt: 1746068400000,
+        updatedAt: 1746068400000,
+        hours: 8,
+        format: 'faceToFace',
+        type: 'opened',
+        status: 'archived',
+        locked: true
+      }
+    ]
+  };
 }

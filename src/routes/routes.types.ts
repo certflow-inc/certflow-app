@@ -13,6 +13,7 @@ export type PrivateRoutes =
   | 'ABOUT'
   | 'EVENTS'
   | 'EVENTS_CREATE'
+  | 'EVENTS_EDIT'
   | 'PAYMENTS'
   | 'PLANS'
   | 'CHECKOUT'

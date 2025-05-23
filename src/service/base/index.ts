@@ -9,6 +9,7 @@ import {
   getAccount,
   getAddress,
   getEvents,
+  getEventsMock,
   getMe,
   getPayments,
   getPlans,
@@ -43,5 +44,6 @@ export const CertFlowServices = {
   getPayments,
   createPayment,
   getPlans,
-  getEvents
+  getEvents,
+  getEventsMock
 };

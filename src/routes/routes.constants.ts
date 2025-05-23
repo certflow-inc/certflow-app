@@ -35,6 +35,14 @@ export const ROUTES: Record<RouteKeys, Route> = {
       { label: 'Novo' }
     ]
   },
+  EVENTS_EDIT: {
+    url: '/events/edit',
+    breadcrumbs: [
+      { label: 'Eventos' },
+      { label: 'Meus Eventos' },
+      { label: 'Editar' }
+    ]
+  },
   PAYMENTS: {
     url: '/payments',
     breadcrumbs: [{ label: 'Configurações' }, { label: 'Pagamentos' }]

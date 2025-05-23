@@ -38,6 +38,7 @@ import {
   Account,
   AppSidebar,
   Checkout,
+  EventList,
   Container as LoggedContainer,
   PaymentList,
   PlanCards as Plans,
@@ -51,5 +52,6 @@ export const LoggedIn = {
   Checkout,
   UsersList,
   PaymentList,
-  Plans
+  Plans,
+  EventList
 };
